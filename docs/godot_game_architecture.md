@@ -2,6 +2,12 @@
 
 ## Current boundary
 
+Godot owns rendering, window scaling, input, UI, audio mixing, and movie
+playback. The native library owns gameplay simulation and state: collision,
+scripts, actor motion, transitions, inventory, and saves. Its SDL executable
+remains standalone, but Godot consumes native state and events rather than
+displaying an SDL framebuffer or forwarding SDL audio.
+
 `scenes/Main.tscn` composes `scenes/world/World3D.tscn` and
 `scenes/ui/GameUI.tscn` as separate instances, with sibling media-import and
 audio-bus controllers. The world scene currently
@@ -94,9 +100,20 @@ value alone does not establish the game-world mapping.
 ## Godot rendering path
 
 Godot must construct the final world from native nodes and rendering
-resources, not from the SDL framebuffer. Before implementing it, inspect and
-document the original grid, brick, tile, sprite, and animation formats and
-their scene references. The world renderer will place bricks and tiles,
+resources, not from the SDL framebuffer. The project now starts at 1280×720,
+allows window resizing, and expands its 16:9 canvas layout with the window.
+The tile shader uses nearest sampling and accepts an optional normal map.
+No generated normal maps or tile geometry are connected yet.
+
+`LBA1GridDecoder` reads each scene's original GRI column runs and BLL block
+cells into a 64×25×64 grid, resolving visible BRK indices while retaining
+the original encoded cells. `LBA1BrickDecoder` expands the BRK image RLE with
+the game's palette and transparency into Godot `Image` resources. These are
+asset decoders, not a gameplay authority. With original data available, run
+`LBA_TEST_DATA_PATH=/absolute/path/to/data godot --headless --path . --script tests/validate_lba_grid_decoder.gd`
+to decode scene 0 and every brick image it references.
+
+The world renderer still needs to place bricks and tiles,
 actors, sprites, effects, and the isometric camera from stable bridge data.
 The existing LBA1 BODY decoder, mesh builder, pose handling, palette, and
 `shaders/lba_character.gdshader` provide the character rendering base.
@@ -120,9 +137,12 @@ mapped yet. With original data available, validate this path using
    simulation, then consume scene, audio, and movie events. Apply the existing
    Godot bus settings to the native engine and persist changes in the Godot
    config.
-3. Expose scene/grid/brick resources and reconstruct one scene in
+3. Expose scene identity from native state and reconstruct one scene in
    `World3D.tscn` with the existing character shader and dithered materials.
-   Verify coordinate scale, camera, animation, and collisions against SDL.
+   Use the decoded GRI/BLL/BRK resources, then verify coordinate scale,
+   camera, animation, and collisions against SDL. Replace the original
+   pre-rendered tile appearance with lit geometry and normal maps as that
+   asset pipeline becomes available.
 4. Connect save/load and inventory requests, scene transitions, dialogue,
    scripted FMVs, and remaining target-platform asset paths. Validate each
    against the original game before calling the loop playable.

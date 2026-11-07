@@ -1,9 +1,9 @@
 # lba1-godot
 
-Godot 4 presentation and input host for the original Little Big Adventure 1
-engine. This repository contains the Godot scenes, UI, media flow, and the
-LBA1 character renderer with its dither shader. It contains no original game
-data.
+Godot 4 rendering, audio, movie, UI, and input host for the original Little
+Big Adventure 1 engine. The native submodule will supply gameplay simulation
+and state while retaining its standalone SDL game. This repository contains
+no original game data.
 
 ## Current state
 
@@ -16,6 +16,9 @@ to the menu after the intro.
 `World3D.tscn` can already load an original LBA1 BODY.HQR actor into the
 Godot mesh renderer with the existing dither shader. Actor and world state
 still need to come from the native host.
+The project also decodes original GRI/BLL scene grids and BRK brick images,
+with a nearest-sampled tile shader that accepts optional normal maps. Its
+window starts at 1280×720 and supports resizing.
 
 The pinned `native/lba1-native` submodule owns the 64-bit engine and media
 importer. Godot's desktop importer discovers its tools there. A release must
@@ -25,8 +28,7 @@ bundle the importer tools separately.
 
 `lba1-native` is pinned at `eaab71e` as a submodule at `native/lba1-native`.
 Clone this repository with `--recurse-submodules`, or run
-`git submodule update --init` after cloning. The Godot repository remains
-local and has no remote yet.
+`git submodule update --init` after cloning.
 
 ## Stages
 
