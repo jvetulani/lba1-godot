@@ -1,19 +1,53 @@
-# LBA Model Renderer
+# lba1-godot
 
-View and export character models and animations from **Little Big Adventure 1**, **Little Big Adventure 2**, and the **1996 LBA2 demo**. The desktop viewer also opens **Alone in the Dark 1–3** PAK models. [Open the web viewer](https://jvetulani.github.io/LBAModelRenderer/) or run the Godot project locally.
+Godot 4 presentation and input host for the original Little Big Adventure 1
+engine. This repository contains the Godot scenes, UI, media flow, and the
+LBA1 character renderer with its dither shader. It contains no original game
+data.
 
-Shareable character sheets: [LBA1](showcase/lba1-characters.png) and [LBA2](showcase/lba2-characters.png). Each shows 20 selected BODY entries rendered in the viewer, labeled by entry number.
+## Current state
 
-Choose your own game folder in the viewer. The project does not include game archives. The web viewer reads those files in your browser; it does not upload them. GLB and Blender export details are in [docs/export.md](docs/export.md).
+With original game data imported, the Godot main scene displays the menu
+artwork and plays converted menu music, the DRAGON3 boot movie, the English
+narrated intro illustrations, and the INTROD OGV. It has modular CanvasLayer menus, Godot audio buses, a
+persistent original-data path, and keyboard/gamepad Input Map actions. The
+native simulation and world renderer are not connected, so New Game returns
+to the menu after the intro.
+`World3D.tscn` can already load an original LBA1 BODY.HQR actor into the
+Godot mesh renderer with the existing dither shader. Actor and world state
+still need to come from the native host.
 
-To share a model from an HTTPS archive folder, enter the folder URL in the source field and load a BODY entry, then press **Copy link**. **Copy embed** makes the same link with `embed=1`, which hides the controls and display platform. Local folders cannot be shared as links. See [URL and archive setup](docs/urls-and-game-files.md) for all parameters, iframe examples, and the files each game needs.
+The pinned `native/lba1-native` submodule owns the 64-bit engine and media
+importer. Godot's desktop importer discovers its tools there. A release must
+bundle the importer tools separately.
 
-Press **Find…** beside the entry number, or **Find model** on a narrow screen, to search by character, object, inventory item, or entry number. Retail body labels are adapted from [LBA1](https://lbafileinfo.kaziq.net/index.php/LBA1:Body.hqr) and [LBA2](https://lbafileinfo.kaziq.net/index.php/LBA2:Body.hqr) BODY catalogs (CC BY-SA), with character spellings checked against the [LBA Wiki](https://lba.fandom.com/wiki/Category:LBA2_Characters). Inventory labels are viewer metadata based on the game inventory tables and [OBJFIX catalog](https://lbafileinfo.kaziq.net/index.php/LBA2%3AObjfix.hqr); unusual OBJFIX parts remain separate entries. Demo inventory labels are provisional. AITD has one model list, with names only for identified models. The archives contain numbered models, not embedded model names. Search treats `Zoe` and `Zoé` alike.
+## Native repository relationship
 
-On touch screens, drag with one finger to orbit, pinch to zoom, and drag with two fingers to pan.
+`lba1-native` is pinned at `eaab71e` as a submodule at `native/lba1-native`.
+Clone this repository with `--recurse-submodules`, or run
+`git submodule update --init` after cloning. The Godot repository remains
+local and has no remote yet.
 
-The preview defaults to **Soft dither**, which follows each model through animation, uses the source palette light range, and fades to smooth shading when the pattern becomes too fine to display. **Dither off** shows the corresponding palette bands, while **Modern smooth** uses per-pixel lighting. The fixed light direction and scanline pattern remain approximate. A toggleable ground grid scrolls with animation root movement and fades away from the model. The interface uses the [Short Stack font](assets/ui/fonts/OFL.txt) under the SIL Open Font License.
+## Stages
 
-## Help improve it
+1. **Menu presentation:** Godot Control text and buttons, original artwork,
+   a slow plasma button shader, keyboard/gamepad focus, imported audio and FMV.
+   The original bitmap font and final menu styling are still to come.
+2. **Native host:** split engine startup and the New Game/Continue commands
+   from SDL, send simulation events through a stable C API, and wrap it in a
+   Godot GDExtension. Apply Godot Input Map actions at 50 Hz.
+3. **First world scene:** expose grid, brick, sprite, actor, camera, and
+   animation snapshots. Render one real scene's tiles and actors with Godot,
+   using the LBA1 character shader. The first actor mesh path is in place.
+4. **Playable slice:** connect collision, scripts, dialogue, inventory,
+   transitions, save/load, and in-game music/cutscenes to reach continuous
+   gameplay from the menu.
+5. **Platform parity:** validate Linux and Windows first, then Web and
+   mobile/macOS asset and media paths with platform-specific packaging.
 
-[Report a bug](https://github.com/jvetulani/LBAModelRenderer/issues/new/choose) with the game version, BODY entry number, animation number or frame, and a screenshot when useful. Please do not attach copyrighted game archives. Code and documentation changes are welcome as [pull requests](https://github.com/jvetulani/LBAModelRenderer/pulls). The viewer's local checks are described in [docs/validation.md](docs/validation.md).
+Run the project with Godot 4.8 or newer. In Settings, choose your own
+original LBA1 game-data directory and import media. See
+`docs/godot_game_architecture.md` for the current bridge boundary.
+
+No copyrighted game archives or converted media are stored here. Review the
+GPL terms of the native engine before distribution.

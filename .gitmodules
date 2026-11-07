@@ -1,0 +1,3 @@
+[submodule "lba1-native"]
+	path = native/lba1-native
+	url = https://github.com/jvetulani/lba1-native.git

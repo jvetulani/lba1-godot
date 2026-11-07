@@ -222,6 +222,8 @@ static func _build_polygon_mesh(body: Dictionary, points: PackedVector3Array, ba
 		if str(body.get("game", "")).begins_with("AITD"):
 			face_normal = -face_normal
 		var surface_offset := LBA2_APPEARANCE.surface_offset_for_face(body, polygon)
+		if str(body.get("game", "")).begins_with("AITD"):
+			surface_offset -= float(polygon.get("surface_layer", 0)) * 0.15 * UNIT_SCALE
 		for triangle_index in range(1, point_indices.size() - 1):
 			var corners := [0, triangle_index + 1, triangle_index]
 			for corner in corners:

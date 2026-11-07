@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/lba_world_3d.gd" id="1_world"]
+
+[node name="World3D" type="Node3D"]
+script = ExtResource("1_world")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="Camera" type="Camera3D" parent="."]
+projection = 1
+current = true
+size = 20.0
+
+[node name="Grid" type="Node3D" parent="."]
+
+[node name="Bricks" type="Node3D" parent="."]
+
+[node name="Actors" type="Node3D" parent="."]
+
+[node name="Sprites" type="Node3D" parent="."]
+
+[node name="Effects" type="Node3D" parent="."]

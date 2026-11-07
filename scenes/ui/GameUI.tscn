@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/game_ui.gd" id="1_ui"]
+[ext_resource type="PackedScene" path="res://scenes/ui/MainMenu.tscn" id="2_main"]
+[ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="3_pause"]
+[ext_resource type="PackedScene" path="res://scenes/ui/SettingsMenu.tscn" id="4_settings"]
+[ext_resource type="PackedScene" path="res://scenes/ui/Dialogue.tscn" id="5_dialogue"]
+[ext_resource type="PackedScene" path="res://scenes/ui/Inventory.tscn" id="6_inventory"]
+[ext_resource type="PackedScene" path="res://scenes/ui/SaveScreen.tscn" id="7_save"]
+[ext_resource type="PackedScene" path="res://scenes/ui/LoadScreen.tscn" id="8_load"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="9_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/MediaSequence.tscn" id="10_media"]
+
+[node name="GameUI" type="CanvasLayer"]
+script = ExtResource("1_ui")
+
+[node name="Frame" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MenuBackdrop" type="TextureRect" parent="Frame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+texture_filter = 1
+
+[node name="HUD" parent="Frame" instance=ExtResource("9_hud")]
+
+[node name="MainMenu" parent="Frame" instance=ExtResource("2_main")]
+
+[node name="PauseMenu" parent="Frame" instance=ExtResource("3_pause")]
+visible = false
+
+[node name="SettingsMenu" parent="Frame" instance=ExtResource("4_settings")]
+visible = false
+
+[node name="Dialogue" parent="Frame" instance=ExtResource("5_dialogue")]
+visible = false
+
+[node name="Inventory" parent="Frame" instance=ExtResource("6_inventory")]
+visible = false
+
+[node name="SaveScreen" parent="Frame" instance=ExtResource("7_save")]
+visible = false
+
+[node name="LoadScreen" parent="Frame" instance=ExtResource("8_load")]
+visible = false
+
+[node name="MediaSequence" parent="Frame" instance=ExtResource("10_media")]

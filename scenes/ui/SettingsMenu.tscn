@@ -1,0 +1,188 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/game_settings_panel.gd" id="1_panel"]
+
+[node name="SettingsMenu" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_panel")
+
+[node name="Center" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ContentCenter" type="CenterContainer" parent="Center"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="PanelContainer" parent="Center/ContentCenter"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+
+[node name="Contents" type="VBoxContainer" parent="Center/ContentCenter/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="MasterRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+
+[node name="MasterLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/MasterRow"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Master"
+
+[node name="MasterVolume" type="HSlider" parent="Center/ContentCenter/Panel/Contents/MasterRow"]
+custom_minimum_size = Vector2(190, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+max_value = 255.0
+step = 1.0
+value = 255.0
+metadata/action = "master_volume"
+
+[node name="MusicRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/MusicRow"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Music"
+
+[node name="MusicVolume" type="HSlider" parent="Center/ContentCenter/Panel/Contents/MusicRow"]
+custom_minimum_size = Vector2(190, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+max_value = 255.0
+step = 1.0
+value = 255.0
+metadata/action = "music_volume"
+
+[node name="SoundRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+
+[node name="SoundLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/SoundRow"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Sound effects"
+
+[node name="SoundVolume" type="HSlider" parent="Center/ContentCenter/Panel/Contents/SoundRow"]
+custom_minimum_size = Vector2(190, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+max_value = 255.0
+step = 1.0
+value = 255.0
+metadata/action = "sound_volume"
+
+[node name="SpeechRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+
+[node name="SpeechLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/SpeechRow"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Speech"
+
+[node name="SpeechVolume" type="HSlider" parent="Center/ContentCenter/Panel/Contents/SpeechRow"]
+custom_minimum_size = Vector2(190, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+max_value = 255.0
+step = 1.0
+value = 255.0
+metadata/action = "speech_volume"
+
+[node name="CinematicRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+
+[node name="CinematicLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/CinematicRow"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Cinematics"
+
+[node name="CinematicVolume" type="HSlider" parent="Center/ContentCenter/Panel/Contents/CinematicRow"]
+custom_minimum_size = Vector2(190, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+max_value = 255.0
+step = 1.0
+value = 179.0
+metadata/action = "cinematic_volume"
+
+[node name="WallCollisionDamage" type="CheckButton" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+focus_mode = 2
+text = "Wall Collision Damage"
+metadata/action = "wall_collision_damage"
+
+[node name="Separator" type="HSeparator" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+
+[node name="OriginalDataTitle" type="Label" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+text = "Original LBA1 game data"
+
+[node name="SourceRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+
+[node name="SourcePath" type="LineEdit" parent="Center/ContentCenter/Panel/Contents/SourceRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+placeholder_text = "Folder containing SCENE.HQR"
+expand_to_text_length = false
+
+[node name="BrowseOriginalData" type="Button" parent="Center/ContentCenter/Panel/Contents/SourceRow"]
+layout_mode = 2
+focus_mode = 2
+text = "Browse…"
+metadata/action = "browse_original_data"
+
+[node name="ImportOriginalMedia" type="Button" parent="Center/ContentCenter/Panel/Contents"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+focus_mode = 2
+text = "Import audio and movies"
+metadata/action = "import_original_media"
+
+[node name="ImportProgress" type="ProgressBar" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+max_value = 100.0
+show_percentage = false
+
+[node name="ImportStatus" type="Label" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+text = "Select your original game folder, then import its media."
+autowrap_mode = 3
+
+
+[node name="Close" type="Button" parent="Center/ContentCenter/Panel/Contents"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+focus_mode = 2
+text = "Back"
+metadata/action = "close"
+
+[node name="SourcePicker" type="FileDialog" parent="."]
+title = "Choose original LBA1 game data"
+size = Vector2i(800, 540)
+file_mode = 2
+access = 2

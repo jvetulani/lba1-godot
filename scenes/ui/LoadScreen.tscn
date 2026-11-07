@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/game_action_panel.gd" id="1_panel"]
+
+[node name="LoadScreen" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_panel")
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+
+[node name="Contents" type="VBoxContainer" parent="Center/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Center/Panel/Contents"]
+layout_mode = 2
+text = "Load game"
+horizontal_alignment = 1
+
+[node name="Entries" type="ItemList" parent="Center/Panel/Contents"]
+custom_minimum_size = Vector2(360, 240)
+layout_mode = 2
+focus_mode = 2
+
+[node name="Actions" type="HBoxContainer" parent="Center/Panel/Contents"]
+layout_mode = 2
+
+[node name="Load" type="Button" parent="Center/Panel/Contents/Actions"]
+custom_minimum_size = Vector2(120, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+text = "Load"
+metadata/action = "load"
+metadata/confirm = true
+metadata/confirmation_text = "Load this saved game? Unsaved progress will be lost."
+
+[node name="Close" type="Button" parent="Center/Panel/Contents/Actions"]
+custom_minimum_size = Vector2(120, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+text = "Back"
+metadata/action = "close"
+
+[node name="Confirmation" type="ConfirmationDialog" parent="."]
+title = "Confirm load"

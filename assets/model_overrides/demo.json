@@ -1,7 +1,0 @@
-{
-  "demo": {
-    "64": {"polygon_surface_offsets": [[20, 0.008], [29, 0.008]]},
-    "47": {"translucent_faces": [{"palette_index": 160, "render_type": 5}], "opacity": 0.42},
-    "48": {"translucent_faces": [{"palette_index": 160, "render_type": 5}], "opacity": 0.42}
-  }
-}

@@ -1,0 +1,45 @@
+[gd_scene format=3]
+
+[node name="HUD" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Top" type="MarginContainer" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 18
+
+[node name="Stats" type="HBoxContainer" parent="Top"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Life" type="Label" parent="Top/Stats"]
+layout_mode = 2
+text = "Life: 0"
+
+[node name="Magic" type="Label" parent="Top/Stats"]
+layout_mode = 2
+text = "Magic: 0"
+
+[node name="Gold" type="Label" parent="Top/Stats"]
+layout_mode = 2
+text = "Gold: 0"
+
+[node name="Notice" type="Label" parent="."]
+layout_mode = 1
+anchor_top = 0.88
+anchor_right = 1.0
+anchor_bottom = 0.98
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+text = ""
