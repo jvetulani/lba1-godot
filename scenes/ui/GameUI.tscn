@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/game_ui.gd" id="1_ui"]
 [ext_resource type="PackedScene" path="res://scenes/ui/MainMenu.tscn" id="2_main"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/LoadScreen.tscn" id="8_load"]
 [ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="9_hud"]
 [ext_resource type="PackedScene" path="res://scenes/ui/MediaSequence.tscn" id="10_media"]
+[ext_resource type="PackedScene" path="res://scenes/ui/ModeMenu.tscn" id="11_mode"]
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_ui")
@@ -57,3 +58,6 @@ visible = false
 visible = false
 
 [node name="MediaSequence" parent="Frame" instance=ExtResource("10_media")]
+
+[node name="ModeMenu" parent="Frame" instance=ExtResource("11_mode")]
+visible = false

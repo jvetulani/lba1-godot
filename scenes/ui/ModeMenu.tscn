@@ -1,0 +1,116 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/game_action_panel.gd" id="1_panel"]
+
+[node name="ModeMenu" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_panel")
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(900, 360)
+layout_mode = 2
+
+[node name="Contents" type="VBoxContainer" parent="Center/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Twinsen" type="TextureRect" parent="Center/Panel/Contents"]
+custom_minimum_size = Vector2(150, 120)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Status" type="VBoxContainer" parent="Center/Panel/Contents"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Vitals" type="HBoxContainer" parent="Center/Panel/Contents/Status"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 32
+
+[node name="Health" type="Label" parent="Center/Panel/Contents/Status/Vitals"]
+layout_mode = 2
+text = "Health: 0"
+
+[node name="HealthBar" type="ProgressBar" parent="Center/Panel/Contents/Status/Vitals"]
+custom_minimum_size = Vector2(130, 18)
+layout_mode = 2
+max_value = 50.0
+show_percentage = false
+
+[node name="Magic" type="Label" parent="Center/Panel/Contents/Status/Vitals"]
+layout_mode = 2
+text = "Magic level: 0  Energy: 0"
+
+[node name="MagicBar" type="ProgressBar" parent="Center/Panel/Contents/Status/Vitals"]
+custom_minimum_size = Vector2(130, 18)
+layout_mode = 2
+max_value = 80.0
+show_percentage = false
+
+[node name="Items" type="HBoxContainer" parent="Center/Panel/Contents/Status"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 32
+
+[node name="Clovers" type="Label" parent="Center/Panel/Contents/Status/Items"]
+layout_mode = 2
+text = "Clovers: 0 / 0"
+
+[node name="Keys" type="Label" parent="Center/Panel/Contents/Status/Items"]
+layout_mode = 2
+text = "Keys: 0"
+
+[node name="Money" type="Label" parent="Center/Panel/Contents/Status/Items"]
+layout_mode = 2
+text = "Money: 0"
+
+[node name="Modes" type="HBoxContainer" parent="Center/Panel/Contents"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Normal" type="Button" parent="Center/Panel/Contents/Modes"]
+custom_minimum_size = Vector2(190, 208)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+text = "Normal"
+metadata/behavior = 0
+
+[node name="Sporty" type="Button" parent="Center/Panel/Contents/Modes"]
+custom_minimum_size = Vector2(190, 208)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+text = "Athletic"
+metadata/behavior = 1
+
+[node name="Aggressive" type="Button" parent="Center/Panel/Contents/Modes"]
+custom_minimum_size = Vector2(190, 208)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+text = "Aggressive"
+metadata/behavior = 2
+
+[node name="Discreet" type="Button" parent="Center/Panel/Contents/Modes"]
+custom_minimum_size = Vector2(190, 208)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+text = "Discreet"
+metadata/behavior = 3

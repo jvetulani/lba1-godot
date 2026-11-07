@@ -1,0 +1,7 @@
+[configuration]
+entry_symbol = "lba1_gdextension_init"
+compatibility_minimum = "4.7"
+
+[libraries]
+linux.debug.x86_64 = "res://addons/lba1/bin/liblba1_gdextension.so"
+linux.release.x86_64 = "res://addons/lba1/bin/liblba1_gdextension.so"

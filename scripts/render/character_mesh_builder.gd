@@ -14,7 +14,9 @@ const WIREFRAME_SHADER := preload("res://shaders/wireframe_overlay.gdshader")
 const BONE_DEBUG := preload("res://scripts/render/bone_debug_overlay.gd")
 
 
-static func build_static_pose(body: Dictionary, palette_bytes: PackedByteArray, atlas_override: Texture2D = null) -> Node3D:
+static func build_static_pose(body: Dictionary, palette_bytes: PackedByteArray,
+		atlas_override: Texture2D = null, skinned: bool = false,
+		shared_meshes: Dictionary = {}) -> Node3D:
 	var character := Node3D.new()
 	character.name = "%sBody" % body.get("game", "LBA1")
 	var is_lba2: bool = body.get("game", "LBA1") == "LBA2"
@@ -26,9 +28,35 @@ static func build_static_pose(body: Dictionary, palette_bytes: PackedByteArray, 
 	if body.has("shade_table"):
 		shade_texture = ImageTexture.create_from_image(Image.create_from_data(256, 256, false, Image.FORMAT_R8, body["shade_table"]))
 	var points: PackedVector3Array = body["pose_points"]
+	var skin: Skin
+	if skinned and not is_lba2:
+		var skeleton := Skeleton3D.new()
+		skeleton.name = "Skeleton"
+		character.add_child(skeleton)
+		skin = Skin.new()
+		var rest_transforms: Array[Transform3D] = []
+		for group_index in range((body["groups"] as Array).size()):
+			var group: Dictionary = body["groups"][group_index]
+			var parent: int = group["parent"]
+			var origin := Vector3.ZERO
+			if int(group["count"]) > 0:
+				var first: int = group["first"]
+				origin = (points[first] - body["points"][first]) * UNIT_SCALE
+			var global_rest := Transform3D(Basis.IDENTITY, origin)
+			skeleton.add_bone("Group_%d" % group_index)
+			if parent >= 0:
+				skeleton.set_bone_parent(group_index, parent)
+			var local := global_rest if parent < 0 else rest_transforms[parent].affine_inverse() * global_rest
+			skeleton.set_bone_rest(group_index, local)
+			skeleton.set_bone_pose_position(group_index, local.origin)
+			skin.add_bind(group_index, global_rest.affine_inverse())
+			rest_transforms.append(global_rest)
 	var polygons_node := MeshInstance3D.new()
 	polygons_node.name = "Polygons"
-	polygons_node.mesh = _build_polygon_mesh(body, points, [])
+	polygons_node.mesh = _shared_polygon_mesh(shared_meshes, "polygons", body, points, false, skin != null)
+	if skin != null:
+		polygons_node.skin = skin
+		polygons_node.skeleton = NodePath("../Skeleton")
 	if is_lba2 and LBA2_APPEARANCE.uses_fireball_glow(body):
 		var fire_material := ShaderMaterial.new()
 		fire_material.shader = LBA2_FIREBALL
@@ -59,7 +87,11 @@ static func build_static_pose(body: Dictionary, palette_bytes: PackedByteArray, 
 	character.add_child(polygons_node)
 	var wireframe := MeshInstance3D.new()
 	wireframe.name = "Wireframe"
-	wireframe.mesh = _build_wire_mesh(body, points)
+	if shared_meshes.has("wireframe"):
+		wireframe.mesh = shared_meshes["wireframe"]
+	else:
+		wireframe.mesh = _build_wire_mesh(body, points)
+		shared_meshes["wireframe"] = wireframe.mesh
 	var wire_material := ShaderMaterial.new()
 	wire_material.shader = WIREFRAME_SHADER
 	wireframe.material_override = wire_material
@@ -69,7 +101,10 @@ static func build_static_pose(body: Dictionary, palette_bytes: PackedByteArray, 
 	if LBA2_APPEARANCE.has_translucent_faces(body):
 		var glass := MeshInstance3D.new()
 		glass.name = "TranslucentPolygons"
-		glass.mesh = _build_polygon_mesh(body, points, [], true)
+		glass.mesh = _shared_polygon_mesh(shared_meshes, "glass", body, points, true, skin != null)
+		if skin != null:
+			glass.skin = skin
+			glass.skeleton = NodePath("../Skeleton")
 		var glass_material := ShaderMaterial.new()
 		glass_material.shader = LBA2_TRANSLUCENT_SOLID
 		glass_material.set_shader_parameter("palette_texture", palette_texture)
@@ -79,7 +114,10 @@ static func build_static_pose(body: Dictionary, palette_bytes: PackedByteArray, 
 	if LBA1_FACE_MODES.has_transparent_faces(body):
 		var glass := MeshInstance3D.new()
 		glass.name = "LBA1TransparentPolygons"
-		glass.mesh = _build_polygon_mesh(body, points, [], true)
+		glass.mesh = _shared_polygon_mesh(shared_meshes, "glass", body, points, true, skin != null)
+		if skin != null:
+			glass.skin = skin
+			glass.skeleton = NodePath("../Skeleton")
 		var glass_material := ShaderMaterial.new()
 		glass_material.shader = LBA1_TRANSPARENT_FACE
 		glass_material.set_shader_parameter("palette_texture", palette_texture)
@@ -109,6 +147,7 @@ static func build_static_pose(body: Dictionary, palette_bytes: PackedByteArray, 
 		var shape := CylinderMesh.new()
 		shape.top_radius = 0.006
 		shape.bottom_radius = 0.006
+		shape.height = 1.0
 		shape.radial_segments = 4
 		line.mesh = shape
 		line.material_override = _make_material(palette_texture, line_data["palette_index"], is_lba2)
@@ -121,22 +160,52 @@ static func build_static_pose(body: Dictionary, palette_bytes: PackedByteArray, 
 static func update_pose(character: Node3D, body: Dictionary, pose: Dictionary) -> void:
 	var points: PackedVector3Array = pose["points"]
 	var polygon_mesh: MeshInstance3D = character.get_node("Polygons")
-	polygon_mesh.mesh = _build_polygon_mesh(body, points, pose["bases"])
+	if character.has_node("Skeleton"):
+		_update_skeleton(character.get_node("Skeleton") as Skeleton3D, body, pose)
+	else:
+		polygon_mesh.mesh = _build_polygon_mesh(body, points, pose["bases"])
 	var wireframe: MeshInstance3D = character.get_node("Wireframe")
 	if wireframe.visible:
 		wireframe.mesh = _build_wire_mesh(body, points)
 	var bones: Node3D = character.get_node("Bones")
 	if bones.visible:
 		BONE_DEBUG.update(bones, body, points)
-	if character.has_node("TranslucentPolygons"):
+	if not character.has_node("Skeleton") and character.has_node("TranslucentPolygons"):
 		character.get_node("TranslucentPolygons").mesh = _build_polygon_mesh(body, points, pose["bases"], true)
-	if character.has_node("LBA1TransparentPolygons"):
+	if not character.has_node("Skeleton") and character.has_node("LBA1TransparentPolygons"):
 		character.get_node("LBA1TransparentPolygons").mesh = _build_polygon_mesh(body, points, pose["bases"], true)
 	for child in character.get_children():
 		if child.has_meta("center_index"):
 			child.position = points[int(child.get_meta("center_index"))] * UNIT_SCALE
 		elif child.has_meta("first_index"):
 			_set_line_pose(child, points[int(child.get_meta("first_index"))], points[int(child.get_meta("second_index"))])
+
+
+static func _update_skeleton(skeleton: Skeleton3D, body: Dictionary, pose: Dictionary) -> void:
+	var posed_points: PackedVector3Array = pose["points"]
+	var bases: Array = pose["bases"]
+	var globals: Array[Transform3D] = []
+	for group_index in range((body["groups"] as Array).size()):
+		var group: Dictionary = body["groups"][group_index]
+		var parent: int = group["parent"]
+		var origin := Vector3.ZERO
+		if int(group["count"]) > 0:
+			var first: int = group["first"]
+			origin = posed_points[first] * UNIT_SCALE - bases[group_index] * (body["points"][first] * UNIT_SCALE)
+		var global_pose := Transform3D(bases[group_index], origin)
+		var local: Transform3D = global_pose if parent < 0 else globals[parent].affine_inverse() * global_pose
+		skeleton.set_bone_pose_position(group_index, local.origin)
+		skeleton.set_bone_pose_rotation(group_index, local.basis.get_rotation_quaternion())
+		globals.append(global_pose)
+
+
+static func _shared_polygon_mesh(cache: Dictionary, key: String, body: Dictionary,
+		points: PackedVector3Array, glass: bool, skinned: bool) -> ArrayMesh:
+	if cache.has(key):
+		return cache[key]
+	var mesh := _build_polygon_mesh(body, points, [], glass, skinned)
+	cache[key] = mesh
+	return mesh
 
 
 static func _set_line_pose(line: MeshInstance3D, first_raw: Vector3, second_raw: Vector3) -> void:
@@ -146,8 +215,7 @@ static func _set_line_pose(line: MeshInstance3D, first_raw: Vector3, second_raw:
 	line.visible = direction.length_squared() >= 0.000001
 	if not line.visible:
 		return
-	var shape: CylinderMesh = line.mesh
-	shape.height = direction.length()
+	line.scale = Vector3(1.0, direction.length(), 1.0)
 	line.position = (first + second) * 0.5
 	line.quaternion = Quaternion(Vector3.UP, direction.normalized())
 
@@ -182,7 +250,8 @@ static func _build_wire_mesh(body: Dictionary, points: PackedVector3Array) -> Ar
 	return mesh
 
 
-static func _build_polygon_mesh(body: Dictionary, points: PackedVector3Array, bases: Array, glass_only: bool = false) -> ArrayMesh:
+static func _build_polygon_mesh(body: Dictionary, points: PackedVector3Array, bases: Array,
+		glass_only: bool = false, skinned: bool = false) -> ArrayMesh:
 	var normals: PackedVector3Array = body["normals"]
 	var normal_divisors: PackedInt32Array = body["normal_divisors"]
 	var point_groups: PackedInt32Array = body["point_groups"]
@@ -193,6 +262,8 @@ static func _build_polygon_mesh(body: Dictionary, points: PackedVector3Array, ba
 	var texture_uvs := PackedVector2Array()
 	var texture_regions := PackedFloat32Array()
 	var rest_positions := PackedFloat32Array()
+	var bone_indices := PackedInt32Array()
+	var bone_weights := PackedFloat32Array()
 	var is_lba2: bool = body.get("game", "LBA1") == "LBA2"
 
 	for polygon in body["polygons"]:
@@ -235,6 +306,9 @@ static func _build_polygon_mesh(body: Dictionary, points: PackedVector3Array, ba
 					var outward := Vector3(vertex.x, 0.0, vertex.z).normalized()
 					vertex += outward * texture_offset
 				vertices.append(vertex)
+				if skinned:
+					bone_indices.append_array(PackedInt32Array([point_groups[point_indices[corner]], 0, 0, 0]))
+					bone_weights.append_array(PackedFloat32Array([1.0, 0.0, 0.0, 0.0]))
 				var normal_index := normal_indices[corner]
 				var normal := face_normal
 				var source_normal := Vector3.ZERO
@@ -272,6 +346,9 @@ static func _build_polygon_mesh(body: Dictionary, points: PackedVector3Array, ba
 	mesh_arrays[Mesh.ARRAY_CUSTOM0] = source_normals
 	mesh_arrays[Mesh.ARRAY_CUSTOM1] = texture_regions
 	mesh_arrays[Mesh.ARRAY_CUSTOM2] = rest_positions
+	if skinned:
+		mesh_arrays[Mesh.ARRAY_BONES] = bone_indices
+		mesh_arrays[Mesh.ARRAY_WEIGHTS] = bone_weights
 	var mesh := ArrayMesh.new()
 	if not vertices.is_empty():
 		mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, mesh_arrays, [], {}, (Mesh.ARRAY_CUSTOM_RGBA_FLOAT << Mesh.ARRAY_FORMAT_CUSTOM0_SHIFT) | (Mesh.ARRAY_CUSTOM_RGBA_FLOAT << Mesh.ARRAY_FORMAT_CUSTOM1_SHIFT) | (Mesh.ARRAY_CUSTOM_RGBA_FLOAT << Mesh.ARRAY_FORMAT_CUSTOM2_SHIFT))

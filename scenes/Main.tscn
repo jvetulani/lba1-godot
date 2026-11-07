@@ -1,20 +1,24 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene format=3 uid="uid://chhkhegwei5ks"]
 
 [ext_resource type="PackedScene" path="res://scenes/world/World3D.tscn" id="1_world"]
 [ext_resource type="PackedScene" path="res://scenes/ui/GameUI.tscn" id="2_ui"]
-[ext_resource type="Script" path="res://scripts/game_app.gd" id="3_app"]
-[ext_resource type="Script" path="res://scripts/bridge/lba_media_import.gd" id="4_media"]
-[ext_resource type="Script" path="res://scripts/audio/lba_audio_buses.gd" id="5_audio"]
+[ext_resource type="Script" uid="uid://kqnqxovh72os" path="res://scripts/game_app.gd" id="3_app"]
+[ext_resource type="Script" uid="uid://dofljjrkpsqo4" path="res://scripts/bridge/lba_media_import.gd" id="4_media"]
+[ext_resource type="Script" uid="uid://dkgy7m62wolll" path="res://scripts/audio/lba_audio_buses.gd" id="5_audio"]
+[ext_resource type="Script" uid="uid://u330wpcegoe1" path="res://scripts/bridge/lba_native_host.gd" id="6_native"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=2022713758]
 script = ExtResource("3_app")
 
-[node name="World3D" parent="." instance=ExtResource("1_world")]
+[node name="World3D" parent="." unique_id=1180505294 instance=ExtResource("1_world")]
 
-[node name="GameUI" parent="." instance=ExtResource("2_ui")]
+[node name="GameUI" parent="." unique_id=894101100 instance=ExtResource("2_ui")]
 
-[node name="MediaImport" type="Node" parent="."]
+[node name="MediaImport" type="Node" parent="." unique_id=1787346202]
 script = ExtResource("4_media")
 
-[node name="AudioBuses" type="Node" parent="."]
+[node name="AudioBuses" type="Node" parent="." unique_id=1045390167]
 script = ExtResource("5_audio")
+
+[node name="NativeHost" type="Node" parent="." unique_id=1137472769]
+script = ExtResource("6_native")

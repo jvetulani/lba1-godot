@@ -61,13 +61,6 @@ focus_mode = 2
 text = "Settings"
 metadata/action = "open_settings"
 
-[node name="OpenInventory" type="Button" parent="Center/Panel/Contents"]
-custom_minimum_size = Vector2(0, 42)
-layout_mode = 2
-focus_mode = 2
-text = "Inventory"
-metadata/action = "open_inventory"
-
 [node name="QuitToMain" type="Button" parent="Center/Panel/Contents"]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2

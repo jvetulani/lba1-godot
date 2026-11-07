@@ -16,6 +16,14 @@ uniform float mesh_light_span = 7.0;
 // Godot game mode: every light pass supplies its actual direction, colour,
 // attenuation and shadow. The legacy vector remains for viewer previews.
 uniform bool use_scene_lights = false;
+// Anchor overall ordering to the actor position, but keep local BODY depth so
+// faces still occlude one another and walls can genuinely cover the actor.
+uniform bool use_actor_depth = false;
+// Keep intra-BODY face depth, but do not let distant face vertices pull a
+// whole actor through a foreground/behind brick billboard. This controls
+// presentation only; collision and world transforms remain native.
+uniform float actor_depth_span : hint_range(0.0, 1.0) = 0.08;
+instance uniform vec3 actor_sort_origin = vec3(0.0);
 uniform float scene_light_span = 7.0;
 // 0 = palette bands, 1 = source MAT_DITHER faces (diagnostic),
 // 3 = smooth, 4 = soft model-anchored dither.
@@ -129,6 +137,13 @@ float varied_bayer_threshold(vec2 screen_pixel, float cell) {
 }
 
 void vertex() {
+	if (use_actor_depth) {
+		vec4 vertex_clip = PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0);
+		vec4 origin_clip = PROJECTION_MATRIX * VIEW_MATRIX * vec4(actor_sort_origin, 1.0);
+		vertex_clip.z = origin_clip.z + (vertex_clip.z - origin_clip.z) * actor_depth_span
+			- origin_clip.w * 0.0001;
+		POSITION = vertex_clip;
+	}
 	texture_region = CUSTOM1;
 	dither_anchor = CUSTOM2.xyz;
 	platform_height = clamp((VERTEX.y + 0.06) / 0.12, 0.0, 1.0);

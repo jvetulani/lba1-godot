@@ -38,6 +38,16 @@ custom_minimum_size = Vector2(360, 240)
 layout_mode = 2
 focus_mode = 2
 
+[node name="NameCaption" type="Label" parent="Center/Panel/Contents"]
+layout_mode = 2
+text = "Save name"
+
+[node name="SaveName" type="LineEdit" parent="Center/Panel/Contents"]
+layout_mode = 2
+placeholder_text = "Enter save name"
+max_length = 48
+select_all_on_focus = true
+
 [node name="Actions" type="HBoxContainer" parent="Center/Panel/Contents"]
 layout_mode = 2
 

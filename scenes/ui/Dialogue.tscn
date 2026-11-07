@@ -11,6 +11,21 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_panel")
 
+[node name="ItemPreview" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(220, 220)
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.15
+anchor_right = 0.5
+anchor_bottom = 0.15
+offset_left = -110.0
+offset_top = 0.0
+offset_right = 110.0
+offset_bottom = 220.0
+expand_mode = 1
+stretch_mode = 5
+
 [node name="Bottom" type="CenterContainer" parent="."]
 layout_mode = 1
 anchor_top = 0.68
@@ -26,18 +41,26 @@ layout_mode = 2
 
 [node name="Contents" type="VBoxContainer" parent="Bottom/Panel"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 3
 
 [node name="Speaker" type="Label" parent="Bottom/Panel/Contents"]
 layout_mode = 2
 text = "Speaker"
 
 [node name="Text" type="RichTextLabel" parent="Bottom/Panel/Contents"]
-custom_minimum_size = Vector2(600, 90)
+custom_minimum_size = Vector2(600, 100)
+scroll_active = false
+fit_content = false
 layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = false
 text = ""
+
+[node name="PageChevron" type="Label" parent="Bottom/Panel/Contents"]
+visible = false
+layout_mode = 2
+horizontal_alignment = 2
+text = "▼"
 
 [node name="Actions" type="HBoxContainer" parent="Bottom/Panel/Contents"]
 layout_mode = 2

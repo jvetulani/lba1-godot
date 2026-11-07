@@ -1,0 +1,12 @@
+[config]
+version=1
+
+[launcher]
+version=1.13.0
+project_name="lba1-godot"
+
+[editor]
+channel=official
+flavor=gdscript
+base_version=4.8
+version=4.8-beta2

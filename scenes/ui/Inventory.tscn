@@ -21,7 +21,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Panel" type="PanelContainer" parent="Center"]
-custom_minimum_size = Vector2(420, 0)
+custom_minimum_size = Vector2(730, 0)
 layout_mode = 2
 
 [node name="Contents" type="VBoxContainer" parent="Center/Panel"]
@@ -34,9 +34,15 @@ text = "Inventory"
 horizontal_alignment = 1
 
 [node name="Entries" type="ItemList" parent="Center/Panel/Contents"]
-custom_minimum_size = Vector2(360, 240)
+custom_minimum_size = Vector2(700, 360)
 layout_mode = 2
 focus_mode = 2
+max_columns = 7
+same_column_width = true
+fixed_column_width = 96
+fixed_icon_size = Vector2i(82, 76)
+icon_mode = 0
+allow_reselect = true
 
 [node name="Actions" type="HBoxContainer" parent="Center/Panel/Contents"]
 layout_mode = 2

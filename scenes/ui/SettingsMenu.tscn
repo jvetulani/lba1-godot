@@ -156,6 +156,25 @@ focus_mode = 2
 text = "Browse…"
 metadata/action = "browse_original_data"
 
+[node name="MediaCacheTitle" type="Label" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+text = "Converted media cache"
+
+[node name="CacheRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+
+[node name="CachePath" type="LineEdit" parent="Center/ContentCenter/Panel/Contents/CacheRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+placeholder_text = "Folder containing manifest.json"
+
+[node name="BrowseMediaCache" type="Button" parent="Center/ContentCenter/Panel/Contents/CacheRow"]
+layout_mode = 2
+focus_mode = 2
+text = "Browse…"
+metadata/action = "browse_media_cache"
+
 [node name="ImportOriginalMedia" type="Button" parent="Center/ContentCenter/Panel/Contents"]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
@@ -183,6 +202,12 @@ metadata/action = "close"
 
 [node name="SourcePicker" type="FileDialog" parent="."]
 title = "Choose original LBA1 game data"
+size = Vector2i(800, 540)
+file_mode = 2
+access = 2
+
+[node name="CachePicker" type="FileDialog" parent="."]
+title = "Choose converted LBA1 media cache"
 size = Vector2i(800, 540)
 file_mode = 2
 access = 2

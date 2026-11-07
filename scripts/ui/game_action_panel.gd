@@ -44,12 +44,17 @@ func set_entries(entries: Array[Dictionary]) -> void:
 		return
 	list.clear()
 	for entry in _entries:
+		var index := list.item_count
 		list.add_item(str(entry.get("label", entry.get("id", ""))))
+		if entry.get("icon") is Texture2D:
+			list.set_item_icon(index, entry["icon"])
+		if not bool(entry.get("enabled", true)):
+			list.set_item_selectable(index, false)
 	list.deselect_all()
 
 
 func _on_button_pressed(action: StringName, button: BaseButton) -> void:
-	var value: Variant = null
+	var value: Variant = int(button.get_meta("behavior")) if button.has_meta("behavior") else null
 	var list := find_child("Entries", true, false) as ItemList
 	if list != null and action in [&"save", &"load", &"use_item"]:
 		var selected := list.get_selected_items()

@@ -21,12 +21,15 @@ var _assets: Dictionary = {}
 var _kind: StringName = &""
 var _slide := 0
 var _movie_fps := 12.0
+var _logo_seconds := 0.0
 var _cues: Array[Dictionary] = []
 var _next_cue := 0
 var _fade: Tween
 
 
 func _ready() -> void:
+	_skip.visible = false
+	_skip.focus_mode = Control.FOCUS_NONE
 	_skip.pressed.connect(skip)
 	_narrator.finished.connect(_on_narrator_finished)
 	_movie.finished.connect(_on_movie_finished)
@@ -50,11 +53,33 @@ func configure(cache_path: String, data_path: String) -> bool:
 
 func play_menu_music() -> void:
 	if not _assets.is_empty() and _kind == &"":
-		_play_music("cd:9" if _asset_path("cd:9") != "" else "midi:9", true)
+		# The CD9 recording is the ending/rock cue in this import.
+		# Use the original MIDI main-menu arrangement, without changing any assets.
+		_play_music("midi:9", true)
 
 
 func play_boot() -> bool:
-	return _play_movie(&"boot", "dragon3")
+	# Original PERSO.C calls AdelineLogo() before DRAGON3.FLA.
+	# RESS_LOGO_PCR=27 / RESS_LOGO_PAL=28; theme is MIDI 31.
+	var logo := load_resource_texture(_data_path.path_join("ress.hqr"), 27, 28)
+	if logo == null:
+		push_warning("Adeline logo unavailable; continuing to dragon cinematic")
+		return _play_movie(&"boot", "dragon3")
+	_kind = &"boot_logo"
+	# The original logo jingle should finish before the dragon sequence.
+	# Prefer the imported audio duration over a hard-coded four seconds.
+	_logo_seconds = 5.5
+	visible = true
+	_movie.stop()
+	_movie.visible = false
+	_illustration.texture = logo
+	_illustration.visible = true
+	_play_music("midi:31", false)
+	if _music.stream != null and _music.stream.get_length() > 0.0:
+		_logo_seconds = maxf(5.5, _music.stream.get_length() + 0.2)
+	($Background as ColorRect).color = Color.WHITE
+	set_process(true)
+	return true
 
 
 func play_intro() -> bool:
@@ -79,12 +104,15 @@ func play_intro() -> bool:
 	_movie.stop()
 	_slide = 0
 	_show_slide()
-	_skip.call_deferred("grab_focus")
 	return true
 
 
 func skip() -> void:
 	if _kind == &"":
+		return
+	if _kind == &"boot_logo":
+		_stop_music()
+		_play_movie(&"boot", "dragon3")
 		return
 	_finish()
 
@@ -151,6 +179,7 @@ func _on_narrator_finished() -> void:
 
 
 func _play_movie(kind: StringName, stem: String) -> bool:
+	($Background as ColorRect).color = Color.BLACK
 	var key := "movie:%s" % stem
 	var path := _asset_path(key)
 	if path == "":
@@ -172,7 +201,6 @@ func _play_movie(kind: StringName, stem: String) -> bool:
 		_play_music("midi:1", false)
 	_movie.play()
 	set_process(true)
-	_skip.call_deferred("grab_focus")
 	return true
 
 
@@ -189,7 +217,13 @@ func _read_cues(path: String) -> Array[Dictionary]:
 	return result
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if _kind == &"boot_logo":
+		_logo_seconds -= delta
+		if _logo_seconds <= 0.0:
+			_stop_music()
+			_play_movie(&"boot", "dragon3")
+		return
 	if _kind != &"boot" and _kind != &"intro_movie":
 		return
 	var frame := int(floor(_movie.stream_position * _movie_fps))
@@ -208,7 +242,7 @@ func _on_movie_finished() -> void:
 
 
 func _finish(emit_completed: bool = true) -> void:
-	var finished_kind := _kind
+	var finished_kind := &"boot" if _kind == &"boot_logo" else _kind
 	_kind = &""
 	set_process(false)
 	_movie.stop()
