@@ -11,14 +11,19 @@ With original game data imported, the Godot main scene displays the menu
 artwork and plays converted menu music, the DRAGON3 boot movie, the English
 narrated intro illustrations, and the INTROD OGV. It has modular CanvasLayer menus, Godot audio buses, a
 persistent original-data path, and keyboard/gamepad Input Map actions. The
-native simulation and world renderer are not connected, so New Game returns
-to the menu after the intro.
+native simulation is not connected, so New Game returns to the menu after the
+intro. Save and load requests also await the native runtime bridge.
 `World3D.tscn` can already load an original LBA1 BODY.HQR actor into the
 Godot mesh renderer with the existing dither shader. Actor and world state
 still need to come from the native host.
 The project also decodes original GRI/BLL scene grids and BRK brick images,
 with a nearest-sampled tile shader that accepts optional normal maps. Its
 window starts at 1280×720 and supports resizing.
+`scenes/world/WorldPreview.tscn` displays a static original scene 0 grid and
+BODY 0 actor through Godot, with an angled sun and per-light stepped shaders.
+Open it in the editor after importing your own data, or run it with
+`LBA_TEST_DATA_PATH=/absolute/path/to/data godot --path . res://scenes/world/WorldPreview.tscn`.
+This is a renderer preview, not a gameplay session.
 
 The pinned `native/lba1-native` submodule owns the 64-bit engine and media
 importer. Godot's desktop importer discovers its tools there. A release must

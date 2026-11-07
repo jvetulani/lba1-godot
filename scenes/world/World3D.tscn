@@ -7,6 +7,10 @@ script = ExtResource("1_world")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation = Vector3(-1.047198, -0.436332, 0.0)
+shadow_enabled = true
+
 [node name="Camera" type="Camera3D" parent="."]
 projection = 1
 current = true

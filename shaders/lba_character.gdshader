@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode cull_back, specular_disabled, shadows_disabled;
+render_mode cull_back, specular_disabled;
 
 uniform sampler2D palette_texture : source_color, filter_nearest, repeat_disable;
 uniform sampler2D texture_atlas : filter_nearest, repeat_disable;
@@ -13,6 +13,10 @@ uniform float normal_light_level = 12.0;
 uniform int palette_index_override = -1;
 uniform bool use_mesh_lighting = false;
 uniform float mesh_light_span = 7.0;
+// Godot game mode: every light pass supplies its actual direction, colour,
+// attenuation and shadow. The legacy vector remains for viewer previews.
+uniform bool use_scene_lights = false;
+uniform float scene_light_span = 7.0;
 // 0 = palette bands, 1 = source MAT_DITHER faces (diagnostic),
 // 3 = smooth, 4 = soft model-anchored dither.
 uniform int dither_mode = 4;
@@ -256,10 +260,31 @@ void fragment() {
 		ALBEDO = texture(palette_texture, vec2((palette_index + 0.5) / 256.0, 0.5)).rgb;
 		ROUGHNESS = 1.0;
 	}
+	if (use_scene_lights && source_render_type >= 7.0 && !has_texture_atlas) {
+		float base_index = mod(floor(source_base_index + 0.5), 256.0);
+		EMISSION = texture(palette_texture, vec2((base_index + 0.5) / 256.0, 0.5)).rgb;
+		ALBEDO = vec3(0.0);
+	}
 }
 
 void light() {
-	// The palette step is computed per vertex. One white directional light passes
-	// that colour through; original light coefficients remain to be verified.
-	DIFFUSE_LIGHT += LIGHT_COLOR * ATTENUATION / PI;
+	if (use_scene_lights && source_render_type >= 7.0 && !has_texture_atlas) {
+		float base_index = mod(floor(source_base_index + 0.5), 256.0);
+		vec3 base_color = texture(palette_texture, vec2((base_index + 0.5) / 256.0, 0.5)).rgb;
+		float light_strength = max(dot(normalize(NORMAL), normalize(LIGHT)), 0.0)
+			* ATTENUATION * dot(LIGHT_COLOR, vec3(0.2126, 0.7152, 0.0722));
+		float shade = keep_in_palette_ramp(base_index, base_index + light_strength * scene_light_span);
+		float lower_index = floor(shade);
+		float upper_index = keep_in_palette_ramp(base_index, lower_index + 1.0);
+		vec3 lower_color = texture(palette_texture, vec2((lower_index + 0.5) / 256.0, 0.5)).rgb;
+		vec3 upper_color = texture(palette_texture, vec2((upper_index + 0.5) / 256.0, 0.5)).rgb;
+		vec3 lit_color = dither_mode == 4
+			? preview_dither_blend(lower_color, upper_color, shade, anchored_dither_coord())
+			: mix(lower_color, upper_color, fract(shade));
+		// Add each light's palette-ramp delta. EMISSION supplies the source
+		// base colour once, so additional lights do not add it repeatedly.
+		DIFFUSE_LIGHT += lit_color - base_color;
+	} else {
+		DIFFUSE_LIGHT += LIGHT_COLOR * ATTENUATION / PI;
+	}
 }

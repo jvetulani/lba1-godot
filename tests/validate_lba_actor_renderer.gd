@@ -1,5 +1,7 @@
 extends SceneTree
 
+const GRID_RENDERER := preload("res://scripts/render/lba_grid_renderer.gd")
+
 
 func _initialize() -> void:
 	call_deferred("_run")
@@ -25,16 +27,30 @@ func _run() -> void:
 	if material == null or material.shader == null or material.shader.resource_path != "res://shaders/lba_character.gdshader":
 		_fail(world, "The actor does not use the LBA1 character shader")
 		return
+	if not material.get_shader_parameter("use_scene_lights"):
+		_fail(world, "The actor is not using Godot scene lights")
+		return
+	if world.get_node("Sun") is not DirectionalLight3D:
+		_fail(world, "The Godot world has no sun light")
+		return
 	var transform := Transform3D(Basis.IDENTITY, Vector3(1, 2, 3))
 	world.set_actor_transform(0, transform)
 	if actor.transform != transform:
 		_fail(world, "The renderer did not apply an actor transform")
 		return
+	world.set_actor_native_state(0, 16 * 512, 2 * 256, 16 * 512, 256)
+	var native_position := (actor as Node3D).position
+	if not native_position.is_equal_approx(Vector3(
+		16.0 * GRID_RENDERER.CELL_XZ,
+		2.0 * GRID_RENDERER.CELL_Y,
+		16.0 * GRID_RENDERER.CELL_XZ)):
+		_fail(world, "Native actor coordinates were mapped incorrectly")
+		return
 	world.remove_actor(0)
 	if world.get_node("Actors").get_child_count() != 0:
 		_fail(world, "The actor was not removed")
 		return
-	print("LBA actor: original BODY.HQR mesh, palette and shader verified")
+	print("LBA actor: original BODY.HQR mesh, palette, scene-light material and native coordinates verified")
 	world.free()
 	quit(0)
 

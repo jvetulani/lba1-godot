@@ -67,6 +67,42 @@ func _run() -> void:
 		push_error("Malformed scene data was accepted")
 		quit(1)
 		return
+	var world := (load("res://scenes/world/World3D.tscn") as PackedScene).instantiate()
+	root.add_child(world)
+	if not world.load_grid_scene(0, data_dir):
+		push_error("Godot could not build the original scene grid")
+		world.free()
+		quit(1)
+		return
+	var grid_node := world.get_node("Bricks/SceneGrid_0") as Node3D
+	if grid_node.get_child_count() != unique_bricks.size():
+		push_error("Godot grid has the wrong number of brick meshes")
+		world.free()
+		quit(1)
+		return
+	var rendered_bricks := 0
+	for node in grid_node.get_children():
+		rendered_bricks += (node as MultiMeshInstance3D).multimesh.instance_count
+	if rendered_bricks != scene["visible_count"]:
+		push_error("Godot grid omitted visible brick instances")
+		world.free()
+		quit(1)
+		return
+	var camera := world.get_node("Camera") as Camera3D
+	var right := camera.global_transform.basis.x
+	var up := camera.global_transform.basis.y
+	var x_step := Vector3(24.0 * sqrt(2.0) * 0.02, 0.0, 0.0)
+	var z_step := Vector3(0.0, 0.0, 24.0 * sqrt(2.0) * 0.02)
+	var y_step := Vector3(0.0, 15.0 / cos(deg_to_rad(30.0)) * 0.02, 0.0)
+	if absf(right.dot(x_step) - 24.0 * 0.02) > 0.001 \
+		or absf(right.dot(z_step) + 24.0 * 0.02) > 0.001 \
+		or absf(up.dot(x_step) + 12.0 * 0.02) > 0.001 \
+		or absf(up.dot(y_step) - 15.0 * 0.02) > 0.001:
+		push_error("Godot grid projection does not match original Map2Screen steps")
+		world.free()
+		quit(1)
+		return
+	world.free()
 	print("LBA scene 0: %d occupied cells, %d visible bricks, %d blocks, %d decoded brick images (first %d)" % [
 		scene["occupied_count"], scene["visible_count"], scene["block_count"], unique_bricks.size(), first_brick])
 	quit(0)

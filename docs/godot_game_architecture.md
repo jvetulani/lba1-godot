@@ -37,7 +37,8 @@ sent once the host runtime is connected.
 Run `godot --headless --path . --script tests/validate_lba_input_map.gd`
 to verify action names and native bit values.
 
-No native gameplay bridge or scene renderer is connected yet. The menus are
+No native gameplay bridge is connected yet. The static scene renderer is
+available only through its preview scene. The menus are
 presentation and request surfaces, not a playable game. The `Main.tscn`
 settings panel is wired to the media-import controller and Godot audio buses.
 After import, Godot displays the original menu artwork, plays the converted
@@ -113,16 +114,31 @@ asset decoders, not a gameplay authority. With original data available, run
 `LBA_TEST_DATA_PATH=/absolute/path/to/data godot --headless --path . --script tests/validate_lba_grid_decoder.gd`
 to decode scene 0 and every brick image it references.
 
-The world renderer still needs to place bricks and tiles,
-actors, sprites, effects, and the isometric camera from stable bridge data.
+`LBAGridRenderer` places those brick images as camera-facing Godot quads,
+grouped by source BRK entry in `MultiMeshInstance3D` nodes. Its orthographic
+30-degree camera maps each X/Z cell to the original 24×12-pixel step and each
+Y cell to a 15-pixel rise. `WorldPreview.tscn` displays scene 0 and BODY 0 as
+a static rendering check. It cannot stand in for native-driven gameplay.
+World rendering still needs native scene identity and actor snapshots, sprite
+and effect nodes, camera state, and accurate native depth/occlusion comparison.
+
+The character shader's game mode now uses each Godot light's direction,
+attenuation, colour intensity, and shadow in `light()`, with steps inside the
+LBA palette ramp and the viewer's soft dither. An angled DirectionalLight3D
+provides the initial sun. The tile shader uses each light's direction and
+steps through a simple gradient; generated normal maps can be assigned later.
+Multiple lights add their stepped palette deltas; the combined colour is not
+yet quantized back to one final palette entry.
 The existing LBA1 BODY decoder, mesh builder, pose handling, palette, and
 `shaders/lba_character.gdshader` provide the character rendering base.
 Maintain source palette characteristics and the established soft dither style.
 `World3D.tscn` now exposes `set_actor_body`, `set_actor_transform`,
-`set_actor_pose`, and `remove_actor`. It loads an original body and palette
+`set_actor_native_state`, `set_actor_pose`, and `remove_actor`. It loads an original body and palette
 through the HQR reader, then builds a Godot mesh with the dither shader. The
-caller supplies a Godot transform; native-to-Godot world coordinates are not
-mapped yet. With original data available, validate this path using
+native-state method maps 512 X/Z units per grid cell, 256 Y units per grid
+cell, and 1024 rotation units per turn into the isometric view. The generic
+transform method still accepts a caller-supplied Godot transform. With
+original data available, validate this path using
 `LBA_TEST_DATA_PATH=/absolute/path/to/data godot --headless --path . --script tests/validate_lba_actor_renderer.gd`.
 
 ## Next implementation target

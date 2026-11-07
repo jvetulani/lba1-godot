@@ -4,11 +4,34 @@ extends Node3D
 const HQR := preload("res://scripts/import/hqr_reader.gd")
 const BODY := preload("res://scripts/import/lba1_body_decoder.gd")
 const MESH := preload("res://scripts/render/character_mesh_builder.gd")
+const GRID_RENDERER := preload("res://scripts/render/lba_grid_renderer.gd")
 
 @onready var _actors: Node3D = $Actors
+@onready var _bricks: Node3D = $Bricks
+@onready var _camera: Camera3D = $Camera
 
 var _actor_visuals: Dictionary = {}
 var _actor_bodies: Dictionary = {}
+var _grid_visual: Node3D = null
+
+
+func load_grid_scene(scene_index: int, data_dir: String) -> bool:
+	var result: Dictionary = GRID_RENDERER.build_scene(data_dir, scene_index, _camera)
+	if not result.get("ok", false):
+		push_error("LBA grid scene %d: %s" % [scene_index, result.get("error", "unavailable")])
+		return false
+	clear_grid_scene()
+	_grid_visual = result["node"]
+	_bricks.add_child(_grid_visual)
+	return true
+
+
+func clear_grid_scene() -> void:
+	if _grid_visual == null:
+		return
+	_bricks.remove_child(_grid_visual)
+	_grid_visual.queue_free()
+	_grid_visual = null
 
 
 func set_actor_body(actor_id: int, body_index: int, data_dir: String) -> bool:
@@ -31,6 +54,10 @@ func set_actor_body(actor_id: int, body_index: int, data_dir: String) -> bool:
 
 	var visual: Node3D = MESH.build_static_pose(body, palette)
 	visual.name = "Actor_%d" % actor_id
+	for mesh_node in visual.find_children("*", "MeshInstance3D", true, false):
+		var material := (mesh_node as MeshInstance3D).material_override as ShaderMaterial
+		if material != null and material.shader != null and material.shader.resource_path == "res://shaders/lba_character.gdshader":
+			material.set_shader_parameter("use_scene_lights", true)
 	if _actor_visuals.has(actor_id):
 		var previous: Node3D = _actor_visuals[actor_id]
 		visual.transform = previous.transform
@@ -45,6 +72,21 @@ func set_actor_body(actor_id: int, body_index: int, data_dir: String) -> bool:
 func set_actor_transform(actor_id: int, world_transform: Transform3D) -> void:
 	if _actor_visuals.has(actor_id):
 		(_actor_visuals[actor_id] as Node3D).transform = world_transform
+
+
+func set_actor_native_state(actor_id: int, x: int, y: int, z: int, angle: int) -> void:
+	if not _actor_visuals.has(actor_id):
+		return
+	var position := Vector3(
+		float(x) / 512.0 * GRID_RENDERER.CELL_XZ,
+		float(y) / 256.0 * GRID_RENDERER.CELL_Y,
+		float(z) / 512.0 * GRID_RENDERER.CELL_XZ)
+	# Native angles use 1024 units per turn and the same X/Z rotation sign as
+	# Godot's positive Y-axis rotation. BODY meshes were built at 1/512 scale.
+	var rotation := Basis(Vector3.UP, TAU * float(angle & 1023) / 1024.0)
+	var body_scale := Vector3(GRID_RENDERER.CELL_XZ,
+		2.0 * GRID_RENDERER.CELL_Y, GRID_RENDERER.CELL_XZ)
+	(_actor_visuals[actor_id] as Node3D).transform = Transform3D(rotation.scaled(body_scale), position)
 
 
 func set_actor_pose(actor_id: int, pose: Dictionary) -> void:

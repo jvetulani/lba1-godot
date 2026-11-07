@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/lba_world_preview.gd" id="1_preview"]
+[ext_resource type="PackedScene" path="res://scenes/world/World3D.tscn" id="2_world"]
+
+[node name="WorldPreview" type="Node3D"]
+script = ExtResource("1_preview")
+
+[node name="World3D" parent="." instance=ExtResource("2_world")]
