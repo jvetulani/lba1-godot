@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bq55o1e05uqo2"]
+
+[ext_resource type="PackedScene" path="res://scenes/ui/Dialogue.tscn" id="1_dialogue"]
+[ext_resource type="Theme" uid="uid://pdp5h5xhkks1" path="res://assets/themes/LBAUI.tres" id="2_nm4ym"]
+
+[node name="DialoguePreview" type="Control" unique_id=288148850]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dialogue" parent="." unique_id=440869719 instance=ExtResource("1_dialogue")]
+anchors_preset = 15
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+presentation_mode = 0
+
+[node name="ItemPreview" parent="Dialogue" index="0"]
+anchors_preset = -1
+
+[node name="Bottom" parent="Dialogue" index="1"]
+anchors_preset = -1
+
+[node name="Contents" parent="Dialogue/Bottom/Panel" index="0"]
+offset_transform_enabled = true
+theme = ExtResource("2_nm4ym")
+
+[node name="Text" parent="Dialogue/Bottom/Panel/Contents" index="0"]
+theme = ExtResource("2_nm4ym")
+theme_type_variation = &"DialogueText"
+text = "You can move and size this shared text frame in Dialogue.tscn. All dialogue, monologues, item discoveries and readable text use it at runtime."
+shortcut_keys_enabled = false
+
+[editable path="Dialogue"]

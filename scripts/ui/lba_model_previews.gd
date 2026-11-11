@@ -4,11 +4,33 @@ extends Node
 const CACHE := preload("res://scripts/import/lba_visual_cache.gd")
 const MESH := preload("res://scripts/render/character_mesh_builder.gd")
 const POSE := preload("res://scripts/animation/lba1_pose.gd")
+const LBA_LIGHTING := preload("res://scripts/render/lba_character_lighting.gd")
 
 var data_dir := ""
 var _views: Dictionary = {}
 var _shared_geometry: Dictionary = {}
 var _active_purpose := ""
+var _selected_views: Dictionary = {"mode": 0, "inventory": 0}
+
+func _process(delta: float) -> void:
+	for key in _views:
+		var purpose := str(key).get_slice(":", 2)
+		var family := "mode" if purpose.begins_with("mode") else purpose
+		if family != _active_purpose or family not in ["mode", "inventory", "pickup"]:
+			continue
+		if family == "mode" and purpose != "mode%d" % int(_selected_views["mode"]):
+			continue
+		if family == "inventory" and not str(key).begins_with("inventory_model:%d:" % int(_selected_views["inventory"])):
+			continue
+		var view: Dictionary = _views[key]
+		(view["pivot"] as Node3D).rotation.y += delta * 1.4
+		if str(view["body"].get("game", "LBA1")) == "LBA1":
+			LBA_LIGHTING.apply_to_model(view["model"] as Node3D,
+				LBA_LIGHTING.capture(view["world"] as Node3D))
+
+func set_selected_preview(purpose: String, index: int) -> void:
+	_selected_views[purpose] = index
+
 
 
 func configure(path: String) -> void:
@@ -25,10 +47,11 @@ func set_active_purpose(purpose: String) -> void:
 	_active_purpose = purpose
 	for key in _views:
 		var viewport := _views[key]["viewport"] as SubViewport
-		var suffix := ":" + purpose
+		var view_purpose := str(key).get_slice(":", 2)
+		var matches := not purpose.is_empty() and (view_purpose == purpose or
+			(purpose == "mode" and view_purpose.begins_with("mode")))
 		viewport.render_target_update_mode = (SubViewport.UPDATE_ALWAYS
-			if not purpose.is_empty() and str(key).ends_with(suffix)
-			else SubViewport.UPDATE_DISABLED)
+			if matches else SubViewport.UPDATE_DISABLED)
 
 
 func model_texture(kind: String, model_id: int, purpose: String,
@@ -56,7 +79,8 @@ func model_texture(kind: String, model_id: int, purpose: String,
 	# visibility test, so UPDATE_WHEN_VISIBLE can leave the texture black.
 	# Render only the currently open panel's viewports, not all 28 every frame.
 	viewport.render_target_update_mode = (SubViewport.UPDATE_ALWAYS
-		if purpose == _active_purpose else SubViewport.UPDATE_DISABLED)
+		if purpose == _active_purpose or (_active_purpose == "mode" and purpose.begins_with("mode"))
+		else SubViewport.UPDATE_DISABLED)
 	add_child(viewport)
 	var world := Node3D.new()
 	viewport.add_child(world)
@@ -72,27 +96,31 @@ func model_texture(kind: String, model_id: int, purpose: String,
 	if not _shared_geometry.has(geometry_key):
 		_shared_geometry[geometry_key] = {}
 	var model: Node3D = MESH.build_static_pose(body, palette_entry["data"], null,
-		purpose == "mode", _shared_geometry[geometry_key])
+		purpose.begins_with("mode"), _shared_geometry[geometry_key])
 	model.position = -center
-	world.add_child(model)
+	var pivot := Node3D.new()
+	world.add_child(pivot)
+	pivot.add_child(model)
 	var camera := Camera3D.new()
 	camera.projection = Camera3D.PROJECTION_ORTHOGONAL
-	camera.size = extent * 1.65
+	camera.size = extent * (1.27 if purpose.begins_with("mode") else 1.45)
 	world.add_child(camera)
-	camera.position = Vector3(extent, extent * 0.75, extent * 1.6)
+	camera.position = Vector3(extent, extent * 1.15, extent * 1.4)
 	camera.look_at(Vector3.ZERO)
 	camera.current = true
 	var light := DirectionalLight3D.new()
 	light.rotation = Vector3(-0.8, -0.6, 0.0)
 	world.add_child(light)
-	_views[key] = {"viewport": viewport, "model": model, "body": body}
+	_views[key] = {"viewport": viewport, "model": model, "pivot": pivot, "body": body, "world": world}
+	if str(body.get("game", "LBA1")) == "LBA1":
+		LBA_LIGHTING.apply_to_model(model, LBA_LIGHTING.capture(world))
 	# Do not bake an empty first render into an inventory icon. The viewport
 	# will update while the TextureRect/ItemList actually displays its texture.
 	return viewport.get_texture()
 
 
 func update_player_pose(model_id: int, groups: PackedInt32Array) -> void:
-	var key := "body:%d:mode" % model_id
+	var key := "body:%d:mode%d" % [model_id, int(_selected_views["mode"])]
 	if not _views.has(key) or groups.is_empty():
 		return
 	var view: Dictionary = _views[key]

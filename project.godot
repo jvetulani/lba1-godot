@@ -24,28 +24,19 @@ window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/lba_build_companions/plugin.cfg")
+
+[gui]
+
+theme/custom="res://assets/themes/LBAUI.tres"
+
 [input]
 
 lba_forward={
 "deadzone": 0.35,
 "events": Array[InputEvent]([Object(InputEventKey,
-"resource_local_to_scene": false,
-"resource_name": "",
-"device": 16,
-"window_id": 0,
-"alt_pressed": false,
-"shift_pressed": false,
-"ctrl_pressed": false,
-"meta_pressed": false,
-"pressed": false,
-"keycode": 0,
-"physical_keycode": 87,
-"key_label": 0,
-"unicode": 0,
-"location": 0,
-"echo": false,
-"script": null
-), Object(InputEventKey,
 "resource_local_to_scene": false,
 "resource_name": "",
 "device": 16,
@@ -92,23 +83,6 @@ lba_backward={
 "meta_pressed": false,
 "pressed": false,
 "keycode": 0,
-"physical_keycode": 83,
-"key_label": 0,
-"unicode": 0,
-"location": 0,
-"echo": false,
-"script": null
-), Object(InputEventKey,
-"resource_local_to_scene": false,
-"resource_name": "",
-"device": 16,
-"window_id": 0,
-"alt_pressed": false,
-"shift_pressed": false,
-"ctrl_pressed": false,
-"meta_pressed": false,
-"pressed": false,
-"keycode": 0,
 "physical_keycode": 4194322,
 "key_label": 0,
 "unicode": 0,
@@ -135,23 +109,6 @@ lba_backward={
 lba_turn_left={
 "deadzone": 0.35,
 "events": Array[InputEvent]([Object(InputEventKey,
-"resource_local_to_scene": false,
-"resource_name": "",
-"device": 16,
-"window_id": 0,
-"alt_pressed": false,
-"shift_pressed": false,
-"ctrl_pressed": false,
-"meta_pressed": false,
-"pressed": false,
-"keycode": 0,
-"physical_keycode": 65,
-"key_label": 0,
-"unicode": 0,
-"location": 0,
-"echo": false,
-"script": null
-), Object(InputEventKey,
 "resource_local_to_scene": false,
 "resource_name": "",
 "device": 16,
@@ -198,23 +155,6 @@ lba_turn_right={
 "meta_pressed": false,
 "pressed": false,
 "keycode": 0,
-"physical_keycode": 68,
-"key_label": 0,
-"unicode": 0,
-"location": 0,
-"echo": false,
-"script": null
-), Object(InputEventKey,
-"resource_local_to_scene": false,
-"resource_name": "",
-"device": 16,
-"window_id": 0,
-"alt_pressed": false,
-"shift_pressed": false,
-"ctrl_pressed": false,
-"meta_pressed": false,
-"pressed": false,
-"keycode": 0,
 "physical_keycode": 4194321,
 "key_label": 0,
 "unicode": 0,
@@ -235,6 +175,27 @@ lba_turn_right={
 "button_index": 14,
 "pressure": 0.0,
 "pressed": false,
+"script": null
+)])
+}
+lba_interact={
+"deadzone": 0.35,
+"events": Array[InputEvent]([Object(InputEventKey,
+"resource_local_to_scene": false,
+"resource_name": "",
+"device": 16,
+"window_id": 0,
+"alt_pressed": false,
+"shift_pressed": false,
+"ctrl_pressed": false,
+"meta_pressed": false,
+"pressed": false,
+"keycode": 0,
+"physical_keycode": 87,
+"key_label": 0,
+"unicode": 0,
+"location": 0,
+"echo": false,
 "script": null
 )])
 }
@@ -384,13 +345,15 @@ lba_inventory={
 )])
 }
 
+[lba]
+
+tiles/alpha_outer_pixels=2.0
+
 [physics]
 
 common/physics_ticks_per_second=50
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
 anti_aliasing/quality/msaa_2d=1
-anti_aliasing/quality/msaa_3d=1
+anti_aliasing/quality/msaa_3d=2

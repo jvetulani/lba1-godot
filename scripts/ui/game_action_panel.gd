@@ -29,6 +29,71 @@ func _ready() -> void:
 		confirmation.confirmed.connect(_on_confirmation_confirmed)
 
 
+# Wrap navigation on every menu built from GameActionPanel, including
+# conventional buttons, sliders, OptionButtons, save/load lists and inventory.
+# The Ctrl behavior selector is managed separately by GameUI's posmod logic.
+func _input(event: InputEvent) -> void:
+	if not is_visible_in_tree() or name in ["ModeMenu", "LoadScreen"]:
+		return
+	var key := event as InputEventKey
+	if key == null or not key.pressed or key.echo:
+		return
+	var code := key.keycode
+	if code != KEY_UP and code != KEY_DOWN:
+		return
+	var focused := get_viewport().gui_get_focus_owner()
+	if focused == null or (focused != self and not is_ancestor_of(focused)):
+		return
+	var direction := -1 if code == KEY_UP else 1
+	if focused is ItemList:
+		if _lba_wrap_item_list(focused as ItemList, direction):
+			get_viewport().set_input_as_handled()
+		return
+	if _lba_wrap_navigation(focused, direction):
+		get_viewport().set_input_as_handled()
+
+
+func _lba_focusables() -> Array[Control]:
+	var controls: Array[Control] = []
+	for node in find_children("*", "Control", true, false):
+		var control := node as Control
+		if not control.is_visible_in_tree() or control.focus_mode == Control.FOCUS_NONE:
+			continue
+		if control is BaseButton and (control as BaseButton).disabled:
+			continue
+		if control is ItemList or control is BaseButton or control is Range \
+				or control is LineEdit or control is TextEdit:
+			controls.append(control)
+	return controls
+
+
+func _lba_wrap_navigation(focused: Control, direction: int) -> bool:
+	var controls := _lba_focusables()
+	var here := controls.find(focused)
+	if here < 0 or controls.is_empty():
+		return false
+	controls[posmod(here + direction, controls.size())].grab_focus()
+	return true
+
+
+func _lba_wrap_item_list(items: ItemList, direction: int) -> bool:
+	if items.item_count == 0:
+		return false
+	var selected := items.get_selected_items()
+	var current := selected[0] if not selected.is_empty() else (0 if direction > 0 else items.item_count - 1)
+	var stride := maxi(1, items.max_columns)
+	# A list arranged into multiple columns moves vertically by an entire row.
+	# On crossing either end, wrap to the opposite edge.
+	for step in range(items.item_count):
+		current = posmod(current + direction * stride, items.item_count)
+		if not items.is_item_disabled(current) and items.is_item_selectable(current):
+			items.select(current)
+			items.ensure_current_is_visible()
+			items.item_selected.emit(current)
+			return true
+	return false
+
+
 func focus_first() -> void:
 	for node in find_children("*", "Control", true, false):
 		var control := node as Control

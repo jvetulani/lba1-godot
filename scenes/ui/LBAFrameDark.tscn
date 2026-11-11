@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dx20ed7ugl0mr"]
+
+[ext_resource type="Texture2D" uid="uid://c4fvks80gk04y" path="res://assets/ui/panel_frame.png" id="1_frame"]
+[ext_resource type="Texture2D" uid="uid://dqhilxjwn2msj" path="res://assets/ui/panel_fill.png" id="2_fill"]
+[ext_resource type="Material" path="res://assets/materials/ui_blur_dark.tres" id="3_fill_material"]
+[ext_resource type="Script" uid="uid://q6iy6kp50bqc" path="res://scripts/ui/lba_frame.gd" id="4_script"]
+
+[node name="LBAFrame" type="Panel" unique_id=1835848935]
+custom_minimum_size = Vector2(120, 64)
+offset_right = 120.0
+offset_bottom = 64.0
+mouse_filter = 2
+script = ExtResource("4_script")
+
+[node name="Fill" type="TextureRect" parent="." unique_id=1255736589]
+visible = false
+material = ExtResource("3_fill_material")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_fill")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Edge" type="NinePatchRect" parent="." unique_id=1782342761]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_frame")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Contents" type="VBoxContainer" parent="." unique_id=1155003492]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = -16.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

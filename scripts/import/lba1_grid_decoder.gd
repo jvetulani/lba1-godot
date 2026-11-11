@@ -58,6 +58,8 @@ static func decode(grid: PackedByteArray, blocks: PackedByteArray,
 	var brick_ids := PackedInt32Array()
 	brick_ids.resize(CELL_COUNT)
 	brick_ids.fill(-1)
+	var shape_ids := PackedByteArray()
+	shape_ids.resize(CELL_COUNT)
 	for z in range(DEPTH):
 		for x in range(WIDTH):
 			var column_index := x + z * WIDTH
@@ -109,6 +111,9 @@ static func decode(grid: PackedByteArray, blocks: PackedByteArray,
 		occupied_count += 1
 		var block_offset := block_offsets[block_index]
 		var brick_id := int(blocks.decode_u16(block_offset + 3 + cell_index * 4 + 2))
+		# Collision shape belongs to the BLL cell even if it has no visible BRK.
+		# Preserve invisible collision cells for authoring previews.
+		shape_ids[output_index] = blocks[block_offset + 3 + cell_index * 4]
 		if brick_id != 0:
 			brick_ids[output_index] = brick_id - 1
 			visible_count += 1
@@ -116,6 +121,7 @@ static func decode(grid: PackedByteArray, blocks: PackedByteArray,
 		"ok": true,
 		"cells": cells,
 		"brick_ids": brick_ids,
+		"shape_ids": shape_ids,
 		"block_count": block_count,
 		"occupied_count": occupied_count,
 		"visible_count": visible_count,

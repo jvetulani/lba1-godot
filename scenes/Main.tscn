@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://chhkhegwei5ks"]
 
-[ext_resource type="PackedScene" path="res://scenes/world/World3D.tscn" id="1_world"]
-[ext_resource type="PackedScene" path="res://scenes/ui/GameUI.tscn" id="2_ui"]
+[ext_resource type="PackedScene" uid="uid://dodgc4173rq3u" path="res://scenes/world/World3D.tscn" id="1_world"]
+[ext_resource type="PackedScene" uid="uid://djr2p33mhw1ls" path="res://scenes/ui/GameUI.tscn" id="2_ui"]
 [ext_resource type="Script" uid="uid://kqnqxovh72os" path="res://scripts/game_app.gd" id="3_app"]
 [ext_resource type="Script" uid="uid://dofljjrkpsqo4" path="res://scripts/bridge/lba_media_import.gd" id="4_media"]
 [ext_resource type="Script" uid="uid://dkgy7m62wolll" path="res://scripts/audio/lba_audio_buses.gd" id="5_audio"]
@@ -11,6 +11,8 @@
 script = ExtResource("3_app")
 
 [node name="World3D" parent="." unique_id=1180505294 instance=ExtResource("1_world")]
+polygon_light_boost = 1.1
+grid_directional_strength = 0.0
 
 [node name="GameUI" parent="." unique_id=894101100 instance=ExtResource("2_ui")]
 

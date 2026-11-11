@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3]
+
+
+[node name="LBAPreviewSlot" type="Button"]
+custom_minimum_size = Vector2(112, 120)
+focus_mode = 2
+flat = false
+mouse_filter = 2
+toggle_mode = true
+theme_type_variation = &"LBAItemSlot"
+
+[node name="Preview" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 7.0
+offset_right = -8.0
+offset_bottom = -7.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Count" type="Label" parent="."]
+layout_mode = 1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -36.0
+offset_right = -12.0
+offset_bottom = -8.0
+mouse_filter = 2
+text = ""
+theme_type_variation = &"LBAItemCount"
+

@@ -1,31 +1,92 @@
 shader_type canvas_item;
 render_mode unshaded;
 
-uniform float speed : hint_range(0.02, 1.0) = 0.16;
-uniform float selected : hint_range(0.0, 1.0) = 0.0;
-uniform vec2 plasma_dimensions = vec2(4.0, 0.5);
-uniform sampler2D original_palette : filter_nearest;
-uniform bool use_original_palette = false;
+// Shared plasma controls. Existing gradient, motion, and color grading stay intact.
+uniform sampler2D plasma_gradient : source_color, filter_linear, repeat_disable;
+uniform float speed : hint_range(0.0, 2.0) = 0.28;
+uniform float contrast : hint_range(0.0, 2.0) = 1.0;
+uniform float top_darkening : hint_range(0.0, 1.0) = 0.85;
+uniform float falloff_height : hint_range(0.01, 1.0) = 0.75;
+uniform vec2 plasma_dimensions = vec2(4.3, 0.85);
+
+// Corner radii in *local Control pixels*; the ColorRect's dimensions are
+// measured automatically in the shader, so no resize script is needed.
+group_uniforms RoundedCorners;
+uniform float radius_top_left : hint_range(0.0, 128.0, 0.5) = 16.0;
+uniform float radius_top_right : hint_range(0.0, 128.0, 0.5) = 16.0;
+uniform float radius_bottom_right : hint_range(0.0, 128.0, 0.5) = 16.0;
+uniform float radius_bottom_left : hint_range(0.0, 128.0, 0.5) = 16.0;
+// Use this to leave the parent Button's StyleBoxFlat border unobscured.
+uniform float border_inset : hint_range(0.0, 32.0, 0.5) = 4.0;
+group_uniforms;
+
+// Retain existing script's per-instance phase and editor-preview controls.
+instance uniform float phase_offset = 0.0;
+instance uniform bool editor_preview = false;
+instance uniform float editor_phase = 0.0;
+
+// Backward compatibility with the existing plasma_button.gd. These have
+// NO influence on the plasma color or its rounded-corner mask.
+instance uniform float selected = 0.0;
+instance uniform vec4 selection_override : source_color = vec4(0.0);
+instance uniform bool use_selection_override = false;
+
+// Local vertex positions are measured in Control pixels. By comparing their
+// screen-space derivatives with UV derivatives, we recover the actual rect size
+// even when the UI is scaled, without any GDScript resize callback.
+varying vec2 local_position;
+
+void vertex() {
+	local_position = VERTEX;
+}
+
+vec2 measure_rect_size(vec2 rect_uv) {
+	vec2 position_dx = dFdx(local_position);
+	vec2 position_dy = dFdy(local_position);
+	vec2 uv_dx = dFdx(rect_uv);
+	vec2 uv_dy = dFdy(rect_uv);
+
+	float width_in_pixels = length(vec2(position_dx.x, position_dy.x))
+		/ max(length(vec2(uv_dx.x, uv_dy.x)), 0.00001);
+	float height_in_pixels = length(vec2(position_dx.y, position_dy.y))
+		/ max(length(vec2(uv_dx.y, uv_dy.y)), 0.00001);
+	return max(vec2(width_in_pixels, height_in_pixels), vec2(0.001));
+}
+
+// Signed distance to a rectangle with independent radii for each corner.
+float rounded_box_distance(vec2 point, vec2 half_size, vec4 radii) {
+	// Coordinates: +x = right; +y = bottom.
+	float r = point.x < 0.0
+		? (point.y < 0.0 ? radii.x : radii.w)
+		: (point.y < 0.0 ? radii.y : radii.z);
+	vec2 q = abs(point) - (half_size - vec2(r));
+	return length(max(q, vec2(0.0))) + min(max(q.x, q.y), 0.0) - r;
+}
 
 void fragment() {
-	// Moving radial fields produce the broad, overlapping bands of the
-	// old-school plasma reference. The game palette supplies the colours.
-	// Keep plasma frequency tied to physical button size, not UV aspect ratio.
-	vec2 p = (UV - 0.5) * plasma_dimensions;
-	float t = TIME * speed;
-	vec2 center_a = vec2(2.5 * cos(t * 0.7), 0.8 * sin(t * 0.5));
-	vec2 center_b = vec2(2.8 * sin(t * 0.4), 0.7 * cos(t * 0.9));
-	vec2 center_c = vec2(2.2 * cos(t * 0.3), 0.9 * cos(t * 0.6));
-	float waves = cos(length(p - center_a) * 2.5)
-		+ cos(length(p - center_b) * 3.1)
-		+ sin(length(p - center_c) * 2.2) * sin(p.x * 1.1);
-	float level = fract(0.5 + waves * 0.18 + selected * 0.035);
-	vec3 color;
-	if (use_original_palette) {
-		float index = floor(level * 15.0 + 0.5);
-		color = texture(original_palette, vec2((index + 0.5) / 16.0, 0.5)).rgb;
-	} else {
-		color = mix(vec3(0.027, 0.043, 0.09), vec3(0.75, 0.86, 0.94), level);
-	}
-	COLOR = vec4(color, 1.0);
+	// Original plasma appearance and animation, without selection tinting.
+	vec2 p = (UV - vec2(0.5)) * plasma_dimensions;
+	float t = (editor_preview ? editor_phase : TIME) * speed + phase_offset;
+	float a = sin(p.x * 2.0 + 1.25 * sin(p.y * 1.8 + t * 0.7) + t * 1.1);
+	float b = cos((p.x - p.y * 1.3) * 1.45 - t * 1.3);
+	float c = sin(length(p - vec2(0.5 * cos(t * 0.6), 0.4 * sin(t * 0.9))) * 3.1 - t);
+	float level = clamp(0.48 + contrast * (0.20 * a + 0.17 * b + 0.13 * c), 0.0, 1.0);
+	float top_mask = 1.0 - smoothstep(0.0, falloff_height, UV.y);
+	level = mix(level, 0.04, top_mask * top_darkening);
+	vec3 rgb = texture(plasma_gradient, vec2(level, 0.5)).rgb;
+
+	vec2 rect_size = measure_rect_size(UV);
+	float inset = clamp(border_inset, 0.0, 0.5 * min(rect_size.x, rect_size.y));
+	vec2 inner_half_size = max(rect_size * 0.5 - vec2(inset), vec2(0.001));
+	float max_radius = min(inner_half_size.x, inner_half_size.y);
+	vec4 radii = clamp(
+		vec4(radius_top_left, radius_top_right, radius_bottom_right, radius_bottom_left) - vec4(inset),
+		vec4(0.0), vec4(max_radius)
+	);
+
+	vec2 pixel_position = (UV - vec2(0.5)) * rect_size;
+	float distance_to_edge = rounded_box_distance(pixel_position, inner_half_size, radii);
+	float feather = max(fwidth(distance_to_edge), 0.001);
+	float alpha = 1.0 - smoothstep(-0.5 * feather, 0.5 * feather, distance_to_edge);
+	COLOR = vec4(rgb, alpha);
 }

@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3]
+
+[ext_resource type="Shader" path="res://shaders/ui_backdrop_blur.gdshader" id="1_shader"]
+[ext_resource type="Texture2D" path="res://assets/ui/panel_fill.png" id="2_fill"]
+
+[resource]
+shader = ExtResource("1_shader")
+shader_parameter/fill_texture = ExtResource("2_fill")
+shader_parameter/tint = Color(0.14, 0.43, 0.55, 0.45)
+shader_parameter/blur_lod = 2.25

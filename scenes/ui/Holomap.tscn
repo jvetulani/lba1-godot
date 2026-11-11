@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://b6teuk18sa8h0"]
+
+[ext_resource type="Script" uid="uid://bwxh2rwhsv24h" path="res://scripts/ui/lba_holomap.gd" id="1_map"]
+[ext_resource type="Theme" uid="uid://chpttxkynaod4" path="res://assets/themes/LBAUI.tres" id="2_theme"]
+[ext_resource type="PackedScene" uid="uid://cgyx7n5pibdnf" path="res://scenes/holomap_authoring/TwinsunHolomap.tscn" id="3_twinsun"]
+
+[sub_resource type="Environment" id="Environment_holomap"]
+background_mode = 1
+background_color = Color(0.025, 0.04, 0.085, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.45, 0.6, 0.82, 1)
+ambient_light_energy = 0.65
+
+[node name="Holomap" type="Control" unique_id=1578259546 node_paths=PackedStringArray("globe_viewport", "holomap_environment", "globe_rotation", "location_label", "twinsun_holomap", "globe_mesh", "locations_root", "twinsen_placement", "model_alignment", "twinsen_placeholder", "markers_container", "trajectories_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_map")
+globe_viewport = NodePath("GlobeViewport/Globe")
+holomap_environment = NodePath("GlobeViewport/Globe/HolomapEnvironment")
+globe_rotation = NodePath("GlobeViewport/Globe/HolomapEnvironment/Rotation")
+location_label = NodePath("LocationDialogueFrame/MapStatus")
+twinsun_holomap = NodePath("GlobeViewport/Globe/HolomapEnvironment/Rotation/TwinsunHolomap")
+globe_mesh = NodePath("GlobeViewport/Globe/HolomapEnvironment/Rotation/TwinsunHolomap/GlobeAlignment/Twinsun")
+locations_root = NodePath("GlobeViewport/Globe/HolomapEnvironment/Rotation/TwinsunHolomap/LocationsAlignment/Locations")
+twinsen_placement = NodePath("GlobeViewport/Globe/HolomapEnvironment/Rotation/TwinsunHolomap/LocationsAlignment/TwinsenPlacement")
+model_alignment = NodePath("GlobeViewport/Globe/HolomapEnvironment/Rotation/TwinsunHolomap/LocationsAlignment/TwinsenPlacement/ModelAlignment")
+twinsen_placeholder = NodePath("GlobeViewport/Globe/HolomapEnvironment/Rotation/TwinsunHolomap/LocationsAlignment/TwinsenPlacement/ModelAlignment/TwinsenPlaceholder")
+markers_container = NodePath("GlobeViewport/Globe/HolomapEnvironment/Rotation/Markers")
+trajectories_container = NodePath("GlobeViewport/Globe/HolomapEnvironment/Rotation/Trajectories")
+
+[node name="GlobeViewport" type="SubViewportContainer" parent="." unique_id=372880730]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch = true
+
+[node name="Globe" type="SubViewport" parent="GlobeViewport" unique_id=89749340]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="HolomapEnvironment" type="Node3D" parent="GlobeViewport/Globe" unique_id=2017831076]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="GlobeViewport/Globe/HolomapEnvironment" unique_id=1786913491]
+environment = SubResource("Environment_holomap")
+
+[node name="Background" type="Node3D" parent="GlobeViewport/Globe/HolomapEnvironment" unique_id=51490384]
+
+[node name="Stars" type="Node3D" parent="GlobeViewport/Globe/HolomapEnvironment" unique_id=603647162]
+
+[node name="EmeraldMoon" type="Node3D" parent="GlobeViewport/Globe/HolomapEnvironment" unique_id=662553596]
+
+[node name="Lighting" type="Node3D" parent="GlobeViewport/Globe/HolomapEnvironment" unique_id=420379599]
+
+[node name="Sun" type="DirectionalLight3D" parent="GlobeViewport/Globe/HolomapEnvironment/Lighting" unique_id=1274384946]
+transform = Transform3D(0.8191522, 0.32898968, -0.4698462, 0, 0.8191522, 0.5735762, 0.5735762, -0.4698462, 0.6710103, 0, 0, 0)
+light_energy = 1.45
+
+[node name="Rotation" type="Node3D" parent="GlobeViewport/Globe/HolomapEnvironment" unique_id=168080883]
+
+[node name="TwinsunHolomap" parent="GlobeViewport/Globe/HolomapEnvironment/Rotation" unique_id=1642337468 instance=ExtResource("3_twinsun")]
+
+[node name="Markers" type="Node3D" parent="GlobeViewport/Globe/HolomapEnvironment/Rotation" unique_id=18140552]
+
+[node name="Trajectories" type="Node3D" parent="GlobeViewport/Globe/HolomapEnvironment/Rotation" unique_id=1634634694]
+
+[node name="Camera" type="Camera3D" parent="GlobeViewport/Globe/HolomapEnvironment" unique_id=613197755]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.38, 10.2)
+current = true
+fov = 45.0
+
+[node name="Title" type="Label" parent="." unique_id=1412364789]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.005
+anchor_right = 0.97
+anchor_bottom = 0.1
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "HoloMap"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LocationDialogueFrame" type="PanelContainer" parent="." unique_id=360334733]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.815
+anchor_right = 0.98
+anchor_bottom = 0.98
+mouse_filter = 2
+theme = ExtResource("2_theme")
+theme_type_variation = &"LBATextWindow"
+
+[node name="MapStatus" type="Label" parent="LocationDialogueFrame" unique_id=1953811743]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="PreviewNotice" type="Label" parent="." unique_id=1654064613]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.92
+anchor_right = 0.75
+anchor_bottom = 0.97

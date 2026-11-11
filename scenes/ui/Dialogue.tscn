@@ -1,80 +1,84 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://da8043sibjqgg"]
 
-[ext_resource type="Script" path="res://scripts/ui/game_action_panel.gd" id="1_panel"]
+[ext_resource type="Script" uid="uid://gwvhvmijv65m" path="res://scripts/ui/lba_dialogue_panel.gd" id="1_panel"]
+[ext_resource type="Theme" uid="uid://chpttxkynaod4" path="res://assets/themes/LBAUI.tres" id="1_tvpam"]
+[ext_resource type="Texture2D" uid="uid://cvv65jaul5kl7" path="res://assets/ui/chevron.png" id="v36c_chevron"]
 
-[node name="Dialogue" type="Control"]
+[node name="Dialogue" type="Control" unique_id=1301007992 node_paths=PackedStringArray("body", "chevron", "item_preview", "window_frame")]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("1_tvpam")
 script = ExtResource("1_panel")
+body = NodePath("Bottom/Panel/Contents/Text")
+chevron = NodePath("Bottom/Panel/Contents/Text/PageChevron")
+item_preview = NodePath("ItemPreview")
+window_frame = NodePath("Bottom/Panel")
 
-[node name="ItemPreview" type="TextureRect" parent="."]
+[node name="ItemPreview" type="TextureRect" parent="." unique_id=552453556]
 visible = false
-custom_minimum_size = Vector2(220, 220)
+custom_minimum_size = Vector2(180, 180)
 layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.15
+anchor_top = 0.25
 anchor_right = 0.5
-anchor_bottom = 0.15
-offset_left = -110.0
-offset_top = 0.0
-offset_right = 110.0
-offset_bottom = 220.0
+anchor_bottom = 0.25
+offset_left = -90.0
+offset_right = 90.0
+offset_bottom = 180.0
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Bottom" type="CenterContainer" parent="."]
+[node name="Bottom" type="CenterContainer" parent="." unique_id=46361710]
 layout_mode = 1
-anchor_top = 0.68
+anchors_preset = -1
+anchor_top = 0.73
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Panel" type="PanelContainer" parent="Bottom"]
-custom_minimum_size = Vector2(640, 180)
+[node name="Panel" type="PanelContainer" parent="Bottom" unique_id=810703309]
+custom_minimum_size = Vector2(600, 146)
 layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"LBATextWindow"
 
-[node name="Contents" type="VBoxContainer" parent="Bottom/Panel"]
+[node name="Contents" type="VBoxContainer" parent="Bottom/Panel" unique_id=417352287]
 layout_mode = 2
-theme_override_constants/separation = 3
+mouse_filter = 2
 
-[node name="Speaker" type="Label" parent="Bottom/Panel/Contents"]
-layout_mode = 2
-text = "Speaker"
-
-[node name="Text" type="RichTextLabel" parent="Bottom/Panel/Contents"]
-custom_minimum_size = Vector2(600, 100)
-scroll_active = false
-fit_content = false
+[node name="Text" type="RichTextLabel" parent="Bottom/Panel/Contents" unique_id=1738023382]
+custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 3
-bbcode_enabled = false
-text = ""
+mouse_filter = 2
+theme_type_variation = &"LBADialogueText"
+text = "Dialogue preview. Text appears here, one page at a time."
+scroll_active = false
+shortcut_keys_enabled = false
 
-[node name="PageChevron" type="Label" parent="Bottom/Panel/Contents"]
-visible = false
-layout_mode = 2
-horizontal_alignment = 2
-text = "▼"
-
-[node name="Actions" type="HBoxContainer" parent="Bottom/Panel/Contents"]
-layout_mode = 2
-
-[node name="Continue" type="Button" parent="Bottom/Panel/Contents/Actions"]
-custom_minimum_size = Vector2(120, 40)
-layout_mode = 2
-focus_mode = 2
-text = "Continue"
-metadata/action = "dialogue_continue"
-
-[node name="Skip" type="Button" parent="Bottom/Panel/Contents/Actions"]
-custom_minimum_size = Vector2(120, 40)
-layout_mode = 2
-focus_mode = 2
-text = "Skip"
-metadata/action = "dialogue_skip"
+[node name="PageChevron" type="TextureRect" parent="Bottom/Panel/Contents/Text" unique_id=1343237300]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -24.0
+offset_bottom = 5.340576e-05
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0, 1)
+offset_transform_enabled = true
+mouse_filter = 2
+texture = ExtResource("v36c_chevron")
+expand_mode = 1
+stretch_mode = 5

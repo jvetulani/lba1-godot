@@ -26,7 +26,6 @@ layout_mode = 2
 
 [node name="Contents" type="VBoxContainer" parent="Center/Panel"]
 layout_mode = 2
-theme_override_constants/separation = 12
 
 [node name="Title" type="Label" parent="Center/Panel/Contents"]
 layout_mode = 2
@@ -34,6 +33,7 @@ text = "Load game"
 horizontal_alignment = 1
 
 [node name="Entries" type="ItemList" parent="Center/Panel/Contents"]
+mouse_filter = 2
 custom_minimum_size = Vector2(360, 240)
 layout_mode = 2
 focus_mode = 2
@@ -42,16 +42,18 @@ focus_mode = 2
 layout_mode = 2
 
 [node name="Load" type="Button" parent="Center/Panel/Contents/Actions"]
+mouse_filter = 2
 custom_minimum_size = Vector2(120, 42)
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 2
 text = "Load"
 metadata/action = "load"
-metadata/confirm = true
+metadata/confirm = false
 metadata/confirmation_text = "Load this saved game? Unsaved progress will be lost."
 
 [node name="Close" type="Button" parent="Center/Panel/Contents/Actions"]
+mouse_filter = 2
 custom_minimum_size = Vector2(120, 42)
 layout_mode = 2
 size_flags_horizontal = 3

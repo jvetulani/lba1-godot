@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://bcpdb4yqm7p1e"]
 
-[ext_resource type="Script" path="res://scripts/ui/game_settings_panel.gd" id="1_panel"]
+[ext_resource type="Script" uid="uid://mvtgpi4xcxm5" path="res://scripts/ui/game_settings_panel.gd" id="1_panel"]
 
-[node name="SettingsMenu" type="Control"]
+[node name="SettingsMenu" type="Control" unique_id=1334329092]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -11,7 +12,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_panel")
 
-[node name="Center" type="ScrollContainer" parent="."]
+[node name="Center" type="ScrollContainer" parent="." unique_id=1253857415]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,195 +20,242 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
 
-[node name="ContentCenter" type="CenterContainer" parent="Center"]
+[node name="ContentCenter" type="CenterContainer" parent="Center" unique_id=47254943]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Panel" type="PanelContainer" parent="Center/ContentCenter"]
+[node name="Panel" type="PanelContainer" parent="Center/ContentCenter" unique_id=1858017093]
 custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 
-[node name="Contents" type="VBoxContainer" parent="Center/ContentCenter/Panel"]
+[node name="Contents" type="VBoxContainer" parent="Center/ContentCenter/Panel" unique_id=561524640]
 layout_mode = 2
-theme_override_constants/separation = 12
 
-[node name="Title" type="Label" parent="Center/ContentCenter/Panel/Contents"]
+[node name="Title" type="Label" parent="Center/ContentCenter/Panel/Contents" unique_id=967298398]
 layout_mode = 2
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="MasterRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents"]
+[node name="MasterRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents" unique_id=305265664]
 layout_mode = 2
 
-[node name="MasterLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/MasterRow"]
+[node name="MasterLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/MasterRow" unique_id=1818665129]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 text = "Master"
 
-[node name="MasterVolume" type="HSlider" parent="Center/ContentCenter/Panel/Contents/MasterRow"]
+[node name="MasterVolume" type="HSlider" parent="Center/ContentCenter/Panel/Contents/MasterRow" unique_id=2120324089]
 custom_minimum_size = Vector2(190, 28)
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 2
 max_value = 255.0
-step = 1.0
 value = 255.0
 metadata/action = "master_volume"
 
-[node name="MusicRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents"]
+[node name="MusicRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents" unique_id=1162195713]
 layout_mode = 2
 
-[node name="MusicLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/MusicRow"]
+[node name="MusicLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/MusicRow" unique_id=1710327157]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 text = "Music"
 
-[node name="MusicVolume" type="HSlider" parent="Center/ContentCenter/Panel/Contents/MusicRow"]
+[node name="MusicVolume" type="HSlider" parent="Center/ContentCenter/Panel/Contents/MusicRow" unique_id=2095346938]
 custom_minimum_size = Vector2(190, 28)
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 2
 max_value = 255.0
-step = 1.0
 value = 255.0
 metadata/action = "music_volume"
 
-[node name="SoundRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents"]
+[node name="SoundRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents" unique_id=101754842]
 layout_mode = 2
 
-[node name="SoundLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/SoundRow"]
+[node name="SoundLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/SoundRow" unique_id=1125660948]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 text = "Sound effects"
 
-[node name="SoundVolume" type="HSlider" parent="Center/ContentCenter/Panel/Contents/SoundRow"]
+[node name="SoundVolume" type="HSlider" parent="Center/ContentCenter/Panel/Contents/SoundRow" unique_id=1173361063]
 custom_minimum_size = Vector2(190, 28)
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 2
 max_value = 255.0
-step = 1.0
 value = 255.0
 metadata/action = "sound_volume"
 
-[node name="SpeechRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents"]
+[node name="SpeechRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents" unique_id=1909609649]
 layout_mode = 2
 
-[node name="SpeechLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/SpeechRow"]
+[node name="SpeechLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/SpeechRow" unique_id=57002107]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 text = "Speech"
 
-[node name="SpeechVolume" type="HSlider" parent="Center/ContentCenter/Panel/Contents/SpeechRow"]
+[node name="SpeechVolume" type="HSlider" parent="Center/ContentCenter/Panel/Contents/SpeechRow" unique_id=1122403911]
 custom_minimum_size = Vector2(190, 28)
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 2
 max_value = 255.0
-step = 1.0
 value = 255.0
 metadata/action = "speech_volume"
 
-[node name="CinematicRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents"]
+[node name="CinematicRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents" unique_id=2067453618]
 layout_mode = 2
 
-[node name="CinematicLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/CinematicRow"]
+[node name="CinematicLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/CinematicRow" unique_id=1468258789]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 text = "Cinematics"
 
-[node name="CinematicVolume" type="HSlider" parent="Center/ContentCenter/Panel/Contents/CinematicRow"]
+[node name="CinematicVolume" type="HSlider" parent="Center/ContentCenter/Panel/Contents/CinematicRow" unique_id=1062320485]
 custom_minimum_size = Vector2(190, 28)
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 2
 max_value = 255.0
-step = 1.0
 value = 179.0
 metadata/action = "cinematic_volume"
 
-[node name="WallCollisionDamage" type="CheckButton" parent="Center/ContentCenter/Panel/Contents"]
+[node name="LanguageTitle" type="Label" parent="Center/ContentCenter/Panel/Contents" unique_id=1036048031]
+layout_mode = 2
+text = "Language"
+
+[node name="TextLanguageRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents" unique_id=48855122]
+layout_mode = 2
+
+[node name="TextLanguageLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/TextLanguageRow" unique_id=1137318464]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Written"
+
+[node name="TextLanguage" type="OptionButton" parent="Center/ContentCenter/Panel/Contents/TextLanguageRow" unique_id=732324868]
+custom_minimum_size = Vector2(190, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VoiceLanguageRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents" unique_id=661142455]
+layout_mode = 2
+
+[node name="VoiceLanguageLabel" type="Label" parent="Center/ContentCenter/Panel/Contents/VoiceLanguageRow" unique_id=662621446]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Spoken"
+
+[node name="VoiceLanguage" type="OptionButton" parent="Center/ContentCenter/Panel/Contents/VoiceLanguageRow" unique_id=1353308359]
+custom_minimum_size = Vector2(190, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WallCollisionDamage" type="CheckButton" parent="Center/ContentCenter/Panel/Contents" unique_id=1224235633]
 layout_mode = 2
 focus_mode = 2
+focus_neighbor_bottom = NodePath("../GridLighting")
 text = "Wall Collision Damage"
 metadata/action = "wall_collision_damage"
 
-[node name="Separator" type="HSeparator" parent="Center/ContentCenter/Panel/Contents"]
+[node name="GridLighting" type="CheckButton" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../WallCollisionDamage")
+focus_neighbor_bottom = NodePath("../SourceRow/SourcePath")
+focus_mode = 2
+button_pressed = true
+text = "Lit grids (off = original emissive)"
+metadata/action = "grid_lighting_enabled"
+
+[node name="Separator" type="HSeparator" parent="Center/ContentCenter/Panel/Contents" unique_id=1301200321]
 layout_mode = 2
 
-[node name="OriginalDataTitle" type="Label" parent="Center/ContentCenter/Panel/Contents"]
+[node name="OriginalDataTitle" type="Label" parent="Center/ContentCenter/Panel/Contents" unique_id=1506857069]
 layout_mode = 2
 text = "Original LBA1 game data"
 
-[node name="SourceRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents"]
+[node name="SourceRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents" unique_id=798598853]
 layout_mode = 2
 
-[node name="SourcePath" type="LineEdit" parent="Center/ContentCenter/Panel/Contents/SourceRow"]
+[node name="SourcePath" type="LineEdit" parent="Center/ContentCenter/Panel/Contents/SourceRow" unique_id=2068078731]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 2
 placeholder_text = "Folder containing SCENE.HQR"
-expand_to_text_length = false
 
-[node name="BrowseOriginalData" type="Button" parent="Center/ContentCenter/Panel/Contents/SourceRow"]
+[node name="BrowseOriginalData" type="Button" parent="Center/ContentCenter/Panel/Contents/SourceRow" unique_id=1043518391]
 layout_mode = 2
-focus_mode = 2
 text = "Browse…"
 metadata/action = "browse_original_data"
 
-[node name="MediaCacheTitle" type="Label" parent="Center/ContentCenter/Panel/Contents"]
+[node name="MediaCacheTitle" type="Label" parent="Center/ContentCenter/Panel/Contents" unique_id=814341848]
 layout_mode = 2
 text = "Converted media cache"
 
-[node name="CacheRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents"]
+[node name="CacheRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents" unique_id=103018364]
 layout_mode = 2
 
-[node name="CachePath" type="LineEdit" parent="Center/ContentCenter/Panel/Contents/CacheRow"]
+[node name="CachePath" type="LineEdit" parent="Center/ContentCenter/Panel/Contents/CacheRow" unique_id=1365443229]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 2
 placeholder_text = "Folder containing manifest.json"
 
-[node name="BrowseMediaCache" type="Button" parent="Center/ContentCenter/Panel/Contents/CacheRow"]
+[node name="BrowseMediaCache" type="Button" parent="Center/ContentCenter/Panel/Contents/CacheRow" unique_id=828255766]
 layout_mode = 2
-focus_mode = 2
 text = "Browse…"
 metadata/action = "browse_media_cache"
 
-[node name="ImportOriginalMedia" type="Button" parent="Center/ContentCenter/Panel/Contents"]
+[node name="SoundFontTitle" type="Label" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+text = "MIDI SoundFont (.sf2)"
+
+[node name="SoundFontRow" type="HBoxContainer" parent="Center/ContentCenter/Panel/Contents"]
+layout_mode = 2
+
+[node name="SoundFontPath" type="LineEdit" parent="Center/ContentCenter/Panel/Contents/SoundFontRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Bundled GeneralUser-GS.sf2 (leave blank for default)"
+
+[node name="BrowseSoundFont" type="Button" parent="Center/ContentCenter/Panel/Contents/SoundFontRow"]
+layout_mode = 2
+text = "Browse…"
+metadata/action = "browse_soundfont"
+
+[node name="ImportOriginalMedia" type="Button" parent="Center/ContentCenter/Panel/Contents" unique_id=1096692588]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
-focus_mode = 2
 text = "Import audio and movies"
 metadata/action = "import_original_media"
 
-[node name="ImportProgress" type="ProgressBar" parent="Center/ContentCenter/Panel/Contents"]
+[node name="ImportProgress" type="ProgressBar" parent="Center/ContentCenter/Panel/Contents" unique_id=1727661229]
 layout_mode = 2
-max_value = 100.0
 show_percentage = false
 
-[node name="ImportStatus" type="Label" parent="Center/ContentCenter/Panel/Contents"]
+[node name="ImportStatus" type="Label" parent="Center/ContentCenter/Panel/Contents" unique_id=206413486]
 layout_mode = 2
 text = "Select your original game folder, then import its media."
 autowrap_mode = 3
 
-
-[node name="Close" type="Button" parent="Center/ContentCenter/Panel/Contents"]
+[node name="Close" type="Button" parent="Center/ContentCenter/Panel/Contents" unique_id=556164331]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
-focus_mode = 2
 text = "Back"
 metadata/action = "close"
 
-[node name="SourcePicker" type="FileDialog" parent="."]
+[node name="SourcePicker" type="FileDialog" parent="." unique_id=572264553]
 title = "Choose original LBA1 game data"
 size = Vector2i(800, 540)
 file_mode = 2
 access = 2
 
-[node name="CachePicker" type="FileDialog" parent="."]
+[node name="CachePicker" type="FileDialog" parent="." unique_id=484561178]
 title = "Choose converted LBA1 media cache"
 size = Vector2i(800, 540)
 file_mode = 2
 access = 2
+
+[node name="SoundFontPicker" type="FileDialog" parent="."]
+title = "Choose a MIDI SoundFont (.sf2)"
+size = Vector2i(800, 540)
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.sf2 ; SoundFont files")

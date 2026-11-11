@@ -1,21 +1,26 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene format=3 uid="uid://djr2p33mhw1ls"]
 
-[ext_resource type="Script" path="res://scripts/ui/game_ui.gd" id="1_ui"]
+[ext_resource type="Script" uid="uid://bdjdwm5kycitm" path="res://scripts/ui/game_ui.gd" id="1_ui"]
 [ext_resource type="PackedScene" path="res://scenes/ui/MainMenu.tscn" id="2_main"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="3_pause"]
-[ext_resource type="PackedScene" path="res://scenes/ui/SettingsMenu.tscn" id="4_settings"]
-[ext_resource type="PackedScene" path="res://scenes/ui/Dialogue.tscn" id="5_dialogue"]
+[ext_resource type="PackedScene" uid="uid://bcpdb4yqm7p1e" path="res://scenes/ui/SettingsMenu.tscn" id="4_settings"]
+[ext_resource type="PackedScene" uid="uid://da8043sibjqgg" path="res://scenes/ui/Dialogue.tscn" id="5_dialogue"]
 [ext_resource type="PackedScene" path="res://scenes/ui/Inventory.tscn" id="6_inventory"]
 [ext_resource type="PackedScene" path="res://scenes/ui/SaveScreen.tscn" id="7_save"]
 [ext_resource type="PackedScene" path="res://scenes/ui/LoadScreen.tscn" id="8_load"]
 [ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="9_hud"]
-[ext_resource type="PackedScene" path="res://scenes/ui/MediaSequence.tscn" id="10_media"]
-[ext_resource type="PackedScene" path="res://scenes/ui/ModeMenu.tscn" id="11_mode"]
+[ext_resource type="PackedScene" uid="uid://cnh6ltdxbnjpx" path="res://scenes/ui/MediaSequence.tscn" id="10_media"]
+[ext_resource type="PackedScene" uid="uid://dwxupky6722fs" path="res://scenes/ui/ModeMenu.tscn" id="11_mode"]
+[ext_resource type="PackedScene" path="res://scenes/ui/Holomap.tscn" id="12_v26"]
+[ext_resource type="PackedScene" path="res://scenes/ui/DialogueChoices.tscn" id="13_v26"]
+[ext_resource type="PackedScene" path="res://scenes/ui/FirstRunSetup.tscn" id="14_v26"]
 
-[node name="GameUI" type="CanvasLayer"]
+[node name="GameUI" type="CanvasLayer" unique_id=1217658145 node_paths=PackedStringArray("dialogue_panel")]
 script = ExtResource("1_ui")
+dialogue_panel = NodePath("Frame/Dialogue")
 
-[node name="Frame" type="Control" parent="."]
+[node name="Frame" type="Control" parent="." unique_id=197540421]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,7 +28,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MenuBackdrop" type="TextureRect" parent="Frame"]
+[node name="MenuBackdrop" type="TextureRect" parent="Frame" unique_id=1199718718]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,31 +39,66 @@ grow_vertical = 2
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
-texture_filter = 1
 
-[node name="HUD" parent="Frame" instance=ExtResource("9_hud")]
+[node name="ColorRect" type="ColorRect" parent="Frame/MenuBackdrop" unique_id=1087710316]
+modulate = Color(0.39618525, 0.6472877, 0.7923705, 1)
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="MainMenu" parent="Frame" instance=ExtResource("2_main")]
+[node name="HUD" parent="Frame" unique_id=713237333 instance=ExtResource("9_hud")]
+anchors_preset = 0
 
-[node name="PauseMenu" parent="Frame" instance=ExtResource("3_pause")]
+[node name="MainMenu" parent="Frame" unique_id=495706444 instance=ExtResource("2_main")]
+anchors_preset = 0
+
+[node name="PauseMenu" parent="Frame" unique_id=70335098 instance=ExtResource("3_pause")]
 visible = false
+anchors_preset = 0
 
-[node name="SettingsMenu" parent="Frame" instance=ExtResource("4_settings")]
+[node name="SettingsMenu" parent="Frame" unique_id=100008789 instance=ExtResource("4_settings")]
 visible = false
+layout_mode = 1
 
-[node name="Dialogue" parent="Frame" instance=ExtResource("5_dialogue")]
+[node name="Dialogue" parent="Frame" unique_id=1464413230 instance=ExtResource("5_dialogue")]
 visible = false
+layout_mode = 1
 
-[node name="Inventory" parent="Frame" instance=ExtResource("6_inventory")]
+[node name="Inventory" parent="Frame" unique_id=954946756 instance=ExtResource("6_inventory")]
 visible = false
+anchors_preset = 0
 
-[node name="SaveScreen" parent="Frame" instance=ExtResource("7_save")]
+[node name="SaveScreen" parent="Frame" unique_id=1536829451 instance=ExtResource("7_save")]
 visible = false
+anchors_preset = 0
 
-[node name="LoadScreen" parent="Frame" instance=ExtResource("8_load")]
+[node name="LoadScreen" parent="Frame" unique_id=712272947 instance=ExtResource("8_load")]
 visible = false
+anchors_preset = 0
 
-[node name="MediaSequence" parent="Frame" instance=ExtResource("10_media")]
+[node name="MediaSequence" parent="Frame" unique_id=1141330813 instance=ExtResource("10_media")]
+layout_mode = 1
 
-[node name="ModeMenu" parent="Frame" instance=ExtResource("11_mode")]
+[node name="ModeMenu" parent="Frame" unique_id=2142647069 instance=ExtResource("11_mode")]
 visible = false
+layout_mode = 1
+
+[node name="Holomap" parent="Frame" unique_id=1153674526 instance=ExtResource("12_v26")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="DialogueChoices" parent="Frame" unique_id=1311372224 instance=ExtResource("13_v26")]
+visible = false
+anchors_preset = 0
+editor_choices = PackedStringArray("Yes", "No", "Tell me more")
+
+[node name="FirstRunSetup" parent="Frame" unique_id=2075376335 instance=ExtResource("14_v26")]
+visible = false
+anchors_preset = 0

@@ -1,0 +1,145 @@
+[gd_scene format=4]
+
+[ext_resource type="PackedScene" path="res://scenes/lighting/LBA_Sun.tscn" id="v70_lba_sun"]
+
+[ext_resource type="Script" path="res://scripts/editor/lba_collision_preview.gd" id="1_4wne1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q15y4"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.36, 0.75, 0.85, 0.35)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rfmnv"]
+_surfaces = [{
+"aabb": AABB(0, 0, 0, 0.6788225, 0.34641016, 0.6788225),
+"format": 34359738369,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("AAAAAKxcsT4AAAAAUMctP6xcsT4AAAAAUMctP6xcsT5Qxy0/AAAAAKxcsT4AAAAAUMctP6xcsT5Qxy0/AAAAAKxcsT5Qxy0/AAAAAAAAAAAAAAAAUMctPwAAAAAAAAAAUMctP6xcsT4AAAAAAAAAAAAAAAAAAAAAUMctP6xcsT4AAAAAAAAAAKxcsT4AAAAAUMctPwAAAAAAAAAAUMctPwAAAABQxy0/UMctP6xcsT5Qxy0/UMctPwAAAAAAAAAAUMctP6xcsT5Qxy0/UMctP6xcsT4AAAAAUMctPwAAAABQxy0/AAAAAAAAAABQxy0/AAAAAKxcsT5Qxy0/UMctPwAAAABQxy0/AAAAAKxcsT5Qxy0/UMctP6xcsT5Qxy0/AAAAAAAAAABQxy0/AAAAAAAAAAAAAAAAAAAAAKxcsT4AAAAAAAAAAAAAAABQxy0/AAAAAKxcsT4AAAAAAAAAAKxcsT5Qxy0/")
+}]
+
+[sub_resource type="MultiMesh" id="MultiMesh_t5gid"]
+transform_format = 1
+instance_count = 516
+mesh = SubResource("ArrayMesh_rfmnv")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1ege1"]
+_surfaces = [{
+"aabb": AABB(0, 0, 0, 0.6788225, 0.34641016, 0.6788225),
+"format": 34359738369,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAAAAUMctPwAAAAAAAAAAUMctP6xcsT5Qxy0/AAAAAAAAAAAAAAAAUMctP6xcsT5Qxy0/AAAAAKxcsT5Qxy0/AAAAAAAAAAAAAAAAUMctPwAAAAAAAAAAUMctPwAAAAAAAAAAAAAAAAAAAAAAAAAAUMctPwAAAAAAAAAAAAAAAAAAAAAAAAAAUMctPwAAAAAAAAAAUMctPwAAAABQxy0/UMctP6xcsT5Qxy0/UMctPwAAAAAAAAAAUMctP6xcsT5Qxy0/UMctPwAAAAAAAAAAUMctPwAAAABQxy0/AAAAAAAAAABQxy0/AAAAAKxcsT5Qxy0/UMctPwAAAABQxy0/AAAAAKxcsT5Qxy0/UMctP6xcsT5Qxy0/AAAAAAAAAABQxy0/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQxy0/AAAAAAAAAAAAAAAAAAAAAKxcsT5Qxy0/")
+}]
+
+[sub_resource type="MultiMesh" id="MultiMesh_f30yt"]
+transform_format = 1
+instance_count = 20
+mesh = SubResource("ArrayMesh_1ege1")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_bd6g3"]
+_surfaces = [{
+"aabb": AABB(0, 0, 0, 0.6788225, 0.34641016, 0.6788225),
+"format": 34359738369,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("AAAAAKxcsT4AAAAAUMctPwAAAAAAAAAAUMctPwAAAABQxy0/AAAAAKxcsT4AAAAAUMctPwAAAABQxy0/AAAAAKxcsT5Qxy0/AAAAAAAAAAAAAAAAUMctPwAAAAAAAAAAUMctPwAAAAAAAAAAAAAAAAAAAAAAAAAAUMctPwAAAAAAAAAAAAAAAKxcsT4AAAAAUMctPwAAAAAAAAAAUMctPwAAAABQxy0/UMctPwAAAABQxy0/UMctPwAAAAAAAAAAUMctPwAAAABQxy0/UMctPwAAAAAAAAAAUMctPwAAAABQxy0/AAAAAAAAAABQxy0/AAAAAKxcsT5Qxy0/UMctPwAAAABQxy0/AAAAAKxcsT5Qxy0/UMctPwAAAABQxy0/AAAAAAAAAABQxy0/AAAAAAAAAAAAAAAAAAAAAKxcsT4AAAAAAAAAAAAAAABQxy0/AAAAAKxcsT4AAAAAAAAAAKxcsT5Qxy0/")
+}]
+
+[sub_resource type="MultiMesh" id="MultiMesh_wh4kh"]
+transform_format = 1
+instance_count = 13
+mesh = SubResource("ArrayMesh_bd6g3")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_sjyby"]
+_surfaces = [{
+"aabb": AABB(0, 0, 0, 0.6788225, 0.34641016, 0.6788225),
+"format": 34359738369,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("AAAAAKxcsT4AAAAAUMctP6xcsT4AAAAAUMctPwAAAABQxy0/AAAAAKxcsT4AAAAAUMctPwAAAABQxy0/AAAAAAAAAABQxy0/AAAAAAAAAAAAAAAAUMctPwAAAAAAAAAAUMctP6xcsT4AAAAAAAAAAAAAAAAAAAAAUMctP6xcsT4AAAAAAAAAAKxcsT4AAAAAUMctPwAAAAAAAAAAUMctPwAAAABQxy0/UMctPwAAAABQxy0/UMctPwAAAAAAAAAAUMctPwAAAABQxy0/UMctP6xcsT4AAAAAUMctPwAAAABQxy0/AAAAAAAAAABQxy0/AAAAAAAAAABQxy0/UMctPwAAAABQxy0/AAAAAAAAAABQxy0/UMctPwAAAABQxy0/AAAAAAAAAABQxy0/AAAAAAAAAAAAAAAAAAAAAKxcsT4AAAAAAAAAAAAAAABQxy0/AAAAAKxcsT4AAAAAAAAAAAAAAABQxy0/")
+}]
+
+[sub_resource type="MultiMesh" id="MultiMesh_s8e8x"]
+transform_format = 1
+instance_count = 14
+mesh = SubResource("ArrayMesh_sjyby")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fmfbs"]
+_surfaces = [{
+"aabb": AABB(0, 0, 0, 0.6788225, 0.34641016, 0.6788225),
+"format": 34359738369,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("AAAAAKxcsT4AAAAAUMctPwAAAAAAAAAAUMctPwAAAABQxy0/AAAAAKxcsT4AAAAAUMctPwAAAABQxy0/AAAAAAAAAABQxy0/AAAAAAAAAAAAAAAAUMctPwAAAAAAAAAAUMctPwAAAAAAAAAAAAAAAAAAAAAAAAAAUMctPwAAAAAAAAAAAAAAAKxcsT4AAAAAUMctPwAAAAAAAAAAUMctPwAAAABQxy0/UMctPwAAAABQxy0/UMctPwAAAAAAAAAAUMctPwAAAABQxy0/UMctPwAAAAAAAAAAUMctPwAAAABQxy0/AAAAAAAAAABQxy0/AAAAAAAAAABQxy0/UMctPwAAAABQxy0/AAAAAAAAAABQxy0/UMctPwAAAABQxy0/AAAAAAAAAABQxy0/AAAAAAAAAAAAAAAAAAAAAKxcsT4AAAAAAAAAAAAAAABQxy0/AAAAAKxcsT4AAAAAAAAAAAAAAABQxy0/")
+}]
+
+[sub_resource type="MultiMesh" id="MultiMesh_jyraq"]
+transform_format = 1
+instance_count = 2
+mesh = SubResource("ArrayMesh_fmfbs")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vqf46"]
+_surfaces = [{
+"aabb": AABB(0, 0, 0, 0.6788225, 0.34641016, 0.6788225),
+"format": 34359738369,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAAAAUMctP6xcsT4AAAAAAAAAAAAAAABQxy0/UMctP6xcsT4AAAAAUMctPwAAAABQxy0/AAAAAAAAAABQxy0/AAAAAAAAAAAAAAAAUMctPwAAAAAAAAAAUMctP6xcsT4AAAAAAAAAAAAAAAAAAAAAUMctP6xcsT4AAAAAAAAAAAAAAAAAAAAAUMctPwAAAAAAAAAAUMctPwAAAABQxy0/UMctPwAAAABQxy0/UMctPwAAAAAAAAAAUMctPwAAAABQxy0/UMctP6xcsT4AAAAAUMctPwAAAABQxy0/AAAAAAAAAABQxy0/AAAAAAAAAABQxy0/UMctPwAAAABQxy0/AAAAAAAAAABQxy0/UMctPwAAAABQxy0/AAAAAAAAAABQxy0/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQxy0/AAAAAAAAAAAAAAAAAAAAAAAAAABQxy0/")
+}]
+
+[sub_resource type="MultiMesh" id="MultiMesh_7kjop"]
+transform_format = 1
+instance_count = 1
+mesh = SubResource("ArrayMesh_vqf46")
+
+[node name="Scene_027" type="Node3D" unique_id=1416823037]
+metadata/lba_scene_index = 27
+
+[node name="Lighting" type="Node3D" parent="." unique_id=1908316595]
+
+[node name="Sun" parent="Lighting" instance=ExtResource("v70_lba_sun") unique_id=1614380844]
+[node name="ReplacementAssets" type="Node3D" parent="." unique_id=1917593173]
+
+[node name="Markers" type="Node3D" parent="." unique_id=961780063]
+
+[node name="PreviewCollisionGrid" type="Node3D" parent="." unique_id=623152651]
+script = ExtResource("1_4wne1")
+metadata/preview_only = true
+
+[node name="CollisionShape_01" type="MultiMeshInstance3D" parent="PreviewCollisionGrid" unique_id=1188213338]
+material_override = SubResource("StandardMaterial3D_q15y4")
+multimesh = SubResource("MultiMesh_t5gid")
+metadata/lba_cell_indices = PackedInt32Array(78253, 78254, 78277, 78302, 79653, 79654, 79655, 79656, 79657, 79658, 79678, 79679, 79680, 79681, 79682, 79683, 79703, 79704, 79705, 79706, 79707, 79708, 79728, 79729, 79730, 79731, 79732, 79733, 79753, 79754, 79755, 79756, 79757, 79758, 79778, 79779, 79780, 79781, 79782, 79783, 79803, 79804, 79805, 79806, 79807, 79808, 79828, 79829, 79830, 79831, 79832, 79833, 79853, 79854, 79855, 79856, 79857, 79858, 79877, 79881, 79882, 79883, 79902, 79906, 79907, 79908, 79928, 79929, 79930, 79931, 79932, 79933, 79953, 79954, 79955, 79956, 79957, 79958, 79978, 79979, 79980, 79981, 79982, 79983, 81253, 81254, 81255, 81256, 81257, 81258, 81259, 81277, 81279, 81280, 81302, 81303, 81304, 81327, 81352, 81377, 81402, 81427, 81428, 81429, 81430, 81431, 81452, 81453, 81454, 81455, 81456, 81477, 81502, 81527, 81528, 81529, 81530, 81531, 81552, 81553, 81554, 81555, 81556, 81578, 81579, 82853, 82854, 82855, 82856, 82857, 82858, 82859, 82860, 82877, 82878, 82879, 82902, 82903, 82904, 82927, 82952, 82977, 83002, 83027, 83028, 83029, 83030, 83031, 83052, 83053, 83054, 83055, 83056, 83077, 83102, 83127, 83128, 83129, 83130, 83131, 83152, 83153, 83154, 83155, 83156, 83178, 83179, 84453, 84454, 84455, 84456, 84457, 84458, 84459, 84460, 84461, 84477, 84502, 84527, 84552, 84577, 84602, 84627, 84652, 84677, 84702, 84727, 84752, 84778, 84779, 86053, 86054, 86055, 86056, 86057, 86058, 86059, 86060, 86061, 86062, 86077, 86102, 86127, 86152, 86177, 86202, 86227, 86252, 86277, 86302, 86327, 86352, 86378, 86379, 87653, 87654, 87655, 87656, 87657, 87658, 87659, 87660, 87661, 87662, 87663, 87677, 87702, 87727, 87752, 87777, 87802, 87827, 87852, 87877, 87902, 87927, 87952, 87978, 87979, 89253, 89254, 89255, 89256, 89257, 89258, 89259, 89260, 89261, 89262, 89263, 89264, 89277, 89302, 89327, 89352, 89353, 89354, 89355, 89377, 89378, 89379, 89380, 89402, 89427, 89452, 89477, 89502, 89527, 89552, 89578, 89579, 90853, 90854, 90855, 90856, 90857, 90858, 90859, 90860, 90861, 90862, 90863, 90864, 90865, 90866, 90877, 90886, 90887, 90888, 90902, 90927, 90952, 90953, 90954, 90955, 90977, 90978, 90979, 90980, 90981, 90982, 91002, 91027, 91052, 91077, 91102, 91127, 91152, 91178, 91179, 92453, 92454, 92455, 92456, 92457, 92458, 92459, 92460, 92461, 92462, 92463, 92464, 92477, 92502, 92527, 92552, 92553, 92554, 92555, 92556, 92557, 92577, 92578, 92579, 92580, 92581, 92582, 92602, 92627, 92652, 92677, 92702, 92727, 92752, 92778, 92779, 94053, 94054, 94055, 94056, 94057, 94058, 94059, 94060, 94061, 94062, 94063, 94077, 94102, 94127, 94152, 94153, 94154, 94155, 94156, 94157, 94177, 94178, 94179, 94180, 94181, 94182, 94202, 94227, 94252, 94277, 94302, 94327, 94352, 94378, 94379, 95653, 95654, 95655, 95656, 95657, 95658, 95659, 95660, 95661, 95662, 95677, 95702, 95727, 95752, 95777, 95802, 95827, 95852, 95877, 95902, 95927, 95952, 95978, 95979, 97253, 97254, 97255, 97256, 97257, 97258, 97259, 97260, 97261, 97277, 97302, 97327, 97352, 97377, 97402, 97427, 97452, 97477, 97502, 97527, 97552, 97578, 97579, 98853, 98854, 98855, 98856, 98857, 98858, 98859, 98860, 98877, 98878, 98879, 98880, 98881, 98902, 98903, 98904, 98905, 98906, 98927, 98952, 98977, 99002, 99027, 99052, 99077, 99102, 99127, 99152, 99178, 99179, 100453, 100454, 100455, 100456, 100457, 100458, 100459, 100477, 100478, 100479, 100480, 100481, 100502, 100503, 100504, 100505, 100506, 100527, 100552, 100577, 100602, 100627, 100652, 100677, 100702, 100727, 100752, 100778, 100779, 102053, 102054, 102055, 102056, 102057, 102058, 102078, 102079, 102103, 102104, 102128, 102129, 102153, 102154, 102178, 102179, 102203, 102204, 102228, 102229, 102253, 102254, 102277, 102302, 102327, 102353, 102354, 102378, 102379)
+
+[node name="CollisionShape_03" type="MultiMeshInstance3D" parent="PreviewCollisionGrid" unique_id=542443456]
+material_override = SubResource("StandardMaterial3D_q15y4")
+multimesh = SubResource("MultiMesh_f30yt")
+metadata/lba_cell_indices = PackedInt32Array(79659, 79684, 79709, 79734, 79759, 79784, 79809, 79834, 79859, 79884, 79909, 79934, 79959, 79984, 81260, 82861, 84462, 86063, 87664, 89265)
+
+[node name="CollisionShape_05" type="MultiMeshInstance3D" parent="PreviewCollisionGrid" unique_id=881206364]
+material_override = SubResource("StandardMaterial3D_q15y4")
+multimesh = SubResource("MultiMesh_wh4kh")
+metadata/lba_cell_indices = PackedInt32Array(81580, 83180, 84780, 86380, 87980, 89580, 91180, 92780, 94380, 95980, 97580, 99180, 100780)
+
+[node name="CollisionShape_04" type="MultiMeshInstance3D" parent="PreviewCollisionGrid" unique_id=804394392]
+material_override = SubResource("StandardMaterial3D_q15y4")
+multimesh = SubResource("MultiMesh_s8e8x")
+metadata/lba_cell_indices = PackedInt32Array(92465, 94064, 95663, 97262, 98861, 100460, 102059, 102080, 102105, 102130, 102155, 102180, 102205, 102230)
+
+[node name="CollisionShape_11" type="MultiMeshInstance3D" parent="PreviewCollisionGrid" unique_id=30874731]
+material_override = SubResource("StandardMaterial3D_q15y4")
+multimesh = SubResource("MultiMesh_jyraq")
+metadata/lba_cell_indices = PackedInt32Array(102255, 102380)
+
+[node name="CollisionShape_12" type="MultiMeshInstance3D" parent="PreviewCollisionGrid" unique_id=1114295853]
+material_override = SubResource("StandardMaterial3D_q15y4")
+multimesh = SubResource("MultiMesh_7kjop")
+metadata/lba_cell_indices = PackedInt32Array(102355)

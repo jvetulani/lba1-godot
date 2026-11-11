@@ -18,7 +18,8 @@ const BUS_NAMES := {
 }
 
 var levels: Dictionary = DEFAULT_LEVELS.duplicate()
-var wall_collision_damage := false
+var wall_collision_damage: bool = false
+var grid_lighting_enabled: bool = true
 
 
 func _ready() -> void:
@@ -32,6 +33,7 @@ func _ready() -> void:
 		for key in DEFAULT_LEVELS:
 			levels[key] = clampi(int(settings.get_value("audio", str(key), DEFAULT_LEVELS[key])), 0, 255)
 		wall_collision_damage = bool(settings.get_value("gameplay", "wall_collision_damage", false))
+		grid_lighting_enabled = bool(settings.get_value("graphics", "grid_lighting_enabled", true))
 	for key in levels:
 		_apply_level(key)
 
@@ -39,6 +41,8 @@ func _ready() -> void:
 func set_setting(key: StringName, value: Variant) -> void:
 	if key == &"wall_collision_damage":
 		wall_collision_damage = bool(value)
+	elif key == &"grid_lighting_enabled":
+		grid_lighting_enabled = bool(value)
 	elif levels.has(key):
 		levels[key] = clampi(int(roundf(float(value))), 0, 255)
 		_apply_level(key)
@@ -49,6 +53,7 @@ func set_setting(key: StringName, value: Variant) -> void:
 	for level in levels:
 		settings.set_value("audio", str(level), levels[level])
 	settings.set_value("gameplay", "wall_collision_damage", wall_collision_damage)
+	settings.set_value("graphics", "grid_lighting_enabled", grid_lighting_enabled)
 	if settings.save(SETTINGS_PATH) != OK:
 		push_error("Could not save LBA1 audio settings")
 

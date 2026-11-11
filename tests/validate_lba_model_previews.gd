@@ -31,7 +31,7 @@ func _run() -> void:
 	if twinsen.texture == null:
 		_fail(ui, "Ctrl selector has no Twinsen model viewport")
 		return
-	ui.set_dialogue("", "Found item", 0)
+	ui.set_dialogue("Found item", 0)
 	var pickup := ui.get_node("Frame/Dialogue/ItemPreview") as TextureRect
 	if not pickup.visible or pickup.texture == null or pickup.texture == items.get_item_icon(0):
 		_fail(ui, "Pickup preview is missing its independent viewport")

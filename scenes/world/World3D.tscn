@@ -1,27 +1,61 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://dodgc4173rq3u"]
 
-[ext_resource type="Script" path="res://scripts/world/lba_world_3d.gd" id="1_world"]
+[ext_resource type="Script" uid="uid://bie8j2n04kmad" path="res://scripts/world/lba_world_3d.gd" id="1_world"]
+[ext_resource type="PackedScene" uid="uid://dm8vuj83uaimh" path="res://scenes/lighting/LBA_Sun.tscn" id="v70_lba_sun"]
 
-[node name="World3D" type="Node3D"]
+[sub_resource type="Environment" id="Environment_hwin8"]
+ambient_light_source = 2
+ambient_light_color = Color(0.36777544, 0.4882286, 0.83203125, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.25
+tonemap_mode = 4
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_normalized = true
+glow_strength = 1.33
+glow_bloom = 0.01
+glow_blend_mode = 0
+adjustment_enabled = true
+adjustment_brightness = 1.19
+adjustment_contrast = 0.93
+adjustment_saturation = 1.02
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0doym"]
+auto_exposure_scale = 0.25
+dof_blur_near_distance = 29.7
+
+[sub_resource type="Compositor" id="Compositor_tcj6s"]
+
+[node name="World3D" type="Node3D" unique_id=458879157]
 script = ExtResource("1_world")
+polygon_light_boost = 0.5
+platform_visual_overhang = 0.2
+camera_pitch_offset_degrees = 2.0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2024462828]
+environment = SubResource("Environment_hwin8")
+camera_attributes = SubResource("CameraAttributesPractical_0doym")
+compositor = SubResource("Compositor_tcj6s")
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
-rotation = Vector3(-1.047198, -0.436332, 0.0)
-shadow_enabled = true
+[node name="Sun" parent="." unique_id=36649519 instance=ExtResource("v70_lba_sun")]
+visible = false
 
-[node name="Camera" type="Camera3D" parent="."]
-projection = 1
+[node name="Camera" type="Camera3D" parent="." unique_id=1172779265]
+v_offset = 0.5
 current = true
+fov = 20.0
 size = 12.0
 
-[node name="Grid" type="Node3D" parent="."]
+[node name="Grid" type="Node3D" parent="." unique_id=490933026]
 
-[node name="Bricks" type="Node3D" parent="."]
+[node name="Bricks" type="Node3D" parent="." unique_id=586690082]
 
-[node name="Actors" type="Node3D" parent="."]
+[node name="Actors" type="Node3D" parent="." unique_id=1829668603]
 
-[node name="Sprites" type="Node3D" parent="."]
+[node name="Sprites" type="Node3D" parent="." unique_id=2071619360]
 
-[node name="Effects" type="Node3D" parent="."]
+[node name="Effects" type="Node3D" parent="." unique_id=521794919]

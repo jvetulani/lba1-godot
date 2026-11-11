@@ -33,14 +33,18 @@ static func get_resource(data_dir: String, kind: String, entry_id: int) -> Dicti
 		return {"ok": false, "error": "Original %s archive is unavailable" % kind}
 	var key := "%s/%s/%d/%s" % [cache_path, kind, entry_id, digest]
 	if _memory.has(key):
-		return _memory[key]
+		var cached_payload: Dictionary = _memory[key]
+		if kind not in ["grid", "grid_variant"] or cached_payload.has("shape_ids"):
+			return cached_payload
 	var path := cache_path.path_join("v%d/%s/%05d.res" % [CONVERTER_VERSION, kind, entry_id])
 	if FileAccess.file_exists(path):
 		var saved: Resource = ResourceLoader.load(path, "", ResourceLoader.CACHE_MODE_IGNORE)
 		if saved != null and saved.get("kind") == kind and saved.get("entry_id") == entry_id \
 				and saved.get("converter_version") == CONVERTER_VERSION and saved.get("source_digest") == digest:
-			_memory[key] = saved.get("payload")
-			return saved.get("payload")
+			var saved_payload: Dictionary = saved.get("payload")
+			if kind not in ["grid", "grid_variant"] or saved_payload.has("shape_ids"):
+				_memory[key] = saved_payload
+				return saved_payload
 	var decoded := _decode(data_dir, kind, entry_id)
 	if not decoded.get("ok", false):
 		return decoded

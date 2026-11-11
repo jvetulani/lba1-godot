@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://daimi4hqqmed2"]
+
+[ext_resource type="Shader" uid="uid://bt0oawkycyhik" path="res://shaders/lba_tile_visual.tres" id="1_visual"]
+[ext_resource type="Texture2D" uid="uid://ywac270i0bgj" path="res://shaders/toon_gradient.tres" id="2_5goor"]
+[ext_resource type="Texture2D" uid="uid://5bg3nsuf2sev" path="res://shaders/toon_gradient_specular.tres" id="3_qjcwi"]
+
+[resource]
+resource_name = "LBA Grid Master Material"
+render_priority = 0
+shader = ExtResource("1_visual")
+shader_parameter/BaseColor = Color(1, 1, 1, 1)
+shader_parameter/Metallicness = 0.0
+shader_parameter/Roughness = 1.0
+shader_parameter/Specular = 0.5
+shader_parameter/Emission = Color(0.2421875, 0.2421875, 0.2421875, 1)
+shader_parameter/has_normal_map = false
+shader_parameter/alpha_scissor_threshold = 0.5
+shader_parameter/LightGradient = ExtResource("2_5goor")
+shader_parameter/SpecularGradient = ExtResource("3_qjcwi")

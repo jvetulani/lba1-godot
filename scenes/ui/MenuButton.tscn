@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://btgqol3ehvsx6"]
+
+[ext_resource type="Script" uid="uid://tuxyvgrjyrgk" path="res://scripts/ui/plasma_button.gd" id="1_button"]
+[ext_resource type="Theme" uid="uid://chpttxkynaod4" path="res://assets/themes/LBAUI.tres" id="1_ladwk"]
+[ext_resource type="Material" uid="uid://ct2fnhfgdasdn" path="res://assets/materials/menu_plasma_material.tres" id="v22b_shared_plasma"]
+
+[node name="MenuButton" type="Button" unique_id=1517582955]
+custom_minimum_size = Vector2(360, 52)
+mouse_filter = 2
+theme = ExtResource("1_ladwk")
+script = ExtResource("1_button")
+
+[node name="Plasma" type="ColorRect" parent="." unique_id=1581819442]
+y_sort_enabled = true
+material = ExtResource("v22b_shared_plasma")
+instance_shader_parameters/editor_phase = 21.410728190475982
+instance_shader_parameters/editor_preview = true
+instance_shader_parameters/phase_offset = 0.0
+instance_shader_parameters/selected = 0.0
+instance_shader_parameters/selection_override = Color(0, 0, 0, 0)
+instance_shader_parameters/use_selection_override = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_ladwk")
+
+[node name="Caption" type="Label" parent="." unique_id=1142424651]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 116.5
+offset_top = 15.5
+offset_right = -116.5
+offset_bottom = -15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Menu button"
+horizontal_alignment = 1
+vertical_alignment = 1

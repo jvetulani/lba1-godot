@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://dd66w3aqla1d2"]
+
+[ext_resource type="PackedScene" uid="uid://btgqol3ehvsx6" path="res://scenes/ui/MenuButton.tscn" id="1_button"]
+[ext_resource type="Theme" uid="uid://chpttxkynaod4" path="res://assets/themes/LBAUI.tres" id="1_vhthp"]
+
+[node name="Center" type="CenterContainer" unique_id=1456495459]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="MarginContainer" parent="." unique_id=685743840]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+theme = ExtResource("1_vhthp")
+
+[node name="Contents" type="VBoxContainer" parent="Panel" unique_id=1827472449]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/Contents" unique_id=633997892]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Status" type="Label" parent="Panel/Contents" unique_id=528443708]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Primary" parent="Panel/Contents" unique_id=1230769203 instance=ExtResource("1_button")]
+layout_mode = 2
+mouse_filter = 2
+caption = "New game"
+metadata/action = "new_game"
+
+[node name="Continue" parent="Panel/Contents" unique_id=2062310729 instance=ExtResource("1_button")]
+layout_mode = 2
+mouse_filter = 2
+caption = "Continue"
+metadata/action = "continue_game"
+
+[node name="Save" parent="Panel/Contents" unique_id=1302144766 instance=ExtResource("1_button")]
+layout_mode = 2
+mouse_filter = 2
+caption = "Save game"
+metadata/action = "open_save"
+
+[node name="Load" parent="Panel/Contents" unique_id=350341684 instance=ExtResource("1_button")]
+layout_mode = 2
+mouse_filter = 2
+caption = "Load game"
+metadata/action = "open_load"
+
+[node name="Settings" parent="Panel/Contents" unique_id=1179238971 instance=ExtResource("1_button")]
+layout_mode = 2
+mouse_filter = 2
+caption = "Settings"
+metadata/action = "open_settings"
+
+[node name="Exit" parent="Panel/Contents" unique_id=314986651 instance=ExtResource("1_button")]
+layout_mode = 2
+mouse_filter = 2
+caption = "Quit"
+metadata/action = "quit_game"

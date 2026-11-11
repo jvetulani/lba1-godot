@@ -111,7 +111,7 @@ static func build_static_pose(body: Dictionary, palette_bytes: PackedByteArray,
 		glass_material.set_shader_parameter("opacity", body["appearance"].get("opacity", LBA2_APPEARANCE.SPECTRAL_OPACITY))
 		glass.material_override = glass_material
 		character.add_child(glass)
-	if LBA1_FACE_MODES.has_transparent_faces(body):
+	if LBA1_FACE_MODES.has_stipple_faces(body):
 		var glass := MeshInstance3D.new()
 		glass.name = "LBA1TransparentPolygons"
 		glass.mesh = _shared_polygon_mesh(shared_meshes, "glass", body, points, true, skin != null)
@@ -123,6 +123,29 @@ static func build_static_pose(body: Dictionary, palette_bytes: PackedByteArray,
 		glass_material.set_shader_parameter("palette_texture", palette_texture)
 		glass.material_override = glass_material
 		character.add_child(glass)
+
+
+	# LBA1 special mode 5 paints an overlaid ramp on pixels behind the body.
+	# The original ground-projected shadows on vehicles/tanks belong here;
+	# they are not RESS.HQR actor-ground sprites or real-time light shadows.
+	if LBA1_FACE_MODES.has_legacy_shadow_faces(body):
+		var old_shadow := MeshInstance3D.new()
+		old_shadow.name = "LBA1LegacyShadowPolygons"
+		old_shadow.mesh = _shared_polygon_mesh(shared_meshes, "legacy_shadow", body, points, true, skin != null, true)
+		if skin != null:
+			old_shadow.skin = skin
+			old_shadow.skeleton = NodePath("../Skeleton")
+		var old_shadow_material := ShaderMaterial.new()
+		old_shadow_material.shader = LBA1_TRANSPARENT_FACE
+		old_shadow_material.set_shader_parameter("palette_texture", palette_texture)
+		old_shadow.material_override = old_shadow_material
+		old_shadow.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		character.add_child(old_shadow)
+		var legacy_face_count: int = 0
+		for poly in body["polygons"]:
+			if int(poly["render_type"]) == 5 or LBA1_FACE_MODES.is_ground_shadow_face(body, poly):
+				legacy_face_count += 1
+		character.set_meta("lba_original_shadow_face_count", legacy_face_count)
 
 	for sphere_data in body["spheres"]:
 		var sphere := MeshInstance3D.new()
@@ -137,6 +160,11 @@ static func build_static_pose(body: Dictionary, palette_bytes: PackedByteArray,
 		sphere.mesh = shape
 		sphere.position = points[sphere_data["center"]] * UNIT_SCALE
 		sphere.material_override = _make_material(palette_texture, sphere_data["palette_index"], is_lba2)
+		if not is_lba2:
+			# SphereMesh has smooth normals, but no custom polygon/dither data.
+			# Shade its entire source colour ramp using per-vertex scene lighting.
+			sphere.material_override.set_shader_parameter("lba_sphere_primitive", true)
+			sphere.material_override.set_shader_parameter("lba_sphere_uv_dither", true)
 		character.add_child(sphere)
 
 	for line_data in body["lines"]:
@@ -151,6 +179,10 @@ static func build_static_pose(body: Dictionary, palette_bytes: PackedByteArray,
 		shape.radial_segments = 4
 		line.mesh = shape
 		line.material_override = _make_material(palette_texture, line_data["palette_index"], is_lba2)
+		if not is_lba2:
+			# Eyes, facial marks and other dark authored lines are palette-constant,
+			# not Gouraud-shaded cylinders. Keep their actual depth and animation.
+			line.material_override.set_shader_parameter("lba_line_primitive", true)
 		character.add_child(line)
 		_set_line_pose(line, points[line_data["first"]], points[line_data["second"]])
 
@@ -174,6 +206,8 @@ static func update_pose(character: Node3D, body: Dictionary, pose: Dictionary) -
 		character.get_node("TranslucentPolygons").mesh = _build_polygon_mesh(body, points, pose["bases"], true)
 	if not character.has_node("Skeleton") and character.has_node("LBA1TransparentPolygons"):
 		character.get_node("LBA1TransparentPolygons").mesh = _build_polygon_mesh(body, points, pose["bases"], true)
+	if not character.has_node("Skeleton") and character.has_node("LBA1LegacyShadowPolygons"):
+		character.get_node("LBA1LegacyShadowPolygons").mesh = _build_polygon_mesh(body, points, pose["bases"], true, false, true)
 	for child in character.get_children():
 		if child.has_meta("center_index"):
 			child.position = points[int(child.get_meta("center_index"))] * UNIT_SCALE
@@ -200,10 +234,11 @@ static func _update_skeleton(skeleton: Skeleton3D, body: Dictionary, pose: Dicti
 
 
 static func _shared_polygon_mesh(cache: Dictionary, key: String, body: Dictionary,
-		points: PackedVector3Array, glass: bool, skinned: bool) -> ArrayMesh:
+		points: PackedVector3Array, glass: bool, skinned: bool,
+		shadow_only: bool = false) -> ArrayMesh:
 	if cache.has(key):
 		return cache[key]
-	var mesh := _build_polygon_mesh(body, points, [], glass, skinned)
+	var mesh := _build_polygon_mesh(body, points, [], glass, skinned, shadow_only)
 	cache[key] = mesh
 	return mesh
 
@@ -251,7 +286,8 @@ static func _build_wire_mesh(body: Dictionary, points: PackedVector3Array) -> Ar
 
 
 static func _build_polygon_mesh(body: Dictionary, points: PackedVector3Array, bases: Array,
-		glass_only: bool = false, skinned: bool = false) -> ArrayMesh:
+		glass_only: bool = false, skinned: bool = false,
+		shadow_only: bool = false) -> ArrayMesh:
 	var normals: PackedVector3Array = body["normals"]
 	var normal_divisors: PackedInt32Array = body["normal_divisors"]
 	var point_groups: PackedInt32Array = body["point_groups"]
@@ -267,7 +303,16 @@ static func _build_polygon_mesh(body: Dictionary, points: PackedVector3Array, ba
 	var is_lba2: bool = body.get("game", "LBA1") == "LBA2"
 
 	for polygon in body["polygons"]:
-		if (LBA2_APPEARANCE.is_translucent_face(body, polygon) or LBA1_FACE_MODES.is_transparent(body, polygon)) != glass_only:
+		var is_lba1_special: bool = LBA1_FACE_MODES.is_transparent(body, polygon)
+		var is_translucent: bool = LBA2_APPEARANCE.is_translucent_face(body, polygon) or is_lba1_special
+		if is_translucent != glass_only:
+			continue
+		if is_lba1_special:
+			var is_shadow_mode: bool = (int(polygon["render_type"]) == 5
+				or LBA1_FACE_MODES.is_ground_shadow_face(body, polygon))
+			if is_shadow_mode != shadow_only:
+				continue
+		elif shadow_only:
 			continue
 		var point_indices: PackedInt32Array = polygon["points"]
 		var marble_face: bool = body.get("game", "LBA1") == "LBA1" and int(polygon["render_type"]) == 4

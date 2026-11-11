@@ -26,7 +26,6 @@ layout_mode = 2
 
 [node name="Contents" type="VBoxContainer" parent="Center/Panel"]
 layout_mode = 2
-theme_override_constants/separation = 12
 
 [node name="Title" type="Label" parent="Center/Panel/Contents"]
 layout_mode = 2

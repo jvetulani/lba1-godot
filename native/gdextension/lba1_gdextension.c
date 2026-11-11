@@ -5,6 +5,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* Holomap flags and current location are owned by the original engine. */
+extern unsigned char TabHoloPos[];
+extern short NumCube;
+
 typedef union { uint64_t align; unsigned char bytes[64]; } GDValue;
 typedef struct { GDExtensionObjectPtr object; } LBAInstance;
 
@@ -102,6 +106,28 @@ static void actors_flat(GDExtensionVariantPtr ret)
     }
 }
 
+/* Optional visual proxy data. Kept separate from actors_flat() so old
+   snapshot readers and the simulation protocol remain unchanged. */
+static void collision_flat(GDExtensionVariantPtr ret)
+{
+    int i, n = LBA_GetActorCount();
+    void *array = return_packed_ints(ret, n * 7);
+    for (i = 0; array && i < n; ++i) {
+        LBA_ActorSnapshot a;
+        int32_t fields[7];
+        int j;
+        if (!LBA_GetActorSnapshot(i, &a)) continue;
+        fields[0] = a.index;
+        fields[1] = a.collision_xmin;
+        fields[2] = a.collision_xmax;
+        fields[3] = a.collision_ymin;
+        fields[4] = a.collision_ymax;
+        fields[5] = a.collision_zmin;
+        fields[6] = a.collision_zmax;
+        for (j = 0; j < 7; ++j) *packed_int_index(array, i * 7 + j) = fields[j];
+    }
+}
+
 static void poses_flat(GDExtensionVariantPtr ret)
 {
     /* One authoritative native interpolation pass per visible BODY actor.
@@ -170,12 +196,12 @@ static void dialogue_fields(GDExtensionVariantPtr ret)
     int j;
     void *array;
     if (!LBA_GetDialogueRequest(&d)) { return_packed_ints(ret, 0); return; }
-    array = return_packed_ints(ret, 6);
+    array = return_packed_ints(ret, 7);
     if (!array) return;
     {
-        int32_t fields[6] = {(int32_t)d.serial, d.text_id, d.bank, d.speaker,
-                             d.voice_index, d.large_window};
-        for (j = 0; j < 6; ++j) *packed_int_index(array, j) = fields[j];
+        int32_t fields[7] = {(int32_t)d.serial, d.text_id, d.bank, d.speaker,
+                             d.voice_index, d.large_window, LBA_GetDialogueSpeakerColour()};
+        for (j = 0; j < 7; ++j) *packed_int_index(array, j) = fields[j];
     }
 }
 
@@ -208,11 +234,21 @@ static void inventory_flat(GDExtensionVariantPtr ret)
     for (i = 0; array && i < n; ++i) *packed_int_index(array, i) = fields[i];
 }
 
+static void holomap_flat(GDExtensionVariantPtr ret)
+{
+    int32_t *array = return_packed_ints(ret, 151);
+    int i;
+    if (!array) return;
+    *packed_int_index(array, 0) = NumCube;
+    for (i = 0; i < 150; ++i)
+        *packed_int_index(array, i + 1) = TabHoloPos[i];
+}
+
 enum { M_START, M_STEP, M_ACTORS, M_POSES, M_EXTRAS, M_EVENTS,
        M_DIALOGUE_FIELDS, M_DIALOGUE_TEXT, M_STATUS, M_SCENE, M_TICK,
        M_ACK, M_BEHAVIOR, M_HAS_SLOT, M_SAVE_SLOT, M_LOAD_SLOT,
        M_SHUTDOWN, M_ABI, M_GRID_OVERLAY, M_GRID_OVERLAY_CEILING,
-       M_INVENTORY, M_CAMERA };
+       M_INVENTORY, M_CAMERA, M_COLLISION, M_SET_WALL_DAMAGE, M_GET_WALL_DAMAGE, M_HOLOMAP };
 
 static void method_call(void *user, GDExtensionClassInstancePtr instance,
                         const GDExtensionConstVariantPtr *args, GDExtensionInt count,
@@ -224,7 +260,8 @@ static void method_call(void *user, GDExtensionClassInstancePtr instance,
     error->error = GDEXTENSION_CALL_OK;
     if (count != ((method == M_START || method == M_STEP || method == M_ACK ||
                    method == M_BEHAVIOR || method == M_HAS_SLOT ||
-                   method == M_SAVE_SLOT || method == M_LOAD_SLOT) ? 1 : 0)) {
+                   method == M_SAVE_SLOT || method == M_LOAD_SLOT ||
+                   method == M_SET_WALL_DAMAGE) ? 1 : 0)) {
         error->error = count < 1 ? GDEXTENSION_CALL_ERROR_TOO_FEW_ARGUMENTS : GDEXTENSION_CALL_ERROR_TOO_MANY_ARGUMENTS;
         return;
     }
@@ -240,12 +277,26 @@ static void method_call(void *user, GDExtensionClassInstancePtr instance,
         result = LBA_SimulationStep();
         break;
     case M_ACTORS: actors_flat(ret); return;
+    case M_COLLISION: collision_flat(ret); return;
+    case M_SET_WALL_DAMAGE: {
+        LBA_AudioSettings settings;
+        if (!LBA_GetAudioSettings(&settings)) { result = 0; break; }
+        settings.wall_collision_damage = argument_int(args[0]) != 0;
+        result = LBA_SetAudioSettings(&settings);
+        break;
+    }
+    case M_GET_WALL_DAMAGE: {
+        LBA_AudioSettings settings;
+        result = LBA_GetAudioSettings(&settings) ? settings.wall_collision_damage : -1;
+        break;
+    }
     case M_POSES: poses_flat(ret); return;
     case M_EXTRAS: extras_flat(ret); return;
     case M_EVENTS: events_flat(ret); return;
     case M_DIALOGUE_FIELDS: dialogue_fields(ret); return;
     case M_STATUS: status_flat(ret); return;
     case M_INVENTORY: inventory_flat(ret); return;
+    case M_HOLOMAP: holomap_flat(ret); return;
     case M_CAMERA: camera_flat(ret); return;
     case M_DIALOGUE_TEXT: {
         LBA_DialogueRequest d;
@@ -334,6 +385,9 @@ static void initialize(void *user, GDExtensionInitializationLevel level)
     bind_method("start", M_START, GDEXTENSION_VARIANT_TYPE_INT, GDEXTENSION_VARIANT_TYPE_STRING);
     bind_method("step", M_STEP, GDEXTENSION_VARIANT_TYPE_INT, GDEXTENSION_VARIANT_TYPE_INT);
     bind_method("actors_flat", M_ACTORS, GDEXTENSION_VARIANT_TYPE_PACKED_INT32_ARRAY, GDEXTENSION_VARIANT_TYPE_NIL);
+    bind_method("collision_flat", M_COLLISION, GDEXTENSION_VARIANT_TYPE_PACKED_INT32_ARRAY, GDEXTENSION_VARIANT_TYPE_NIL);
+    bind_method("set_wall_damage", M_SET_WALL_DAMAGE, GDEXTENSION_VARIANT_TYPE_INT, GDEXTENSION_VARIANT_TYPE_INT);
+    bind_method("get_wall_damage", M_GET_WALL_DAMAGE, GDEXTENSION_VARIANT_TYPE_INT, GDEXTENSION_VARIANT_TYPE_NIL);
     bind_method("poses_flat", M_POSES, GDEXTENSION_VARIANT_TYPE_PACKED_INT32_ARRAY, GDEXTENSION_VARIANT_TYPE_NIL);
     bind_method("extras_flat", M_EXTRAS, GDEXTENSION_VARIANT_TYPE_PACKED_INT32_ARRAY, GDEXTENSION_VARIANT_TYPE_NIL);
     bind_method("events_flat", M_EVENTS, GDEXTENSION_VARIANT_TYPE_PACKED_INT32_ARRAY, GDEXTENSION_VARIANT_TYPE_NIL);
@@ -341,6 +395,7 @@ static void initialize(void *user, GDExtensionInitializationLevel level)
     bind_method("dialogue_text", M_DIALOGUE_TEXT, GDEXTENSION_VARIANT_TYPE_STRING, GDEXTENSION_VARIANT_TYPE_NIL);
     bind_method("status_flat", M_STATUS, GDEXTENSION_VARIANT_TYPE_PACKED_INT32_ARRAY, GDEXTENSION_VARIANT_TYPE_NIL);
     bind_method("inventory_flat", M_INVENTORY, GDEXTENSION_VARIANT_TYPE_PACKED_INT32_ARRAY, GDEXTENSION_VARIANT_TYPE_NIL);
+    bind_method("holomap_flat", M_HOLOMAP, GDEXTENSION_VARIANT_TYPE_PACKED_INT32_ARRAY, GDEXTENSION_VARIANT_TYPE_NIL);
     bind_method("camera_flat", M_CAMERA, GDEXTENSION_VARIANT_TYPE_PACKED_INT32_ARRAY, GDEXTENSION_VARIANT_TYPE_NIL);
     bind_method("scene_number", M_SCENE, GDEXTENSION_VARIANT_TYPE_INT, GDEXTENSION_VARIANT_TYPE_NIL);
     bind_method("grid_overlay", M_GRID_OVERLAY, GDEXTENSION_VARIANT_TYPE_INT, GDEXTENSION_VARIANT_TYPE_NIL);

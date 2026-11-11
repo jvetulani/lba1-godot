@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/lba_movie_preview.gd" id="1_preview"]
+
+[node name="Movie_fortress" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_preview")
+movie_name = "fortress"
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 1)
+mouse_filter = 2
+
+[node name="Picture" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+ratio = 1.333333
+stretch_mode = 0
+mouse_filter = 2
+
+[node name="EditorPoster" type="TextureRect" parent="Picture"]
+visible = false
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 0
+mouse_filter = 2
+
+[node name="Movie" type="VideoStreamPlayer" parent="Picture"]
+visible = false
+layout_mode = 2
+expand = true
+mouse_filter = 2
+bus = &"LBA Cinematics"
+
+[node name="PreviewHint" type="Label" parent="Picture"]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+mouse_filter = 2
+text = "Generate preview frames with tools/make_video_posters.py"

@@ -3,6 +3,7 @@ extends Node
 
 signal source_changed(path: String)
 signal cache_changed(path: String)
+signal soundfont_changed(path: String)
 signal import_progress(message: String, fraction: float, busy: bool)
 signal import_finished(success: bool, message: String)
 
@@ -12,6 +13,7 @@ const PROGRESS_RELATIVE := "data/media-cache/.import-progress.json"
 
 var source_path := ""
 var media_cache_path := ""
+var soundfont_path := ""
 var _pid := -1
 var _import_cache_path := ""
 var _last_progress := ""
@@ -23,6 +25,7 @@ func _ready() -> void:
 	if settings.load(SETTINGS_PATH) == OK:
 		source_path = str(settings.get_value("original_game", "source_path", ""))
 		media_cache_path = str(settings.get_value("original_game", "media_cache_path", ""))
+		soundfont_path = str(settings.get_value("original_game", "soundfont_path", ""))
 	if media_cache_path.is_empty():
 		var managed := _managed_cache_path()
 		if _cache_has_media(managed):
@@ -38,6 +41,7 @@ func _ready() -> void:
 			set_source_path(imported_source)
 	source_changed.emit(source_path)
 	cache_changed.emit(get_media_cache_path())
+	soundfont_changed.emit(_display_soundfont_path())
 	set_process(false)
 
 
@@ -70,6 +74,49 @@ func set_media_cache_path(path: String) -> void:
 	cache_changed.emit(get_media_cache_path())
 
 
+func set_soundfont_path(path: String) -> void:
+	var cleaned := path.strip_edges()
+	if cleaned == soundfont_path:
+		return
+	soundfont_path = cleaned
+	var settings := ConfigFile.new()
+	settings.load(SETTINGS_PATH)
+	settings.set_value("original_game", "soundfont_path", soundfont_path)
+	if settings.save(SETTINGS_PATH) != OK:
+		push_warning("Could not save SoundFont path")
+	soundfont_changed.emit(_display_soundfont_path())
+
+
+func _display_soundfont_path() -> String:
+	if soundfont_path.is_empty() or _is_old_project_default(soundfont_path):
+		return _default_soundfont()
+	return soundfont_path
+
+
+func _default_soundfont() -> String:
+	# Exported builds have a companion folder beside the executable.
+	# In the editor, use the canonical repository copy.
+	var project_root := ProjectSettings.globalize_path("res://project.godot").get_base_dir()
+	var repository_file := project_root.path_join("native/lba1-native/soundfonts/GeneralUser-GS.sf2")
+	var packaged_file := OS.get_executable_path().get_base_dir().path_join("lba1-native/soundfonts/GeneralUser-GS.sf2")
+	if OS.has_feature("editor"):
+		return repository_file
+	return packaged_file
+
+
+func _is_old_project_default(path: String) -> bool:
+	return not OS.has_feature("editor") and path.ends_with("/native/lba1-native/soundfonts/GeneralUser-GS.sf2")
+
+
+func _resolved_soundfont() -> String:
+	var selected := soundfont_path.strip_edges()
+	# The repo default is portable: exported games use the adjacent bundle even
+	# when the old development path is still accessible on this computer.
+	if selected.is_empty() or _is_old_project_default(selected):
+		return _default_soundfont()
+	return selected
+
+
 func start_import() -> void:
 	if _pid != -1:
 		return
@@ -93,9 +140,13 @@ func start_import() -> void:
 		DirAccess.remove_absolute(progress)
 	var python := "python" if OS.has_feature("windows") else "python3"
 	_import_cache_path = _managed_cache_path()
+	var sf := _resolved_soundfont()
+	if not FileAccess.file_exists(sf):
+		import_finished.emit(false, "MIDI SoundFont not found: %s. Choose the .sf2 file in Settings." % sf)
+		return
 	_pid = OS.create_process(python, PackedStringArray([
 		launcher, "--release", release, "--assets", source_path,
-		"--import-only", "--no-gui",
+		"--soundfont", sf, "--import-only", "--no-gui",
 	]))
 	if _pid == -1:
 		import_finished.emit(false, "Could not start Python. Install Python 3 or configure the desktop import helper.")
@@ -129,6 +180,8 @@ func ensure_staged_data() -> bool:
 		return true
 	var stage_tool := ProjectSettings.globalize_path("res://native/lba1-native/tools/stage_native_assets.py")
 	if not FileAccess.file_exists(stage_tool):
+		stage_tool = OS.get_executable_path().get_base_dir().path_join("lba1-native/tools/stage_native_assets.py")
+	if not FileAccess.file_exists(stage_tool):
 		import_finished.emit(false, "Native data staging tool is missing.")
 		return false
 	var output: Array = []
@@ -153,10 +206,10 @@ func _process(delta: float) -> void:
 	_pid = -1
 	set_process(false)
 	var manifest := _import_cache_path.path_join("manifest.json")
-	var success := exit_code == 0 and FileAccess.file_exists(manifest)
+	var success := exit_code == 0 and _cache_has_media(_import_cache_path)
 	if success:
 		set_media_cache_path(_import_cache_path)
-	var message := "LBA1 audio and movies are ready." if success else "Media import failed (exit code %d). Check the Godot output and original game-data path." % exit_code
+	var message := "LBA1 audio and movies are ready." if success else "Media import incomplete (exit code %d; completion marker valid: %s). See importer warnings in terminal/Godot output." % [exit_code, str(_cache_has_media(_import_cache_path))]
 	import_progress.emit(message, 1.0 if success else 0.0, false)
 	import_finished.emit(success, message)
 
@@ -205,7 +258,7 @@ func _cache_has_media(path: String) -> bool:
 	if not FileAccess.file_exists(state_file):
 		return false
 	var state: Variant = JSON.parse_string(FileAccess.get_file_as_string(state_file))
-	return state is Dictionary and int(state.get("revision", 0)) == 4
+	return state is Dictionary and int(state.get("revision", 0)) == 5
 
 
 func _cache_source(path: String) -> String:

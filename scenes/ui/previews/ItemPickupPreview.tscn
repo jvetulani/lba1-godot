@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/ui/Dialogue.tscn" id="1_dialogue"]
+
+[node name="ItemPickupPreview" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dialogue" parent="." instance=ExtResource("1_dialogue")]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+presentation_mode = 2
+
+[node name="Text" parent="Dialogue/Bottom/Panel/Contents" index="0"]
+text = "You can move and size this shared text frame in Dialogue.tscn. All dialogue, monologues, item discoveries and readable text use it at runtime."
+
+[editable path="Dialogue"]

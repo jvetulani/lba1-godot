@@ -15,6 +15,7 @@ var block_turn_actions := false
 var _active := false
 var _simulation: Object
 var _last_dialogue_id := -1
+var _desired_wall_collision_damage: bool = false
 
 
 func start_new_game(data_dir: String) -> bool:
@@ -34,18 +35,51 @@ func start_new_game(data_dir: String) -> bool:
 		startup_failed.emit("The original LBA1 simulation could not start with this data folder.")
 		stop()
 		return false
+	if not _simulation.has_method("collision_flat"):
+		push_warning("LBA scene sprite ZV unavailable: rebuild native GDExtension for collision-shaped sprite proxies")
 	_last_dialogue_id = -1
 	dialogue_active = false
 	paused = false
 	block_turn_actions = false
 	_active = true
+	_apply_wall_collision_damage()
 	set_physics_process(true)
 	return true
+
+
+# A native setting, not a Godot-only visual preference. Applied immediately
+# when playing, and again after new-game/load initialization resets native flags.
+func configure_wall_collision_damage(enabled: bool) -> void:
+	_desired_wall_collision_damage = enabled
+	if _active:
+		_apply_wall_collision_damage()
+
+
+func _apply_wall_collision_damage() -> void:
+	if _simulation == null:
+		return
+	if not _simulation.has_method("set_wall_damage"):
+		push_error("LBA native library is missing set_wall_damage; rebuild the GDExtension.")
+		return
+	var accepted: bool = int(_simulation.set_wall_damage(int(_desired_wall_collision_damage))) == 1
+	var actual: int = -1
+	if _simulation.has_method("get_wall_damage"):
+		actual = int(_simulation.get_wall_damage())
+	print("LBA native wall collision damage: requested=", _desired_wall_collision_damage,
+		" accepted=", accepted, " actual=", actual)
+	if not accepted or actual != int(_desired_wall_collision_damage):
+		push_error("Native wall collision damage setting did not stick.")
 
 
 func request_behavior(mode: int) -> void:
 	if _active and mode >= 0 and mode <= 3:
 		_simulation.set_behavior(mode)
+
+
+func holomap_state() -> PackedInt32Array:
+	if _active and _simulation != null and _simulation.has_method("holomap_flat"):
+		return _simulation.holomap_flat()
+	return PackedInt32Array()
 
 
 func save_slot(slot: int) -> bool:
@@ -59,6 +93,7 @@ func load_slot(slot: int) -> bool:
 	dialogue_active = false
 	paused = false
 	block_turn_actions = false
+	_apply_wall_collision_damage()
 	return true
 
 
@@ -98,7 +133,7 @@ func _physics_process(_delta: float) -> void:
 			"flags": events[i + 13],
 		})
 	var dialogue: PackedInt32Array = _simulation.dialogue_fields()
-	if dialogue.size() == 6:
+	if dialogue.size() >= 6:
 		var serial := int(dialogue[0])
 		if serial >= 0 and serial != _last_dialogue_id:
 			_last_dialogue_id = serial
@@ -106,7 +141,9 @@ func _physics_process(_delta: float) -> void:
 			dialogue_received.emit({
 				"id": serial, "text_id": dialogue[1], "bank": dialogue[2],
 				"speaker": dialogue[3], "voice_index": dialogue[4],
-				"large_window": dialogue[5], "text": _simulation.dialogue_text(),
+				"large_window": dialogue[5],
+				"color_ramp": dialogue[6] if dialogue.size() >= 7 else -1,
+				"text": _simulation.dialogue_text(),
 			})
 	if result != -32768:
 		stop()
@@ -134,6 +171,17 @@ func get_snapshot() -> Dictionary:
 			break
 		poses[actor_id] = raw_poses.slice(pose_at, pose_at + group_count * 4)
 		pose_at += group_count * 4
+	# Collision zone (ZV) comes from original native simulation. This is used
+	# only to shape projected visual proxies, never to change game collision.
+	var collision_by_actor := {}
+	if _simulation.has_method("collision_flat"):
+		var raw_collision: PackedInt32Array = _simulation.collision_flat()
+		for z in range(0, raw_collision.size() - 6, 7):
+			collision_by_actor[raw_collision[z]] = {
+				"xmin": raw_collision[z + 1], "xmax": raw_collision[z + 2],
+				"ymin": raw_collision[z + 3], "ymax": raw_collision[z + 4],
+				"zmin": raw_collision[z + 5], "zmax": raw_collision[z + 6],
+			}
 	var actors := []
 	var raw_actors: PackedInt32Array = _simulation.actors_flat()
 	for i in range(0, raw_actors.size(), 17):
@@ -146,6 +194,7 @@ func get_snapshot() -> Dictionary:
 			"frame": raw_actors[i + 10], "life": raw_actors[i + 11],
 			"offset_x": raw_actors[i + 12], "offset_y": raw_actors[i + 13],
 			"y_max": raw_actors[i + 14],
+			"collision": collision_by_actor.get(raw_actors[i], {}),
 			"generic_body": raw_actors[i + 15],
 			"generic_animation": raw_actors[i + 16],
 			"pose_groups": poses.get(raw_actors[i], PackedInt32Array()),

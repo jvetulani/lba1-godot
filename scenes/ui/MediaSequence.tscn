@@ -1,18 +1,18 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://cnh6ltdxbnjpx"]
 
-[ext_resource type="Script" path="res://scripts/ui/lba_media_sequence.gd" id="1_media"]
+[ext_resource type="Script" uid="uid://d18xiu8hvey53" path="res://scripts/ui/lba_media_sequence.gd" id="1_media"]
 
-[node name="MediaSequence" type="Control"]
+[node name="MediaSequence" type="Control" unique_id=287510555]
 visible = false
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
 script = ExtResource("1_media")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1889818828]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +21,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Illustration" type="TextureRect" parent="."]
+[node name="Illustration" type="TextureRect" parent="." unique_id=796958066]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,9 +31,8 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
-texture_filter = 1
 
-[node name="Movie" type="VideoStreamPlayer" parent="."]
+[node name="Movie" type="VideoStreamPlayer" parent="." unique_id=496340324]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -41,10 +41,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 expand = true
-bus = &"LBA Cinematics"
 
-[node name="Skip" type="Button" parent="."]
+[node name="IntroCaption" type="RichTextLabel" parent="." unique_id=1776129941]
+visible = false
+layout_mode = 0
+focus_mode = 0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.94, 0.94, 0.9, 1)
+theme_override_font_sizes/normal_font_size = 20
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Skip" type="Button" parent="." unique_id=934979294]
 layout_mode = 1
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -138.0
@@ -52,11 +62,8 @@ offset_top = 18.0
 offset_right = -18.0
 offset_bottom = 56.0
 grow_horizontal = 0
-focus_mode = 2
 text = "Skip intro"
 
-[node name="Narrator" type="AudioStreamPlayer" parent="."]
-bus = &"LBA Speech"
+[node name="Narrator" type="AudioStreamPlayer" parent="." unique_id=1562873021]
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
-bus = &"LBA Music"
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1916445080]

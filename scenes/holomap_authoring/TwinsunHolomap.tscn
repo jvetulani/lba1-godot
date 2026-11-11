@@ -1,0 +1,3324 @@
+[gd_scene format=4 uid="uid://cgyx7n5pibdnf"]
+
+[sub_resource type="StandardMaterial3D" id="HolomapPlaceholderMaterial"]
+albedo_color = Color(0.22, 0.55, 0.79, 1)
+roughness = 1.0
+
+[sub_resource type="SphereMesh" id="HolomapSphere"]
+material = SubResource("HolomapPlaceholderMaterial")
+radius = 3.0
+height = 6.0
+radial_segments = 48
+rings = 24
+
+[sub_resource type="StandardMaterial3D" id="HolomapTwinsenMaterial"]
+albedo_color = Color(0.95, 0.7, 0.22, 1)
+roughness = 1.0
+
+[sub_resource type="BoxMesh" id="HolomapTwinsenBox"]
+material = SubResource("HolomapTwinsenMaterial")
+size = Vector3(0.35, 1.0, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hivq3"]
+shading_mode = 0
+albedo_color = Color(1, 0.3, 0.15, 1)
+
+
+[sub_resource type="SphereMesh" id="SphereMesh_pjq0b"]
+material = SubResource("StandardMaterial3D_hivq3")
+radius = 0.055
+height = 0.11
+
+
+[node name="TwinsunHolomap" type="Node3D" unique_id=324853975]
+metadata/purpose = "Single editable Holomap scene; runtime graphics loaded from user assets"
+
+[node name="GlobeAlignment" type="Node3D" parent="." unique_id=617128123]
+
+[node name="Twinsun" type="MeshInstance3D" parent="GlobeAlignment" unique_id=1001311204]
+mesh = SubResource("HolomapSphere")
+
+[node name="LocationsAlignment" type="Node3D" parent="." unique_id=462171998]
+
+[node name="Locations" type="Node3D" parent="LocationsAlignment" unique_id=733279522]
+
+[node name="Citadel_Island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=954214708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.490524, -2.2893233, 1.2968856)
+metadata/lba_alpha = 172
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -84
+metadata/lba_message_id = 200
+metadata/lba_location_id = 0
+metadata/lba_original_location_text = "Citadel Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Citadel_Island" unique_id=1354937197]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Citadel_Island" unique_id=693122037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Citadel Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Citadel_Island" unique_id=539541247]
+
+[node name="Citadel_Island_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=648373283]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.490524, -2.2893233, 1.2968856)
+metadata/lba_alpha = 172
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -84
+metadata/lba_message_id = 200
+metadata/lba_location_id = 1
+metadata/lba_original_location_text = "Citadel Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Citadel_Island_A" unique_id=1736644464]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Citadel_Island_A" unique_id=131442999]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Citadel Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Citadel_Island_A" unique_id=1841902685]
+
+[node name="Citadel_Island_B" type="Node3D" parent="LocationsAlignment/Locations" unique_id=357410020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.490524, -2.320461, 1.2403122)
+metadata/lba_alpha = 176
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -84
+metadata/lba_message_id = 200
+metadata/lba_location_id = 2
+metadata/lba_original_location_text = "Citadel Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Citadel_Island_B" unique_id=573924287]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Citadel_Island_B" unique_id=1664532517]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Citadel Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Citadel_Island_B" unique_id=1767863418]
+
+[node name="Citadel_Island_C" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1928880321]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3919966, -2.4999123, 1.1823704)
+metadata/lba_alpha = 184
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -76
+metadata/lba_message_id = 200
+metadata/lba_location_id = 3
+metadata/lba_original_location_text = "Citadel Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Citadel_Island_C" unique_id=1553021529]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Citadel_Island_C" unique_id=181371379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Citadel Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Citadel_Island_C" unique_id=704051772]
+
+[node name="Citadel_Island_D" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1250980735]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0883226, -2.6789703, 0.88501227)
+metadata/lba_alpha = 204
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -60
+metadata/lba_message_id = 200
+metadata/lba_location_id = 4
+metadata/lba_original_location_text = "Citadel Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Citadel_Island_D" unique_id=2067558607]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Citadel_Island_D" unique_id=520275348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Citadel Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Citadel_Island_D" unique_id=178007233]
+
+[node name="Twinsen_s_house_Citadel_island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=856325225]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3596246, -2.5647802, 0.8472889)
+metadata/lba_alpha = 204
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -76
+metadata/lba_message_id = 212
+metadata/lba_location_id = 5
+metadata/lba_original_location_text = "Twinsen's house @ (Citadel island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Twinsen_s_house_Citadel_island" unique_id=1328035746]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Twinsen_s_house_Citadel_island" unique_id=1845349155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Twinsen s house Citadel island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Twinsen_s_house_Citadel_island" unique_id=844435405]
+
+[node name="Citadel_Island_E" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1442001284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4368173, -2.4574835, 1.0893276)
+metadata/lba_alpha = 188
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -80
+metadata/lba_message_id = 200
+metadata/lba_location_id = 6
+metadata/lba_original_location_text = "Citadel Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Citadel_Island_E" unique_id=1688792436]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Citadel_Island_E" unique_id=1956894510]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Citadel Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Citadel_Island_E" unique_id=1485723201]
+
+[node name="Drug_store_Citadel_island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=13100285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2929265, -2.4712026, 1.1687918)
+metadata/lba_alpha = 184
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -72
+metadata/lba_message_id = 221
+metadata/lba_location_id = 7
+metadata/lba_original_location_text = "Drug store @ (Citadel island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Drug_store_Citadel_island" unique_id=1407608984]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Drug_store_Citadel_island" unique_id=1586015399]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Drug store Citadel island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Drug_store_Citadel_island" unique_id=44574468]
+
+[node name="White_Leaf_Desert" type="Node3D" parent="LocationsAlignment/Locations" unique_id=71550465]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23305255, -3.1584647, -0.07753595)
+metadata/lba_alpha = 260
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 12
+metadata/lba_message_id = 202
+metadata/lba_location_id = 8
+metadata/lba_original_location_text = "White Leaf Desert"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/White_Leaf_Desert" unique_id=55143563]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/White_Leaf_Desert" unique_id=1887335274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "White Leaf Desert"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/White_Leaf_Desert" unique_id=2109353255]
+
+[node name="Hamalayi_Range" type="Node3D" parent="LocationsAlignment/Locations" unique_id=51461142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8523345, -0.24666302, -1.2400587)
+metadata/lba_alpha = -32
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 324
+metadata/lba_message_id = 205
+metadata/lba_location_id = 9
+metadata/lba_original_location_text = "Hamalayi Range"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Hamalayi_Range" unique_id=1245856114]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Hamalayi_Range" unique_id=1603144732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Hamalayi Range"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Hamalayi_Range" unique_id=1258548045]
+
+[node name="Library_Principal_Island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1357393186]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6049929, -2.0357783, -1.509836)
+metadata/lba_alpha = 360
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -92
+metadata/lba_message_id = 225
+metadata/lba_location_id = 10
+metadata/lba_original_location_text = "Library @ (Principal Island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Library_Principal_Island" unique_id=568616788]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Library_Principal_Island" unique_id=141229303]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Library Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Library_Principal_Island" unique_id=694573782]
+
+[node name="Principal_Island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1133778784]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5423083, -2.1739652, -1.3766483)
+metadata/lba_alpha = -164
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 600
+metadata/lba_message_id = 201
+metadata/lba_location_id = 11
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island" unique_id=162203612]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island" unique_id=684887581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island" unique_id=143135862]
+
+[node name="Principal_Island_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1688065762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5423083, -2.0668023, -1.532845)
+metadata/lba_alpha = -152
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -424
+metadata/lba_message_id = 201
+metadata/lba_location_id = 12
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_A" unique_id=1632837098]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_A" unique_id=230810795]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_A" unique_id=1467789531]
+
+[node name="Principal_Island_B" type="Node3D" parent="LocationsAlignment/Locations" unique_id=869953515]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4141903, -2.0857782, -1.6277575)
+metadata/lba_alpha = -148
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -432
+metadata/lba_message_id = 201
+metadata/lba_location_id = 13
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_B" unique_id=1108162517]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_B" unique_id=319275308]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_B" unique_id=2136833404]
+
+[node name="Citadel_Island_F" type="Node3D" parent="LocationsAlignment/Locations" unique_id=773479020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2929265, -2.4712026, 1.1687918)
+metadata/lba_alpha = 184
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -72
+metadata/lba_message_id = 200
+metadata/lba_location_id = 14
+metadata/lba_original_location_text = "Citadel Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Citadel_Island_F" unique_id=1587789573]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Citadel_Island_F" unique_id=985559128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Citadel Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Citadel_Island_F" unique_id=1100978842]
+
+[node name="Hamalayi_Range_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1743681730]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.679673, 0.88102174, -1.0213491)
+metadata/lba_alpha = 116
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 332
+metadata/lba_message_id = 205
+metadata/lba_location_id = 15
+metadata/lba_original_location_text = "Hamalayi Range"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Hamalayi_Range_A" unique_id=682099459]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Hamalayi_Range_A" unique_id=1178462195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Hamalayi Range"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Hamalayi_Range_A" unique_id=2135772096]
+
+[node name="Citadel_Island_G" type="Node3D" parent="LocationsAlignment/Locations" unique_id=2135407364]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2826653, -2.4223957, 1.2193315)
+metadata/lba_alpha = 180
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -72
+metadata/lba_message_id = 200
+metadata/lba_location_id = 16
+metadata/lba_original_location_text = "Citadel Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Citadel_Island_G" unique_id=2144305333]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Citadel_Island_G" unique_id=43114037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Citadel Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Citadel_Island_G" unique_id=163814570]
+
+[node name="Principal_Island_C" type="Node3D" parent="LocationsAlignment/Locations" unique_id=330448033]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8456948, -1.9664583, -1.3139454)
+metadata/lba_alpha = 352
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -108
+metadata/lba_message_id = 201
+metadata/lba_location_id = 17
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_C" unique_id=685803334]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_C" unique_id=1290942338]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_C" unique_id=1560451759]
+
+[node name="Principal_Island_D" type="Node3D" parent="LocationsAlignment/Locations" unique_id=539281846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5423083, -1.9484391, -1.6807351)
+metadata/lba_alpha = -140
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -424
+metadata/lba_message_id = 201
+metadata/lba_location_id = 18
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_D" unique_id=2099845109]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_D" unique_id=1244368433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_D" unique_id=936368835]
+
+[node name="Principal_Island_E" type="Node3D" parent="LocationsAlignment/Locations" unique_id=767600121]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.348834, -1.9407452, -1.847743)
+metadata/lba_alpha = -132
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 588
+metadata/lba_message_id = 201
+metadata/lba_location_id = 19
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_E" unique_id=1039661538]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_E" unique_id=30902341]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_E" unique_id=495616457]
+
+[node name="Mr_Mies_Van_der_Rooh_the_architect_s_house_Bug_street_C" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1769825769]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.303188, -2.5189764, 1.1165855)
+metadata/lba_alpha = 188
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -72
+metadata/lba_message_id = 223
+metadata/lba_location_id = 20
+metadata/lba_original_location_text = "Mr. Mies Van der Rooh the architect's house. Bug street @ (Citadel island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Mr_Mies_Van_der_Rooh_the_architect_s_house_Bug_street_C" unique_id=1273631592]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Mr_Mies_Van_der_Rooh_the_architect_s_house_Bug_street_C" unique_id=730207173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Mr Mies Van der Rooh the architect s house Bug street C"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Mr_Mies_Van_der_Rooh_the_architect_s_house_Bug_street_C" unique_id=369758434]
+
+[node name="Twinsen_s_house_Citadel_island_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1253537725]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.303188, -2.6162915, 0.8643059)
+metadata/lba_alpha = 204
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -72
+metadata/lba_message_id = 212
+metadata/lba_location_id = 21
+metadata/lba_original_location_text = "Twinsen's house @ (Citadel island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Twinsen_s_house_Citadel_island_A" unique_id=1773773966]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Twinsen_s_house_Citadel_island_A" unique_id=778511836]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Twinsen s house Citadel island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Twinsen_s_house_Citadel_island_A" unique_id=1774341243]
+
+[node name="Principal_Island_F" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1844852023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6667107, -2.0393908, -1.436301)
+metadata/lba_alpha = -156
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -416
+metadata/lba_message_id = 201
+metadata/lba_location_id = 22
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_F" unique_id=230675401]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_F" unique_id=330489898]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_F" unique_id=801858301]
+
+[node name="Principal_Island_G" type="Node3D" parent="LocationsAlignment/Locations" unique_id=503723126]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6049929, -2.1074102, -1.4081265)
+metadata/lba_alpha = 352
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -92
+metadata/lba_message_id = 201
+metadata/lba_location_id = 23
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_G" unique_id=1411481138]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_G" unique_id=991608518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_G" unique_id=1572486187]
+
+[node name="Port_Belooga_Principal_Island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1203618000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1572347, -1.4363062, -2.3963323)
+metadata/lba_alpha = -88
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -448
+metadata/lba_message_id = 226
+metadata/lba_location_id = 24
+metadata/lba_original_location_text = "Port-Belooga @ (Principal Island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Port_Belooga_Principal_Island" unique_id=572202488]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Port_Belooga_Principal_Island" unique_id=904490522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Port Belooga Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Port_Belooga_Principal_Island" unique_id=2120705282]
+
+[node name="Principal_Island_H" type="Node3D" parent="LocationsAlignment/Locations" unique_id=322910257]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2826653, -2.1782732, -1.6155174)
+metadata/lba_alpha = -152
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 584
+metadata/lba_message_id = 201
+metadata/lba_location_id = 25
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_H" unique_id=1765944203]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_H" unique_id=836885901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_H" unique_id=563836902]
+
+[node name="Principal_Island_I" type="Node3D" parent="LocationsAlignment/Locations" unique_id=580004172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4786946, -2.0577898, -1.6059151)
+metadata/lba_alpha = -148
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -428
+metadata/lba_message_id = 201
+metadata/lba_location_id = 26
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_I" unique_id=399999539]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_I" unique_id=87695572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_I" unique_id=924522854]
+
+[node name="Principal_Island_J" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1798973893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4141903, -2.0452032, -1.6784546)
+metadata/lba_alpha = -144
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -432
+metadata/lba_message_id = 201
+metadata/lba_location_id = 27
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_J" unique_id=66660317]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_J" unique_id=854408105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_J" unique_id=1340786426]
+
+[node name="Principal_Island_K" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1565867096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4786946, -2.0177588, -1.655932)
+metadata/lba_alpha = -144
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -428
+metadata/lba_message_id = 201
+metadata/lba_location_id = 28
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_K" unique_id=785525229]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_K" unique_id=1932736716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_K" unique_id=1737605720]
+
+[node name="Principal_Island_L" type="Node3D" parent="LocationsAlignment/Locations" unique_id=104910622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4141903, -2.0033958, -1.7281411)
+metadata/lba_alpha = -140
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -432
+metadata/lba_message_id = 201
+metadata/lba_location_id = 29
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_L" unique_id=460721093]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_L" unique_id=1154485255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_L" unique_id=715552717]
+
+[node name="Principal_Island_M" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1683682075]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4141903, -2.0857782, -1.6277575)
+metadata/lba_alpha = -148
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -432
+metadata/lba_message_id = 201
+metadata/lba_location_id = 30
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_M" unique_id=1643052697]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_M" unique_id=1885668871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_M" unique_id=1466285377]
+
+[node name="Principal_Island_N" type="Node3D" parent="LocationsAlignment/Locations" unique_id=200570948]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4141903, -2.0452032, -1.6784546)
+metadata/lba_alpha = -144
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -432
+metadata/lba_message_id = 201
+metadata/lba_location_id = 31
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_N" unique_id=75125699]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_N" unique_id=867804084]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_N" unique_id=995783823]
+
+[node name="Principal_Island_O" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1299674147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4141903, -2.0857782, -1.6277575)
+metadata/lba_alpha = -148
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -432
+metadata/lba_message_id = 201
+metadata/lba_location_id = 32
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_O" unique_id=463362689]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_O" unique_id=596680606]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_O" unique_id=1744262756]
+
+[node name="Citadel_Island_H" type="Node3D" parent="LocationsAlignment/Locations" unique_id=916297687]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2826653, -2.45159, 1.1595156)
+metadata/lba_alpha = 184
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -72
+metadata/lba_message_id = 200
+metadata/lba_location_id = 33
+metadata/lba_original_location_text = "Citadel Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Citadel_Island_H" unique_id=346730864]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Citadel_Island_H" unique_id=172827433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Citadel Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Citadel_Island_H" unique_id=1600984960]
+
+[node name="Citadel_Island_I" type="Node3D" parent="LocationsAlignment/Locations" unique_id=14651306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2826653, -2.4223957, 1.2193315)
+metadata/lba_alpha = 180
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -72
+metadata/lba_message_id = 200
+metadata/lba_location_id = 34
+metadata/lba_original_location_text = "Citadel Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Citadel_Island_I" unique_id=812937801]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Citadel_Island_I" unique_id=126999508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Citadel Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Citadel_Island_I" unique_id=170520286]
+
+[node name="Citadel_Island_J" type="Node3D" parent="LocationsAlignment/Locations" unique_id=29102584]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4141903, -2.3917422, 1.1312097)
+metadata/lba_alpha = 184
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -80
+metadata/lba_message_id = 200
+metadata/lba_location_id = 35
+metadata/lba_original_location_text = "Citadel Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Citadel_Island_J" unique_id=627382061]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Citadel_Island_J" unique_id=837405144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Citadel Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Citadel_Island_J" unique_id=1950977346]
+
+[node name="White_Leaf_Desert_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=177453587]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2242248, -3.038826, -0.07459899)
+metadata/lba_alpha = 260
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 12
+metadata/lba_message_id = 202
+metadata/lba_location_id = 36
+metadata/lba_original_location_text = "White Leaf Desert"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/White_Leaf_Desert_A" unique_id=1440423387]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/White_Leaf_Desert_A" unique_id=155318423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "White Leaf Desert"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/White_Leaf_Desert_A" unique_id=25915703]
+
+[node name="Water_Tower_Principal_island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1217617415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6783374, -1.9163585, -2.3350897)
+metadata/lba_alpha = 400
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -36
+metadata/lba_message_id = 211
+metadata/lba_location_id = 37
+metadata/lba_original_location_text = "Water Tower @ (Principal island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Water_Tower_Principal_island" unique_id=510337254]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Water_Tower_Principal_island" unique_id=821015870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Water Tower Principal island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Water_Tower_Principal_island" unique_id=1713379862]
+
+[node name="Water_Tower_Principal_island_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=368805533]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6678206, -1.8866476, -2.2988868)
+metadata/lba_alpha = -112
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 548
+metadata/lba_message_id = 211
+metadata/lba_location_id = 38
+metadata/lba_original_location_text = "Water Tower @ (Principal island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Water_Tower_Principal_island_A" unique_id=1359534062]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Water_Tower_Principal_island_A" unique_id=557329627]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Water Tower Principal island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Water_Tower_Principal_island_A" unique_id=1780373767]
+
+[node name="White_Leaf_Desert_B" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1573476066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44371292, -2.947231, -0.51139313)
+metadata/lba_alpha = 284
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -24
+metadata/lba_message_id = 202
+metadata/lba_location_id = 39
+metadata/lba_original_location_text = "White Leaf Desert"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/White_Leaf_Desert_B" unique_id=149940020]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/White_Leaf_Desert_B" unique_id=56297306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "White Leaf Desert"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/White_Leaf_Desert_B" unique_id=689755388]
+
+[node name="White_Leaf_Desert_C" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1189804476]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14955828, -3.0434117, -0.07471156)
+metadata/lba_alpha = 260
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 8
+metadata/lba_message_id = 202
+metadata/lba_location_id = 40
+metadata/lba_original_location_text = "White Leaf Desert"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/White_Leaf_Desert_C" unique_id=1503826683]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/White_Leaf_Desert_C" unique_id=1958142706]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "White Leaf Desert"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/White_Leaf_Desert_C" unique_id=124568944]
+
+[node name="White_Leaf_Desert_D" type="Node3D" parent="LocationsAlignment/Locations" unique_id=303397126]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2242248, -3.03608, -0.14915304)
+metadata/lba_alpha = 264
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 12
+metadata/lba_message_id = 202
+metadata/lba_location_id = 41
+metadata/lba_original_location_text = "White Leaf Desert"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/White_Leaf_Desert_D" unique_id=740843047]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/White_Leaf_Desert_D" unique_id=1856995215]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "White Leaf Desert"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/White_Leaf_Desert_D" unique_id=1441435289]
+
+[node name="Proxim_City_Proxima_Island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1742333688]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5128857, -1.985016, 2.1901278)
+metadata/lba_alpha = 120
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -28
+metadata/lba_message_id = 227
+metadata/lba_location_id = 42
+metadata/lba_original_location_text = "Proxim-City @ (Proxima Island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Proxim_City_Proxima_Island" unique_id=799598889]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Proxim_City_Proxima_Island" unique_id=1297515956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Proxim City Proxima Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Proxim_City_Proxima_Island" unique_id=1222907368]
+
+[node name="Maritime_Museum_Proxima_island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=733030106]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36723202, -1.9995255, 2.2061365)
+metadata/lba_alpha = 120
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -20
+metadata/lba_message_id = 218
+metadata/lba_location_id = 43
+metadata/lba_original_location_text = "Maritime Museum @ (Proxima island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Maritime_Museum_Proxima_island" unique_id=1638469602]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Maritime_Museum_Proxima_island" unique_id=943347916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Maritime Museum Proxima island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Maritime_Museum_Proxima_island" unique_id=811631659]
+
+[node name="Proxima_Island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1945973008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5946353, -1.8391939, 2.3567092)
+metadata/lba_alpha = 108
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -32
+metadata/lba_message_id = 203
+metadata/lba_location_id = 44
+metadata/lba_original_location_text = "Proxima Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Proxima_Island" unique_id=996728130]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Proxima_Island" unique_id=1946114014]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Proxima Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Proxima_Island" unique_id=1178195615]
+
+[node name="Runic_Stone_Proxima_island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1011769582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6573037, -2.510663, 1.5048333)
+metadata/lba_alpha = 168
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -36
+metadata/lba_message_id = 220
+metadata/lba_location_id = 45
+metadata/lba_original_location_text = "Runic Stone @ (Proxima island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Runic_Stone_Proxima_island" unique_id=548462046]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Runic_Stone_Proxima_island" unique_id=1687168061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Runic Stone Proxima island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Runic_Stone_Proxima_island" unique_id=1660522835]
+
+[node name="Runic_Stone_Proxima_island_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1688706770]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14720303, -1.6030595, 2.5315077)
+metadata/lba_alpha = 92
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 8
+metadata/lba_message_id = 220
+metadata/lba_location_id = 46
+metadata/lba_original_location_text = "Runic Stone @ (Proxima island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Runic_Stone_Proxima_island_A" unique_id=8782129]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Runic_Stone_Proxima_island_A" unique_id=135307091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Runic Stone Proxima island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Runic_Stone_Proxima_island_A" unique_id=673788368]
+
+[node name="Proxima_Island_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1828788939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07362369, -1.6662087, 2.4936576)
+metadata/lba_alpha = 96
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -4
+metadata/lba_message_id = 203
+metadata/lba_location_id = 47
+metadata/lba_original_location_text = "Proxima Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Proxima_Island_A" unique_id=1843609739]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Proxima_Island_A" unique_id=467283293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Proxima Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Proxima_Island_A" unique_id=1719355660]
+
+[node name="Forger_s_house_Proxima_island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1354376320]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44371292, -1.8976414, 2.3122828)
+metadata/lba_alpha = 112
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -24
+metadata/lba_message_id = 215
+metadata/lba_location_id = 48
+metadata/lba_original_location_text = "Forger's house @ (Proxima island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Forger_s_house_Proxima_island" unique_id=417327810]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Forger_s_house_Proxima_island" unique_id=333725685]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Forger s house Proxima island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Forger_s_house_Proxima_island" unique_id=2025942094]
+
+[node name="Proxima_Island_B" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1175433488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44371292, -2.115147, 2.115147)
+metadata/lba_alpha = 128
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -24
+metadata/lba_message_id = 203
+metadata/lba_location_id = 49
+metadata/lba_original_location_text = "Proxima Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Proxima_Island_B" unique_id=1238647278]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Proxima_Island_B" unique_id=451375272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Proxima Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Proxima_Island_B" unique_id=1036887722]
+
+[node name="Proxima_Island_C" type="Node3D" parent="LocationsAlignment/Locations" unique_id=108468088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37016988, -1.9039779, 2.320004)
+metadata/lba_alpha = 112
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -20
+metadata/lba_message_id = 203
+metadata/lba_location_id = 50
+metadata/lba_original_location_text = "Proxima Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Proxima_Island_C" unique_id=754116674]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Proxima_Island_C" unique_id=224301977]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Proxima Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Proxima_Island_C" unique_id=1158007596]
+
+[node name="Proxima_Island_D" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1443007260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37016988, -2.0694892, 2.1736524)
+metadata/lba_alpha = 124
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -20
+metadata/lba_message_id = 203
+metadata/lba_location_id = 51
+metadata/lba_original_location_text = "Proxima Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Proxima_Island_D" unique_id=407166839]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Proxima_Island_D" unique_id=715465915]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Proxima Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Proxima_Island_D" unique_id=1908880951]
+
+[node name="Principal_Island_P" type="Node3D" parent="LocationsAlignment/Locations" unique_id=929953740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2826653, -2.1379702, -1.6684883)
+metadata/lba_alpha = -148
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 584
+metadata/lba_message_id = 201
+metadata/lba_location_id = 52
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_P" unique_id=1412731164]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_P" unique_id=2083324566]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_P" unique_id=618730546]
+
+[node name="Proxima_Island_E" type="Node3D" parent="LocationsAlignment/Locations" unique_id=385391949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44371292, -2.0626016, 2.1664183)
+metadata/lba_alpha = 124
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -24
+metadata/lba_message_id = 203
+metadata/lba_location_id = 53
+metadata/lba_original_location_text = "Proxima Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Proxima_Island_E" unique_id=1355535015]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Proxima_Island_E" unique_id=1292323292]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Proxima Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Proxima_Island_E" unique_id=37116386]
+
+[node name="Proxima_Island_F" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1001290682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5899531, -1.8815436, 2.2926674)
+metadata/lba_alpha = 112
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -32
+metadata/lba_message_id = 203
+metadata/lba_location_id = 54
+metadata/lba_original_location_text = "Proxima Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Proxima_Island_F" unique_id=1533639331]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Proxima_Island_F" unique_id=1338760022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Proxima Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Proxima_Island_F" unique_id=1576163343]
+
+[node name="Citadel_Island_K" type="Node3D" parent="LocationsAlignment/Locations" unique_id=72731833]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2929265, -2.499142, 1.1077935)
+metadata/lba_alpha = 188
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -72
+metadata/lba_message_id = 200
+metadata/lba_location_id = 55
+metadata/lba_original_location_text = "Citadel Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Citadel_Island_K" unique_id=1440038101]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Citadel_Island_K" unique_id=1868582626]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Citadel Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Citadel_Island_K" unique_id=1355497398]
+
+[node name="Principal_Island_Q" type="Node3D" parent="LocationsAlignment/Locations" unique_id=539605216]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4786946, -2.0965812, -1.5549306)
+metadata/lba_alpha = 360
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -84
+metadata/lba_message_id = 201
+metadata/lba_location_id = 56
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_Q" unique_id=104426325]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_Q" unique_id=602298920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_Q" unique_id=1061094888]
+
+[node name="White_Leaf_Desert_E" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1342408221]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22599036, -3.0627537, -0.07518638)
+metadata/lba_alpha = 260
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 12
+metadata/lba_message_id = 202
+metadata/lba_location_id = 57
+metadata/lba_original_location_text = "White Leaf Desert"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/White_Leaf_Desert_E" unique_id=1237051229]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/White_Leaf_Desert_E" unique_id=1721492205]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "White Leaf Desert"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/White_Leaf_Desert_E" unique_id=1548213097]
+
+[node name="Principal_Island_R" type="Node3D" parent="LocationsAlignment/Locations" unique_id=2017537839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4141903, -2.1250973, -1.5760796)
+metadata/lba_alpha = 360
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -80
+metadata/lba_message_id = 201
+metadata/lba_location_id = 58
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_R" unique_id=1913388716]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_R" unique_id=154065751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_R" unique_id=1601313409]
+
+[node name="Rebellion_Island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1528210090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4096227, -1.4859176, 0.9928584)
+metadata/lba_alpha = 160
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 152
+metadata/lba_message_id = 204
+metadata/lba_location_id = 59
+metadata/lba_original_location_text = "Rebellion Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Rebellion_Island" unique_id=1289991369]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Rebellion_Island" unique_id=1222060352]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Rebellion Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Rebellion_Island" unique_id=398572062]
+
+[node name="Rebellion_Island_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1707754753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.66693, -1.0562285, 0.9573098)
+metadata/lba_alpha = 136
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 176
+metadata/lba_message_id = 204
+metadata/lba_location_id = 60
+metadata/lba_original_location_text = "Rebellion Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Rebellion_Island_A" unique_id=764547447]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Rebellion_Island_A" unique_id=351139531]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Rebellion Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Rebellion_Island_A" unique_id=1080406001]
+
+[node name="Principal_Island_S" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1597686517]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4141903, -2.0452032, -1.6784546)
+metadata/lba_alpha = -144
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -432
+metadata/lba_message_id = 201
+metadata/lba_location_id = 61
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_S" unique_id=936125734]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_S" unique_id=1024603042]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_S" unique_id=1807268049]
+
+[node name="Hamalayi_Range_B" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1985326485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0655458, 0.03786874, -1.5426013)
+metadata/lba_alpha = 4
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 332
+metadata/lba_message_id = 205
+metadata/lba_location_id = 62
+metadata/lba_original_location_text = "Hamalayi Range"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Hamalayi_Range_B" unique_id=1323244696]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Hamalayi_Range_B" unique_id=1223562118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Hamalayi Range"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Hamalayi_Range_B" unique_id=1048726372]
+
+[node name="Hamalayi_Range_C" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1954498348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.923139, -0.042997755, -1.7515345)
+metadata/lba_alpha = -4
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 344
+metadata/lba_message_id = 205
+metadata/lba_location_id = 63
+metadata/lba_original_location_text = "Hamalayi Range"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Hamalayi_Range_C" unique_id=1636637861]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Hamalayi_Range_C" unique_id=424949459]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Hamalayi Range"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Hamalayi_Range_C" unique_id=1575335496]
+
+[node name="Hamalayi_Range_D" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1969982625]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3419375, -0.22955003, -2.3306606)
+metadata/lba_alpha = -16
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 384
+metadata/lba_message_id = 205
+metadata/lba_location_id = 64
+metadata/lba_original_location_text = "Hamalayi Range"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Hamalayi_Range_D" unique_id=494866852]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Hamalayi_Range_D" unique_id=225501126]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Hamalayi Range"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Hamalayi_Range_D" unique_id=1831934536]
+
+[node name="Hamalayi_Range_E" type="Node3D" parent="LocationsAlignment/Locations" unique_id=937012641]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2929265, -0.3346296, -2.7131052)
+metadata/lba_alpha = -20
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 440
+metadata/lba_message_id = 205
+metadata/lba_location_id = 65
+metadata/lba_original_location_text = "Hamalayi Range"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Hamalayi_Range_E" unique_id=2062443397]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Hamalayi_Range_E" unique_id=1167239052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Hamalayi Range"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Hamalayi_Range_E" unique_id=159100795]
+
+[node name="Hamalayi_Range_F" type="Node3D" parent="LocationsAlignment/Locations" unique_id=45288351]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2254497, -0.13565104, -2.76124)
+metadata/lba_alpha = -8
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 444
+metadata/lba_message_id = 205
+metadata/lba_location_id = 66
+metadata/lba_original_location_text = "Hamalayi Range"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Hamalayi_Range_F" unique_id=412270947]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Hamalayi_Range_F" unique_id=832661603]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Hamalayi Range"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Hamalayi_Range_F" unique_id=1864584417]
+
+[node name="Mutant_Factory_The_Hamalayi_mountains" type="Node3D" parent="LocationsAlignment/Locations" unique_id=768209912]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3852785, 0.8502222, -2.8028069)
+metadata/lba_alpha = 48
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -584
+metadata/lba_message_id = 228
+metadata/lba_location_id = 67
+metadata/lba_original_location_text = "Mutant Factory @ (The Hamalayi mountains)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Mutant_Factory_The_Hamalayi_mountains" unique_id=452248686]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Mutant_Factory_The_Hamalayi_mountains" unique_id=1995757515]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Mutant Factory The Hamalayi mountains"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Mutant_Factory_The_Hamalayi_mountains" unique_id=1449346766]
+
+[node name="Mutant_Factory_The_Hamalayi_mountains_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=585801307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3704154, 0.91719866, -2.5633986)
+metadata/lba_alpha = 56
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -588
+metadata/lba_message_id = 228
+metadata/lba_location_id = 68
+metadata/lba_original_location_text = "Mutant Factory @ (The Hamalayi mountains)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Mutant_Factory_The_Hamalayi_mountains_A" unique_id=1514100930]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Mutant_Factory_The_Hamalayi_mountains_A" unique_id=1907391539]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Mutant Factory The Hamalayi mountains"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Mutant_Factory_The_Hamalayi_mountains_A" unique_id=1054715218]
+
+[node name="Hamalayi_Range_G" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1389086287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0070207, 0, -1.7034562)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -684
+metadata/lba_message_id = 205
+metadata/lba_location_id = 69
+metadata/lba_original_location_text = "Hamalayi Range"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Hamalayi_Range_G" unique_id=1002595707]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Hamalayi_Range_G" unique_id=800977577]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Hamalayi Range"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Hamalayi_Range_G" unique_id=1641344932]
+
+[node name="Hamalayi_Range_H" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1990518322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.727463, 0, -1.920896)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 356
+metadata/lba_message_id = 205
+metadata/lba_location_id = 70
+metadata/lba_original_location_text = "Hamalayi Range"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Hamalayi_Range_H" unique_id=479170864]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Hamalayi_Range_H" unique_id=275348754]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Hamalayi Range"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Hamalayi_Range_H" unique_id=1966633522]
+
+[node name="Hamalayi_Range_I" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1566700008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.727463, -0.04714115, -1.9203176)
+metadata/lba_alpha = -4
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 356
+metadata/lba_message_id = 205
+metadata/lba_location_id = 71
+metadata/lba_original_location_text = "Hamalayi Range"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Hamalayi_Range_I" unique_id=586488630]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Hamalayi_Range_I" unique_id=336366340]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Hamalayi Range"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Hamalayi_Range_I" unique_id=1751861280]
+
+[node name="Hamalayi_Range_J" type="Node3D" parent="LocationsAlignment/Locations" unique_id=2062453504]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.01501, 0.032900613, -0.44602272)
+metadata/lba_alpha = 12
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 280
+metadata/lba_message_id = 205
+metadata/lba_location_id = 72
+metadata/lba_original_location_text = "Hamalayi Range"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Hamalayi_Range_J" unique_id=911373983]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Hamalayi_Range_J" unique_id=1390745497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Hamalayi Range"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Hamalayi_Range_J" unique_id=1521392606]
+
+[node name="Hamalayi_Range_K" type="Node3D" parent="LocationsAlignment/Locations" unique_id=2116196278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7645702, 1.0511034, 0.630007)
+metadata/lba_alpha = 344
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -700
+metadata/lba_message_id = 205
+metadata/lba_location_id = 73
+metadata/lba_original_location_text = "Hamalayi Range"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Hamalayi_Range_K" unique_id=1459247158]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Hamalayi_Range_K" unique_id=1009387732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Hamalayi Range"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Hamalayi_Range_K" unique_id=1307817488]
+
+[node name="Tippett_Island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=272887879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4141903, 2.1631362, -1.5234525)
+metadata/lba_alpha = -356
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 80
+metadata/lba_message_id = 206
+metadata/lba_location_id = 74
+metadata/lba_original_location_text = "Tippett Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Tippett_Island" unique_id=1961507824]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Tippett_Island" unique_id=2017028132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Tippett Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Tippett_Island" unique_id=425866630]
+
+[node name="Tippett_Island_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1970101456]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.348834, 2.2280664, -1.4887465)
+metadata/lba_alpha = 160
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -588
+metadata/lba_message_id = 206
+metadata/lba_location_id = 75
+metadata/lba_original_location_text = "Tippett Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Tippett_Island_A" unique_id=1738488854]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Tippett_Island_A" unique_id=1235463828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Tippett Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Tippett_Island_A" unique_id=1785271595]
+
+[node name="Tippett_Island_B" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1220035629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4141903, 2.1631362, -1.5234525)
+metadata/lba_alpha = -356
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 80
+metadata/lba_message_id = 206
+metadata/lba_location_id = 76
+metadata/lba_original_location_text = "Tippett Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Tippett_Island_B" unique_id=2081634698]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Tippett_Island_B" unique_id=1841819893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Tippett Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Tippett_Island_B" unique_id=1382431580]
+
+[node name="Tippett_Island_C" type="Node3D" parent="LocationsAlignment/Locations" unique_id=626180387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4141903, 2.235283, -1.4154773)
+metadata/lba_alpha = 164
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 432
+metadata/lba_message_id = 206
+metadata/lba_location_id = 77
+metadata/lba_original_location_text = "Tippett Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Tippett_Island_C" unique_id=842130366]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Tippett_Island_C" unique_id=439575547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Tippett Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Tippett_Island_C" unique_id=2122979300]
+
+[node name="Tippett_Island_D" type="Node3D" parent="LocationsAlignment/Locations" unique_id=828572682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1939722, 2.4352937, -1.5421329)
+metadata/lba_alpha = 164
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 448
+metadata/lba_message_id = 206
+metadata/lba_location_id = 78
+metadata/lba_original_location_text = "Tippett Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Tippett_Island_D" unique_id=2011148353]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Tippett_Island_D" unique_id=1923610879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Tippett Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Tippett_Island_D" unique_id=1276387875]
+
+[node name="Tippett_Island_E" type="Node3D" parent="LocationsAlignment/Locations" unique_id=749399811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3596246, 2.2820425, -1.4450876)
+metadata/lba_alpha = 164
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 436
+metadata/lba_message_id = 206
+metadata/lba_location_id = 79
+metadata/lba_original_location_text = "Tippett Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Tippett_Island_E" unique_id=868887533]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Tippett_Island_E" unique_id=670137169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Tippett Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Tippett_Island_E" unique_id=419249947]
+
+[node name="Tippett_Island_F" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1978618019]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.348834, 2.2280664, -1.4887465)
+metadata/lba_alpha = -352
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 76
+metadata/lba_message_id = 206
+metadata/lba_location_id = 80
+metadata/lba_original_location_text = "Tippett Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Tippett_Island_F" unique_id=338726820]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Tippett_Island_F" unique_id=1518003233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Tippett Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Tippett_Island_F" unique_id=1632180279]
+
+[node name="Hamalayi_Range_L" type="Node3D" parent="LocationsAlignment/Locations" unique_id=794773527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7645702, 1.1887245, -0.29775998)
+metadata/lba_alpha = -296
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 188
+metadata/lba_message_id = 205
+metadata/lba_location_id = 81
+metadata/lba_original_location_text = "Hamalayi Range"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Hamalayi_Range_L" unique_id=1510266958]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Hamalayi_Range_L" unique_id=1892108486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Hamalayi Range"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Hamalayi_Range_L" unique_id=1647537113]
+
+[node name="Hamalayi_Range_M" type="Node3D" parent="LocationsAlignment/Locations" unique_id=496794118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2403207, 0.12128611, -2.4688354)
+metadata/lba_alpha = 8
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -632
+metadata/lba_message_id = 205
+metadata/lba_location_id = 82
+metadata/lba_original_location_text = "Hamalayi Range"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Hamalayi_Range_M" unique_id=339743618]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Hamalayi_Range_M" unique_id=1037575080]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Hamalayi Range"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Hamalayi_Range_M" unique_id=456704976]
+
+[node name="Cloning_Center_Fortress_Fortress_island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=2021917913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7870979, 2.3223364, -0.64267707)
+metadata/lba_alpha = -300
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -104
+metadata/lba_message_id = 219
+metadata/lba_location_id = 83
+metadata/lba_original_location_text = "Cloning Center & Fortress @ (Fortress island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island" unique_id=959868006]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island" unique_id=2055561511]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Cloning Center Fortress Fortress island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island" unique_id=761489877]
+
+[node name="Fortress_Island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=2044038705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8456948, 2.2456715, -0.7418696)
+metadata/lba_alpha = -308
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -108
+metadata/lba_message_id = 208
+metadata/lba_location_id = 84
+metadata/lba_original_location_text = "Fortress Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Fortress_Island" unique_id=1927360181]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Fortress_Island" unique_id=14931916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Fortress Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Fortress_Island" unique_id=1991239038]
+
+[node name="Cloning_Center_Fortress_Fortress_island_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1829510550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7870979, 2.3223364, -0.64267707)
+metadata/lba_alpha = -300
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -104
+metadata/lba_message_id = 219
+metadata/lba_location_id = 85
+metadata/lba_original_location_text = "Cloning Center & Fortress @ (Fortress island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island_A" unique_id=1765088450]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island_A" unique_id=703532594]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Cloning Center Fortress Fortress island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island_A" unique_id=111389633]
+
+[node name="Cloning_Center_Fortress_Fortress_island_B" type="Node3D" parent="LocationsAlignment/Locations" unique_id=344201768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7870979, 2.3223364, -0.64267707)
+metadata/lba_alpha = -300
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -104
+metadata/lba_message_id = 219
+metadata/lba_location_id = 86
+metadata/lba_original_location_text = "Cloning Center & Fortress @ (Fortress island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island_B" unique_id=712498775]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island_B" unique_id=1623819900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Cloning Center Fortress Fortress island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island_B" unique_id=499041686]
+
+[node name="Cloning_Center_Fortress_Fortress_island_C" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1822715351]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7870979, 2.3223364, -0.64267707)
+metadata/lba_alpha = -300
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -104
+metadata/lba_message_id = 219
+metadata/lba_location_id = 87
+metadata/lba_original_location_text = "Cloning Center & Fortress @ (Fortress island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island_C" unique_id=1195639096]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island_C" unique_id=231620916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Cloning Center Fortress Fortress island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island_C" unique_id=211881382]
+
+[node name="Cloning_Center_Fortress_Fortress_island_D" type="Node3D" parent="LocationsAlignment/Locations" unique_id=162350151]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7870979, 2.3223364, -0.64267707)
+metadata/lba_alpha = -300
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -104
+metadata/lba_message_id = 219
+metadata/lba_location_id = 88
+metadata/lba_original_location_text = "Cloning Center & Fortress @ (Fortress island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island_D" unique_id=1252845073]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island_D" unique_id=1827837403]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Cloning Center Fortress Fortress island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island_D" unique_id=2020887669]
+
+[node name="Cloning_Center_Fortress_Fortress_island_E" type="Node3D" parent="LocationsAlignment/Locations" unique_id=420451218]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7870979, 2.3374093, -0.5854905)
+metadata/lba_alpha = -296
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -104
+metadata/lba_message_id = 219
+metadata/lba_location_id = 89
+metadata/lba_original_location_text = "Cloning Center & Fortress @ (Fortress island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island_E" unique_id=920864023]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island_E" unique_id=834007811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Cloning Center Fortress Fortress island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Cloning_Center_Fortress_Fortress_island_E" unique_id=609670606]
+
+[node name="Runic_Stone" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1931429840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7870979, 2.3374093, -0.5854905)
+metadata/lba_alpha = -296
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -104
+metadata/lba_message_id = 222
+metadata/lba_location_id = 90
+metadata/lba_original_location_text = "Runic Stone"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Runic_Stone" unique_id=892260715]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Runic_Stone" unique_id=1308236123]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Runic Stone"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Runic_Stone" unique_id=1411887387]
+
+[node name="Hamalayi_Range_N" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1179577959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7426293, 1.0108376, 0.67542005)
+metadata/lba_alpha = -160
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 188
+metadata/lba_message_id = 205
+metadata/lba_location_id = 91
+metadata/lba_original_location_text = "Hamalayi Range"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Hamalayi_Range_N" unique_id=783829909]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Hamalayi_Range_N" unique_id=908606696]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Hamalayi Range"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Hamalayi_Range_N" unique_id=972916595]
+
+[node name="Clear_Water_Lake_The_Hamalayi_mountains" type="Node3D" parent="LocationsAlignment/Locations" unique_id=224727020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2127435, 0.6093641, 0.5256411)
+metadata/lba_alpha = -140
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 216
+metadata/lba_message_id = 210
+metadata/lba_location_id = 92
+metadata/lba_original_location_text = "Clear Water Lake @ (The Hamalayi mountains)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Clear_Water_Lake_The_Hamalayi_mountains" unique_id=1640846725]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Clear_Water_Lake_The_Hamalayi_mountains" unique_id=869853989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Clear Water Lake The Hamalayi mountains"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Clear_Water_Lake_The_Hamalayi_mountains" unique_id=862052339]
+
+[node name="Fortress_Island_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1710441233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8456948, 2.3302205, -0.40433156)
+metadata/lba_alpha = -284
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -108
+metadata/lba_message_id = 208
+metadata/lba_location_id = 93
+metadata/lba_original_location_text = "Fortress Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Fortress_Island_A" unique_id=1510927748]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Fortress_Island_A" unique_id=1367971441]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Fortress Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Fortress_Island_A" unique_id=453964681]
+
+[node name="Brundle_Island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1550496560]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3596246, 1.9099734, 1.9099734)
+metadata/lba_alpha = -128
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 76
+metadata/lba_message_id = 207
+metadata/lba_location_id = 94
+metadata/lba_original_location_text = "Brundle Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Brundle_Island" unique_id=689026029]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Brundle_Island" unique_id=1413686318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Brundle Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Brundle_Island" unique_id=18800762]
+
+[node name="Teleportation_Center_Brundle_island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=752470661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2254497, 2.0484114, 1.8565718)
+metadata/lba_alpha = -136
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 68
+metadata/lba_message_id = 217
+metadata/lba_location_id = 95
+metadata/lba_original_location_text = "Teleportation Center @ (Brundle island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Teleportation_Center_Brundle_island" unique_id=635404296]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Teleportation_Center_Brundle_island" unique_id=1988292985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Teleportation Center Brundle island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Teleportation_Center_Brundle_island" unique_id=343590395]
+
+[node name="Hamalayi_Range_O" type="Node3D" parent="LocationsAlignment/Locations" unique_id=689335697]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6206493, 0.21045691, -2.8530943)
+metadata/lba_alpha = 12
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 428
+metadata/lba_message_id = 205
+metadata/lba_location_id = 96
+metadata/lba_original_location_text = "Hamalayi Range"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Hamalayi_Range_O" unique_id=1061817585]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Hamalayi_Range_O" unique_id=2061795523]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Hamalayi Range"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Hamalayi_Range_O" unique_id=645861327]
+
+[node name="Brundle_Island_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=2030172110]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5423083, 1.7280461, 1.906605)
+metadata/lba_alpha = -120
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 88
+metadata/lba_message_id = 207
+metadata/lba_location_id = 97
+metadata/lba_original_location_text = "Brundle Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Brundle_Island_A" unique_id=830523838]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Brundle_Island_A" unique_id=290554522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Brundle Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Brundle_Island_A" unique_id=435911215]
+
+[node name="Teleportation_Center_Brundle_island_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1066989346]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2826653, 2.0094357, 1.8212464)
+metadata/lba_alpha = -136
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 72
+metadata/lba_message_id = 217
+metadata/lba_location_id = 98
+metadata/lba_original_location_text = "Teleportation Center @ (Brundle island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Teleportation_Center_Brundle_island_A" unique_id=2034783823]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Teleportation_Center_Brundle_island_A" unique_id=1786761172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Teleportation Center Brundle island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Teleportation_Center_Brundle_island_A" unique_id=539475111]
+
+[node name="Teleportation_Center_Brundle_island_B" type="Node3D" parent="LocationsAlignment/Locations" unique_id=931110674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2826653, 2.0094357, 1.8212464)
+metadata/lba_alpha = -136
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 72
+metadata/lba_message_id = 217
+metadata/lba_location_id = 99
+metadata/lba_original_location_text = "Teleportation Center @ (Brundle island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Teleportation_Center_Brundle_island_B" unique_id=230387909]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Teleportation_Center_Brundle_island_B" unique_id=229746024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Teleportation Center Brundle island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Teleportation_Center_Brundle_island_B" unique_id=567791275]
+
+[node name="Fortress_Island_B" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1728501875]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9031799, 2.1834702, -0.7812581)
+metadata/lba_alpha = -312
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -112
+metadata/lba_message_id = 208
+metadata/lba_location_id = 100
+metadata/lba_original_location_text = "Fortress Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Fortress_Island_B" unique_id=494823114]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Fortress_Island_B" unique_id=366720268]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Fortress Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Fortress_Island_B" unique_id=1775394124]
+
+[node name="Tippett_Island_G" type="Node3D" parent="LocationsAlignment/Locations" unique_id=706486088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.303188, 2.3278751, -1.4741107)
+metadata/lba_alpha = -348
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 72
+metadata/lba_message_id = 206
+metadata/lba_location_id = 101
+metadata/lba_original_location_text = "Tippett Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Tippett_Island_G" unique_id=424203815]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Tippett_Island_G" unique_id=1606409999]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Tippett Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Tippett_Island_G" unique_id=190186360]
+
+[node name="Principal_Island_T" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1087795235]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.018755, -1.523261, -2.4054916)
+metadata/lba_alpha = 420
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -56
+metadata/lba_message_id = 201
+metadata/lba_location_id = 102
+metadata/lba_original_location_text = "Principal Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Principal_Island_T" unique_id=2098105439]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Principal_Island_T" unique_id=1353835532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Principal Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Principal_Island_T" unique_id=270077015]
+
+[node name="Brundle_Island_B" type="Node3D" parent="LocationsAlignment/Locations" unique_id=262883453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3596246, 1.862525, 1.9562712)
+metadata/lba_alpha = -124
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 76
+metadata/lba_message_id = 207
+metadata/lba_location_id = 103
+metadata/lba_original_location_text = "Brundle Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Brundle_Island_B" unique_id=1629047591]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Brundle_Island_B" unique_id=1977413772]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Brundle Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Brundle_Island_B" unique_id=895997117]
+
+[node name="Citadel_Island_L" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1485232306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4255037, -2.4381332, 1.0807502)
+metadata/lba_alpha = 188
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -80
+metadata/lba_message_id = 200
+metadata/lba_location_id = 104
+metadata/lba_original_location_text = "Citadel Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Citadel_Island_L" unique_id=996140963]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Citadel_Island_L" unique_id=590957512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Citadel Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Citadel_Island_L" unique_id=373166596]
+
+[node name="Dr_FunFrock_s_headquarters_Principal_island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1346684214]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5546467, -2.0833366, -1.5451078)
+metadata/lba_alpha = 360
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -88
+metadata/lba_message_id = 216
+metadata/lba_location_id = 105
+metadata/lba_original_location_text = "Dr FunFrock's headquarters @ (Principal island)"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Dr_FunFrock_s_headquarters_Principal_island" unique_id=218453408]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Dr_FunFrock_s_headquarters_Principal_island" unique_id=480396303]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Dr FunFrock s headquarters Principal island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Dr_FunFrock_s_headquarters_Principal_island" unique_id=114966452]
+
+[node name="Polar_Island" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1828652924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2254497, 2.7645702, 1.6928111e-16)
+metadata/lba_alpha = -256
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -68
+metadata/lba_message_id = 209
+metadata/lba_location_id = 106
+metadata/lba_original_location_text = "Polar Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Polar_Island" unique_id=1529372708]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Polar_Island" unique_id=289000072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Polar Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Polar_Island" unique_id=1065320856]
+
+[node name="Polar_Island_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=170432539]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8778208, 2.8937876, 1.7719338e-16)
+metadata/lba_alpha = -256
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -48
+metadata/lba_message_id = 209
+metadata/lba_location_id = 107
+metadata/lba_original_location_text = "Polar Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Polar_Island_A" unique_id=1231353729]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Polar_Island_A" unique_id=408246741]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Polar Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Polar_Island_A" unique_id=841407432]
+
+[node name="Polar_Island_B" type="Node3D" parent="LocationsAlignment/Locations" unique_id=226913228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29875624, 3.0296695, 0.14883812)
+metadata/lba_alpha = -248
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 16
+metadata/lba_message_id = 209
+metadata/lba_location_id = 108
+metadata/lba_original_location_text = "Polar Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Polar_Island_B" unique_id=1525078664]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Polar_Island_B" unique_id=1143993703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Polar Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Polar_Island_B" unique_id=432613091]
+
+[node name="Polar_Island_C" type="Node3D" parent="LocationsAlignment/Locations" unique_id=910445605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14955828, 3.0113785, -0.44669577)
+metadata/lba_alpha = -280
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -8
+metadata/lba_message_id = 209
+metadata/lba_location_id = 109
+metadata/lba_original_location_text = "Polar Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Polar_Island_C" unique_id=1770375086]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Polar_Island_C" unique_id=773838545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Polar Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Polar_Island_C" unique_id=738205764]
+
+[node name="Polar_Island_D" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1947865680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1162417, -0.15309115)
+metadata/lba_alpha = -264
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = 209
+metadata/lba_location_id = 110
+metadata/lba_original_location_text = "Polar Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Polar_Island_D" unique_id=1174880667]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Polar_Island_D" unique_id=1263446109]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Polar Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Polar_Island_D" unique_id=563523427]
+
+[node name="Polar_Island_E" type="Node3D" parent="LocationsAlignment/Locations" unique_id=605713843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1162417, -0.15309115)
+metadata/lba_alpha = -264
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = 209
+metadata/lba_location_id = 111
+metadata/lba_original_location_text = "Polar Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Polar_Island_E" unique_id=15876764]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Polar_Island_E" unique_id=977374890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Polar Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Polar_Island_E" unique_id=1471483770]
+
+[node name="Polar_Island_F" type="Node3D" parent="LocationsAlignment/Locations" unique_id=292775341]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1162417, -0.15309115)
+metadata/lba_alpha = -264
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = 209
+metadata/lba_location_id = 112
+metadata/lba_original_location_text = "Polar Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Polar_Island_F" unique_id=954789854]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Polar_Island_F" unique_id=518538638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Polar Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Polar_Island_F" unique_id=1031589591]
+
+[node name="Polar_Island_G" type="Node3D" parent="LocationsAlignment/Locations" unique_id=820145900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1162417, -0.15309115)
+metadata/lba_alpha = -264
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = 209
+metadata/lba_location_id = 113
+metadata/lba_original_location_text = "Polar Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Polar_Island_G" unique_id=2016042804]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Polar_Island_G" unique_id=1053202492]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Polar Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Polar_Island_G" unique_id=547190934]
+
+[node name="Polar_Island_H" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1883180696]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.140213, -0.15426877)
+metadata/lba_alpha = -264
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = 209
+metadata/lba_location_id = 114
+metadata/lba_original_location_text = "Polar Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Polar_Island_H" unique_id=805766059]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Polar_Island_H" unique_id=1063376788]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Polar Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Polar_Island_H" unique_id=786807248]
+
+[node name="Polar_Island_I" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1308710712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4786946, 2.610261, 1.5983239e-16)
+metadata/lba_alpha = -256
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -84
+metadata/lba_message_id = 209
+metadata/lba_location_id = 115
+metadata/lba_original_location_text = "Polar Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Polar_Island_I" unique_id=1631547682]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Polar_Island_I" unique_id=1135415666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Polar Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Polar_Island_I" unique_id=1165230224]
+
+[node name="Citadel_Island_M" type="Node3D" parent="LocationsAlignment/Locations" unique_id=688673123]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2826653, -2.4793074, 1.0990014)
+metadata/lba_alpha = 188
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -72
+metadata/lba_message_id = 200
+metadata/lba_location_id = 116
+metadata/lba_original_location_text = "Citadel Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Citadel_Island_M" unique_id=2078863825]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Citadel_Island_M" unique_id=614199593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Citadel Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Citadel_Island_M" unique_id=1110353442]
+
+[node name="Citadel_Island_N" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1867226656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2826653, -2.45159, 1.1595156)
+metadata/lba_alpha = 184
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -72
+metadata/lba_message_id = 200
+metadata/lba_location_id = 117
+metadata/lba_original_location_text = "Citadel Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Citadel_Island_N" unique_id=71122399]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Citadel_Island_N" unique_id=739924974]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Citadel Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Citadel_Island_N" unique_id=911280766]
+
+[node name="Citadel_Island_O" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1192903661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2826653, -2.5302465, 0.9760238)
+metadata/lba_alpha = 196
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = -72
+metadata/lba_message_id = 200
+metadata/lba_location_id = 118
+metadata/lba_original_location_text = "Citadel Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Citadel_Island_O" unique_id=1139328628]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Citadel_Island_O" unique_id=1207429995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Citadel Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Citadel_Island_O" unique_id=2107897196]
+
+[node name="Polar_Island_J" type="Node3D" parent="LocationsAlignment/Locations" unique_id=471914662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = 209
+metadata/lba_location_id = 119
+metadata/lba_original_location_text = "Polar Island"
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Polar_Island_J" unique_id=1303547671]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Polar_Island_J" unique_id=135376379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Polar Island"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Polar_Island_J" unique_id=1276130777]
+
+[node name="Unnamed" type="Node3D" parent="LocationsAlignment/Locations" unique_id=602684755]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 120
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed" unique_id=653599515]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed" unique_id=1911449582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed" unique_id=444279900]
+
+[node name="Unnamed_A" type="Node3D" parent="LocationsAlignment/Locations" unique_id=54171721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 121
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_A" unique_id=469128065]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_A" unique_id=350727124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_A" unique_id=76556999]
+
+[node name="Unnamed_B" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1594964540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 122
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_B" unique_id=1832659297]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_B" unique_id=2095991563]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_B" unique_id=1570789701]
+
+[node name="Unnamed_C" type="Node3D" parent="LocationsAlignment/Locations" unique_id=209292672]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 123
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_C" unique_id=381259487]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_C" unique_id=2098297220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_C" unique_id=1797007622]
+
+[node name="Unnamed_D" type="Node3D" parent="LocationsAlignment/Locations" unique_id=831564639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 124
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_D" unique_id=1414217743]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_D" unique_id=1004867245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_D" unique_id=2109688111]
+
+[node name="Unnamed_E" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1039321600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 125
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_E" unique_id=963888105]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_E" unique_id=43503581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_E" unique_id=1902795078]
+
+[node name="Unnamed_F" type="Node3D" parent="LocationsAlignment/Locations" unique_id=176760431]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 126
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_F" unique_id=419255238]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_F" unique_id=1000098252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_F" unique_id=358927706]
+
+[node name="Unnamed_G" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1841004721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 127
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_G" unique_id=2621220]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_G" unique_id=2085004416]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_G" unique_id=709709877]
+
+[node name="Unnamed_H" type="Node3D" parent="LocationsAlignment/Locations" unique_id=702536798]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 128
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_H" unique_id=1470158546]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_H" unique_id=782807876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_H" unique_id=565347395]
+
+[node name="Unnamed_I" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1761849782]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 129
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_I" unique_id=1551053479]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_I" unique_id=572797036]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_I" unique_id=1381203749]
+
+[node name="Unnamed_J" type="Node3D" parent="LocationsAlignment/Locations" unique_id=969759857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 130
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_J" unique_id=1944160887]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_J" unique_id=1044165962]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_J" unique_id=328371057]
+
+[node name="Unnamed_K" type="Node3D" parent="LocationsAlignment/Locations" unique_id=158023819]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 131
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_K" unique_id=1359542977]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_K" unique_id=1818078469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_K" unique_id=1838685613]
+
+[node name="Unnamed_L" type="Node3D" parent="LocationsAlignment/Locations" unique_id=151599901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 132
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_L" unique_id=2049814972]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_L" unique_id=103203901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_L" unique_id=2036760422]
+
+[node name="Unnamed_M" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1062452335]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 133
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_M" unique_id=1630284343]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_M" unique_id=518777574]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_M" unique_id=848974470]
+
+[node name="Unnamed_N" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1229133478]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 134
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_N" unique_id=883894892]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_N" unique_id=822015486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_N" unique_id=823590193]
+
+[node name="Unnamed_O" type="Node3D" parent="LocationsAlignment/Locations" unique_id=831635106]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 135
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_O" unique_id=99290823]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_O" unique_id=1144546226]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_O" unique_id=1846686559]
+
+[node name="Unnamed_P" type="Node3D" parent="LocationsAlignment/Locations" unique_id=749164171]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 136
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_P" unique_id=682787731]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_P" unique_id=1077757069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_P" unique_id=1903201753]
+
+[node name="Unnamed_Q" type="Node3D" parent="LocationsAlignment/Locations" unique_id=305991191]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 137
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_Q" unique_id=1007970132]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_Q" unique_id=1608113981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_Q" unique_id=580183092]
+
+[node name="Unnamed_R" type="Node3D" parent="LocationsAlignment/Locations" unique_id=9083223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 138
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_R" unique_id=1484215738]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_R" unique_id=2139196653]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_R" unique_id=629213231]
+
+[node name="Unnamed_S" type="Node3D" parent="LocationsAlignment/Locations" unique_id=656091427]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 139
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_S" unique_id=447092795]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_S" unique_id=916079146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_S" unique_id=1031282052]
+
+[node name="Unnamed_T" type="Node3D" parent="LocationsAlignment/Locations" unique_id=229119205]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 140
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_T" unique_id=685584401]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_T" unique_id=350438385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_T" unique_id=1882284458]
+
+[node name="Unnamed_U" type="Node3D" parent="LocationsAlignment/Locations" unique_id=2076863843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 141
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_U" unique_id=1620926107]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_U" unique_id=212336102]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_U" unique_id=853019415]
+
+[node name="Unnamed_V" type="Node3D" parent="LocationsAlignment/Locations" unique_id=472117409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 142
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_V" unique_id=79363907]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_V" unique_id=392701667]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_V" unique_id=1078962670]
+
+[node name="Unnamed_W" type="Node3D" parent="LocationsAlignment/Locations" unique_id=1143379124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 143
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_W" unique_id=1215779]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_W" unique_id=1147233609]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_W" unique_id=573055305]
+
+[node name="Unnamed_X" type="Node3D" parent="LocationsAlignment/Locations" unique_id=232079450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 144
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_X" unique_id=1945727740]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_X" unique_id=769801854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_X" unique_id=1847161747]
+
+[node name="Unnamed_Y" type="Node3D" parent="LocationsAlignment/Locations" unique_id=750235991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 145
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_Y" unique_id=1874952187]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_Y" unique_id=23110379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_Y" unique_id=144369905]
+
+[node name="Unnamed_Z" type="Node3D" parent="LocationsAlignment/Locations" unique_id=799969536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 146
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_Z" unique_id=1568047629]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_Z" unique_id=120268505]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_Z" unique_id=1519741303]
+
+[node name="Unnamed_AA" type="Node3D" parent="LocationsAlignment/Locations" unique_id=450898799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 147
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_AA" unique_id=524409758]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_AA" unique_id=36373691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_AA" unique_id=1554654798]
+
+[node name="Unnamed_AB" type="Node3D" parent="LocationsAlignment/Locations" unique_id=720039746]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 148
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_AB" unique_id=1552620496]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_AB" unique_id=62562886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_AB" unique_id=1725807171]
+
+[node name="Unnamed_AC" type="Node3D" parent="LocationsAlignment/Locations" unique_id=2009286968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+metadata/lba_alpha = 0
+metadata/original_angle_mapping = "LBA1 SetAngleCamera(alpha,beta,0) + WorldRotatePoint(0,0,1000+Size)"
+metadata/lba_beta = 0
+metadata/lba_message_id = -1
+metadata/lba_location_id = 149
+
+[node name="MarkerPreview" type="MeshInstance3D" parent="LocationsAlignment/Locations/Unnamed_AC" unique_id=1794611412]
+mesh = SubResource("SphereMesh_pjq0b")
+
+[node name="LocationLabel" type="Label3D" parent="LocationsAlignment/Locations/Unnamed_AC" unique_id=1451463248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+visible = false
+pixel_size = 0.003
+billboard = 1
+text = "Unnamed"
+font_size = 36
+
+[node name="CharacterAlignment" type="Node3D" parent="LocationsAlignment/Locations/Unnamed_AC" unique_id=1586228958]
+
+[node name="TwinsenPlacement" type="Node3D" parent="LocationsAlignment" unique_id=530541602]
+metadata/starting_location = 4
+
+[node name="ModelAlignment" type="Node3D" parent="LocationsAlignment/TwinsenPlacement" unique_id=1141798191]
+position = Vector3(0, 4, 0)
+
+[node name="TwinsenPlaceholder" type="MeshInstance3D" parent="LocationsAlignment/TwinsenPlacement/ModelAlignment"]
+position = Vector3(0, 0.5, 0)
+mesh = SubResource("HolomapTwinsenBox")
+

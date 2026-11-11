@@ -27,8 +27,14 @@ func apply_event(event: Dictionary) -> void:
 	var kind := int(event.get("type", 0))
 	var resource := int(event.get("resource", -1))
 	match kind:
-		2: _play_music("cd:%d" % resource)
-		3: _play_music("midi:%d" % resource)
+		2: _play_music_with_fallback("cd:%d" % resource, "midi:%d" % (resource - 1))
+		3:
+			# In LBA1, regular MIDI themes 1..9 map to CD tracks 2..10.
+			# CD audio wins when imported; MIDI remains the fallback.
+			if resource >= 1 and resource <= 9:
+				_play_music_with_fallback("cd:%d" % (resource + 1), "midi:%d" % resource)
+			else:
+				_play_music_with_fallback("midi:%d" % resource, "")
 		4:
 			_music.stop()
 			_music.stream = null
@@ -42,18 +48,24 @@ func stop() -> void:
 	_stop_sound(-1)
 
 
-func _play_music(key: String) -> void:
-	var path := _asset_path(key)
-	if path.is_empty():
-		push_warning("Original LBA1 music resource unavailable: %s" % key)
+func _play_music_with_fallback(preferred: String, fallback: String) -> void:
+	# Resolve and open first. Do not interrupt the current track until a valid
+	# replacement is ready; this also avoids falling silent on broken CD files.
+	for key in [preferred, fallback]:
+		if key.is_empty():
+			continue
+		var path := _asset_path(key)
+		if path.is_empty():
+			continue
+		var stream := AudioStreamOggVorbis.load_from_file(path)
+		if stream == null:
+			push_warning("Cannot load converted LBA1 music: %s" % path)
+			continue
+		_music.stop()
+		_music.stream = stream
+		_music.play()
 		return
-	var stream := AudioStreamOggVorbis.load_from_file(path)
-	if stream == null:
-		push_warning("Cannot load converted LBA1 music: %s" % path)
-		return
-	_music.stop()
-	_music.stream = stream
-	_music.play()
+	push_warning("Original LBA1 music resources unavailable: %s / %s" % [preferred, fallback])
 
 
 func _play_sound(resource: int, event: Dictionary) -> void:

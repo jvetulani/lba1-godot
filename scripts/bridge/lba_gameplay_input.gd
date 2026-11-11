@@ -9,6 +9,7 @@ const TURN_RIGHT := 1 << 3
 const PRIMARY := 1 << 4
 const WEAPON := 1 << 5
 const RECENTER_CAMERA := 1 << 6
+const INTERACT := 1 << 7
 
 
 static func sample_actions() -> int:
@@ -23,6 +24,8 @@ static func sample_actions() -> int:
 		actions |= TURN_RIGHT
 	if Input.is_action_pressed(&"lba_primary"):
 		actions |= PRIMARY
+	if Input.is_action_pressed(&"lba_interact"):
+		actions |= INTERACT
 	if Input.is_action_pressed(&"lba_weapon"):
 		actions |= WEAPON
 	if Input.is_action_pressed(&"lba_recenter_camera"):

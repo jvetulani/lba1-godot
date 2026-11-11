@@ -1,13 +1,12 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Script" path="res://scripts/ui/lba_inventory_panel.gd" id="1_panel"]
+[ext_resource type="PackedScene" path="res://scenes/ui/LBAPreviewSlot.tscn" id="2_slot"]
 
-[ext_resource type="Script" path="res://scripts/ui/game_action_panel.gd" id="1_panel"]
 
 [node name="Inventory" type="Control"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_panel")
 
@@ -16,49 +15,182 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
 
-[node name="Panel" type="PanelContainer" parent="Center"]
-custom_minimum_size = Vector2(730, 0)
+[node name="Panel" type="VBoxContainer" parent="Center"]
+custom_minimum_size = Vector2(975, 0)
 layout_mode = 2
 
-[node name="Contents" type="VBoxContainer" parent="Center/Panel"]
+[node name="Upper" parent="Center/Panel" type="PanelContainer"]
+custom_minimum_size = Vector2(975, 466)
 layout_mode = 2
-theme_override_constants/separation = 12
+mouse_filter = 2
+theme_type_variation = &"LBADarkPanel"
 
-[node name="Title" type="Label" parent="Center/Panel/Contents"]
+[node name="Contents" type="VBoxContainer" parent="Center/Panel/Upper"]
 layout_mode = 2
-text = "Inventory"
-horizontal_alignment = 1
+mouse_filter = 2
 
-[node name="Entries" type="ItemList" parent="Center/Panel/Contents"]
-custom_minimum_size = Vector2(700, 360)
+[node name="Entries" type="GridContainer" parent="Center/Panel/Upper/Contents"]
 layout_mode = 2
-focus_mode = 2
-max_columns = 7
-same_column_width = true
-fixed_column_width = 96
-fixed_icon_size = Vector2i(82, 76)
-icon_mode = 0
-allow_reselect = true
-
-[node name="Actions" type="HBoxContainer" parent="Center/Panel/Contents"]
-layout_mode = 2
-
-[node name="Use" type="Button" parent="Center/Panel/Contents/Actions"]
-custom_minimum_size = Vector2(120, 42)
-layout_mode = 2
+columns = 7
 size_flags_horizontal = 3
-focus_mode = 2
-text = "Use"
-metadata/action = "use_item"
 
-[node name="Close" type="Button" parent="Center/Panel/Contents/Actions"]
-custom_minimum_size = Vector2(120, 42)
+[node name="Slot00" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+button_pressed = true
 layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
 size_flags_horizontal = 3
-focus_mode = 2
-text = "Back"
-metadata/action = "close"
+
+[node name="Slot01" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot02" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot03" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot04" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot05" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot06" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot07" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot08" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot09" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot10" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot11" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot12" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot13" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot14" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot15" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot16" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot17" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot18" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot19" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot20" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot21" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot22" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot23" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot24" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot25" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot26" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Slot27" parent="Center/Panel/Upper/Contents/Entries" instance=ExtResource("2_slot")]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 103)
+size_flags_horizontal = 3
+
+[node name="Description" parent="Center/Panel" type="PanelContainer"]
+custom_minimum_size = Vector2(975, 122)
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"LBAFramePanel"
+
+[node name="Contents" type="VBoxContainer" parent="Center/Panel/Description"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Text" type="RichTextLabel" parent="Center/Panel/Description/Contents"]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+size_flags_vertical = 3
+fit_content = false
+scroll_active = false
+text = "Select an item"

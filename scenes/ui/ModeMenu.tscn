@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://dwxupky6722fs"]
 
-[ext_resource type="Script" path="res://scripts/ui/game_action_panel.gd" id="1_panel"]
+[ext_resource type="Script" uid="uid://b8wq3l4y3jmuw" path="res://scripts/ui/game_action_panel.gd" id="1_panel"]
+[ext_resource type="PackedScene" path="res://scenes/ui/LBAPreviewSlot.tscn" id="2_slot"]
+[ext_resource type="Texture2D" uid="uid://j11jkdfi5drw" path="res://assets/ui/icon_heart.png" id="3_yku6t"]
+[ext_resource type="Texture2D" uid="uid://bja8t45h24r1p" path="res://assets/ui/icon_magic.png" id="4_hneay"]
+[ext_resource type="Texture2D" uid="uid://b02eb51s8evw2" path="res://assets/ui/icon_clover_box.png" id="5_t70b7"]
+[ext_resource type="Texture2D" uid="uid://dvnkokfk6ke6m" path="res://assets/ui/icon_cashes.png" id="6_fnucn"]
+[ext_resource type="Texture2D" uid="uid://b3cmpujj7elps" path="res://assets/ui/icon_key.png" id="7_7fqcr"]
 
-[node name="ModeMenu" type="Control"]
+[node name="ModeMenu" type="Control" unique_id=1024814507]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -11,106 +18,225 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_panel")
 
-[node name="Center" type="CenterContainer" parent="."]
+[node name="Center" type="CenterContainer" parent="." unique_id=1908464877]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="Panel" type="PanelContainer" parent="Center"]
-custom_minimum_size = Vector2(900, 360)
+[node name="Panel" type="VBoxContainer" parent="Center" unique_id=859987757]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 
-[node name="Contents" type="VBoxContainer" parent="Center/Panel"]
+[node name="Upper" type="PanelContainer" parent="Center/Panel" unique_id=1761225328]
+custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
-theme_override_constants/separation = 12
+mouse_filter = 2
+theme_type_variation = &"LBAFramePanel"
 
-[node name="Twinsen" type="TextureRect" parent="Center/Panel/Contents"]
-custom_minimum_size = Vector2(150, 120)
+[node name="Contents" type="VBoxContainer" parent="Center/Panel/Upper" unique_id=1848158960]
 layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
+mouse_filter = 2
 
-[node name="Status" type="VBoxContainer" parent="Center/Panel/Contents"]
+[node name="Modes" type="HBoxContainer" parent="Center/Panel/Upper/Contents" unique_id=1633505555]
 layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="Vitals" type="HBoxContainer" parent="Center/Panel/Contents/Status"]
-layout_mode = 2
+theme_type_variation = &"LBAModeRow"
 alignment = 1
-theme_override_constants/separation = 32
 
-[node name="Health" type="Label" parent="Center/Panel/Contents/Status/Vitals"]
-layout_mode = 2
-text = "Health: 0"
-
-[node name="HealthBar" type="ProgressBar" parent="Center/Panel/Contents/Status/Vitals"]
-custom_minimum_size = Vector2(130, 18)
-layout_mode = 2
-max_value = 50.0
-show_percentage = false
-
-[node name="Magic" type="Label" parent="Center/Panel/Contents/Status/Vitals"]
-layout_mode = 2
-text = "Magic level: 0  Energy: 0"
-
-[node name="MagicBar" type="ProgressBar" parent="Center/Panel/Contents/Status/Vitals"]
-custom_minimum_size = Vector2(130, 18)
-layout_mode = 2
-max_value = 80.0
-show_percentage = false
-
-[node name="Items" type="HBoxContainer" parent="Center/Panel/Contents/Status"]
-layout_mode = 2
-alignment = 1
-theme_override_constants/separation = 32
-
-[node name="Clovers" type="Label" parent="Center/Panel/Contents/Status/Items"]
-layout_mode = 2
-text = "Clovers: 0 / 0"
-
-[node name="Keys" type="Label" parent="Center/Panel/Contents/Status/Items"]
-layout_mode = 2
-text = "Keys: 0"
-
-[node name="Money" type="Label" parent="Center/Panel/Contents/Status/Items"]
-layout_mode = 2
-text = "Money: 0"
-
-[node name="Modes" type="HBoxContainer" parent="Center/Panel/Contents"]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Normal" type="Button" parent="Center/Panel/Contents/Modes"]
-custom_minimum_size = Vector2(190, 208)
+[node name="Normal" parent="Center/Panel/Upper/Contents/Modes" unique_id=315316445 instance=ExtResource("2_slot")]
+custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 2
-text = "Normal"
+theme_type_variation = &"LBAModeSlot"
+button_pressed = true
 metadata/behavior = 0
 
-[node name="Sporty" type="Button" parent="Center/Panel/Contents/Modes"]
-custom_minimum_size = Vector2(190, 208)
+[node name="Sporty" parent="Center/Panel/Upper/Contents/Modes" unique_id=620230028 instance=ExtResource("2_slot")]
+custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 2
-text = "Athletic"
+theme_type_variation = &"LBAModeSlot"
 metadata/behavior = 1
 
-[node name="Aggressive" type="Button" parent="Center/Panel/Contents/Modes"]
-custom_minimum_size = Vector2(190, 208)
+[node name="Aggressive" parent="Center/Panel/Upper/Contents/Modes" unique_id=1082775177 instance=ExtResource("2_slot")]
+custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 2
-text = "Aggressive"
+theme_type_variation = &"LBAModeSlot"
 metadata/behavior = 2
 
-[node name="Discreet" type="Button" parent="Center/Panel/Contents/Modes"]
-custom_minimum_size = Vector2(190, 208)
+[node name="Discreet" parent="Center/Panel/Upper/Contents/Modes" unique_id=744526181 instance=ExtResource("2_slot")]
+custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 2
-text = "Discreet"
+theme_type_variation = &"LBAModeSlot"
 metadata/behavior = 3
+
+[node name="ModeLabel" type="PanelContainer" parent="Center/Panel/Upper/Contents" unique_id=1572415522]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"LBAModeNamePanel"
+
+[node name="Contents" type="VBoxContainer" parent="Center/Panel/Upper/Contents/ModeLabel" unique_id=199238367]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ModeName" type="Label" parent="Center/Panel/Upper/Contents/ModeLabel/Contents" unique_id=563903945]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 36
+text = "Normal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Status" type="PanelContainer" parent="Center/Panel" unique_id=1418389318]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"LBADarkPanel"
+
+[node name="Contents" type="HBoxContainer" parent="Center/Panel/Status" unique_id=539694057]
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"LBAModeStatusRow"
+
+[node name="Bars" type="VBoxContainer" parent="Center/Panel/Status/Contents" unique_id=1604207833]
+custom_maximum_size = Vector2(420, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LBABarColumn"
+
+[node name="HealthRow" type="HBoxContainer" parent="Center/Panel/Status/Contents/Bars" unique_id=1108584543]
+layout_mode = 2
+
+[node name="HeartIcon" type="TextureRect" parent="Center/Panel/Status/Contents/Bars/HealthRow" unique_id=703826004]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_type_variation = &"LBAHeartIcon"
+texture = ExtResource("3_yku6t")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="HealthBar" type="ProgressBar" parent="Center/Panel/Status/Contents/Bars/HealthRow" unique_id=1349969982]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LBAHealthBar"
+max_value = 50.0
+value = 50.0
+show_percentage = false
+
+[node name="MagicRow" type="HBoxContainer" parent="Center/Panel/Status/Contents/Bars" unique_id=765173614]
+layout_mode = 2
+
+[node name="MagicIcon" type="TextureRect" parent="Center/Panel/Status/Contents/Bars/MagicRow" unique_id=1674318924]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_type_variation = &"LBAMagicIcon"
+texture = ExtResource("4_hneay")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="MagicBar" type="ProgressBar" parent="Center/Panel/Status/Contents/Bars/MagicRow" unique_id=369649541]
+show_behind_parent = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LBAMagicBar"
+max_value = 80.0
+value = 80.0
+show_percentage = false
+
+[node name="Clovers" type="HBoxContainer" parent="Center/Panel/Status/Contents/Bars" unique_id=988285432]
+layout_mode = 2
+size_flags_vertical = 6
+theme_type_variation = &"LBAModeRow"
+
+[node name="Clover0" type="CheckBox" parent="Center/Panel/Status/Contents/Bars/Clovers" unique_id=934914638]
+custom_minimum_size = Vector2(24, 24)
+custom_maximum_size = Vector2(24, 24)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 2
+button_pressed = true
+icon = ExtResource("5_t70b7")
+alignment = 1
+icon_alignment = 2
+
+[node name="Clover1" type="CheckBox" parent="Center/Panel/Status/Contents/Bars/Clovers" unique_id=224738563]
+custom_minimum_size = Vector2(24, 24)
+custom_maximum_size = Vector2(24, 24)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 2
+button_pressed = true
+icon = ExtResource("5_t70b7")
+icon_alignment = 2
+
+[node name="Clover2" type="CheckBox" parent="Center/Panel/Status/Contents/Bars/Clovers" unique_id=433493939]
+custom_minimum_size = Vector2(24, 24)
+custom_maximum_size = Vector2(24, 24)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 2
+button_pressed = true
+icon = ExtResource("5_t70b7")
+icon_alignment = 2
+
+[node name="Clover3" type="CheckBox" parent="Center/Panel/Status/Contents/Bars/Clovers" unique_id=594871985]
+custom_minimum_size = Vector2(24, 24)
+custom_maximum_size = Vector2(24, 24)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 2
+button_pressed = true
+icon = ExtResource("5_t70b7")
+icon_alignment = 2
+
+[node name="Counters" type="VBoxContainer" parent="Center/Panel/Status/Contents" unique_id=1250837194]
+layout_mode = 2
+theme_type_variation = &"LBAModeCounters"
+alignment = 1
+
+[node name="MoneyRow" type="HBoxContainer" parent="Center/Panel/Status/Contents/Counters" unique_id=398784196]
+layout_mode = 2
+
+[node name="MoneyIcon" type="TextureRect" parent="Center/Panel/Status/Contents/Counters/MoneyRow" unique_id=1291904998]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_type_variation = &"LBACounter"
+texture = ExtResource("6_fnucn")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Money" type="Label" parent="Center/Panel/Status/Contents/Counters/MoneyRow" unique_id=1936246025]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LBACounter"
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="KeysRow" type="HBoxContainer" parent="Center/Panel/Status/Contents/Counters" unique_id=1174864888]
+layout_mode = 2
+
+[node name="KeyIcon" type="TextureRect" parent="Center/Panel/Status/Contents/Counters/KeysRow" unique_id=2144653067]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_type_variation = &"LBACounter"
+texture = ExtResource("7_7fqcr")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Keys" type="Label" parent="Center/Panel/Status/Contents/Counters/KeysRow" unique_id=557606708]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LBACounter"
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
